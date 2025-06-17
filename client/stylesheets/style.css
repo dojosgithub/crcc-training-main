@@ -1,0 +1,187 @@
+.col-page-template-container .module-page-template-container {
+  width: 95%;
+  border-right: 1px solid #eee;
+}
+html {
+  height: 100%;
+}
+body {
+  font-family: Arial, Tahoma, Verdana, sans-serif;
+  font-weight: 300;
+  color: #333333;
+  height: 100%;
+  margin: 0;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+#__blaze-root {
+  height: 100%;
+}
+.inline {
+  display: inline;
+}
+.inline-block {
+  display: inline-block;
+}
+.table {
+  display: table;
+  table-layout: fixed;
+}
+.table-cell {
+  display: table-cell;
+}
+li._list-unstyled {
+  list-style: none !important;
+}
+button._btn-primary {
+  color: #fff;
+  background-color: #6496c8;
+  text-shadow: -1px 1px #417cb8;
+  border: none;
+}
+button._btn-primary:hover,
+button._btn-primary.hover {
+  background-color: #346392;
+  text-shadow: -1px 1px #27496d;
+}
+button._btn-primary:active,
+button._btn-primary.active {
+  background-color: #27496d;
+  text-shadow: -1px 1px #193047;
+}
+.fixed-center {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.text-underline {
+  text-decoration: underline;
+}
+.info-circle {
+  padding: 1px 9px;
+  display: inline-block;
+  -moz-border-radius: 100px;
+  -webkit-border-radius: 100px;
+  border-radius: 100px;
+  -moz-box-shadow: 0px 0px 1px #000;
+  -webkit-box-shadow: 0px 0px 1px #000;
+  box-shadow: 0px 0px 1px #000;
+}
+.s-alert-info,
+.s-alert-success,
+.s-alert-warning,
+.s-alert-error {
+  font-size: 1.3em;
+  font-weight: 600;
+  z-index: 9999;
+}
+.s-alert-warning {
+  font-weight: 600;
+  color: #6b6666;
+}
+img.pre-loading {
+  background-image: url('/images/loading.gif');
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+img.view-image {
+  cursor: pointer;
+}
+video::-internal-media-controls-download-button {
+  display: none;
+}
+video::-webkit-media-controls-enclosure {
+  overflow: hidden;
+}
+video::-webkit-media-controls-panel {
+  width: calc(100% + 30px);
+  /* Adjust as needed */
+}
+audio::-internal-media-controls-download-button {
+  display: none;
+}
+audio::-webkit-media-controls-enclosure {
+  overflow: hidden;
+}
+audio::-webkit-media-controls-panel {
+  width: calc(100% + 30px);
+  /* Adjust as needed */
+}
+.short-note-xs {
+  font-size: 0.9em;
+}
+.videoWrapper {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+}
+.videoWrapper iframe,
+.videoWrapper embed,
+.videoWrapper object {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+}
+/* iPads (landscape) ----------- */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
+  body {
+    font-size: 1.5em;
+  }
+}
+/* iPads (portrait) ----------- */
+/*==========  Mobile First Method  ==========*/
+/* Custom, iPhone Retina */
+/* Extra Small Devices, Phones */
+/* Small Devices, Tablets */
+/* Medium Devices, Desktops */
+/* Large Devices, Wide Screens */
+/*==========  Non-Mobile First Method  ==========*/
+/* Large Devices, Wide Screens */
+/* Medium Devices, Desktops */
+/* Small Devices, Tablets */
+/* Extra Small Devices, Phones */
+/* Custom, iPhone Retina */
+@media only screen and (max-width: 320px) {
+  body {
+    font-size: 2em;
+  }
+}
+#toast-container.toast-accept-cookies {
+  display: none;
+}
+.toast-accept-cookies .toast {
+  height: 165px;
+  opacity: 1 !important;
+  width: 100% !important;
+  background-color: #27556e;
+}
+.toast-accept-cookies .toast .toast-title {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+.toast-accept-cookies .toast .toast-message {
+  font-size: 1.1em;
+}
+.toast-accept-cookies .toast a {
+  text-decoration: underline;
+}
+.toast-accept-cookies .toast .btn-accept-cookies {
+  margin-top: 22px;
+  background-color: orange !important;
+  padding: 10px 15px !important;
+  border-radius: 15px;
+  font-weight: normal;
+  font-size: 1.2em;
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
+}
+#toast-container.toast-accept-cookies > div {
+  padding: 15px 15px 15px 60px;
+  background-position: 15px 40px;
+}
+#toast-container.toast-accept-cookies > .toast-success {
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHOSURBVEhLrZa/SgNBEMZzh0WKCClSCKaIYOED+AAKeQQLG8HWztLCImBrYadgIdY+gIKNYkBFSwu7CAoqCgkkoGBI/E28PdbLZmeDLgzZzcx83/zZ2SSXC1j9fr+I1Hq93g2yxH4iwM1vkoBWAdxCmpzTxfkN2RcyZNaHFIkSo10+8kgxkXIURV5HGxTmFuc75B2RfQkpxHG8aAgaAFa0tAHqYFfQ7Iwe2yhODk8+J4C7yAoRTWI3w/4klGRgR4lO7Rpn9+gvMyWp+uxFh8+H+ARlgN1nJuJuQAYvNkEnwGFck18Er4q3egEc/oO+mhLdKgRyhdNFiacC0rlOCbhNVz4H9FnAYgDBvU3QIioZlJFLJtsoHYRDfiZoUyIxqCtRpVlANq0EU4dApjrtgezPFad5S19Wgjkc0hNVnuF4HjVA6C7QrSIbylB+oZe3aHgBsqlNqKYH48jXyJKMuAbiyVJ8KzaB3eRc0pg9VwQ4niFryI68qiOi3AbjwdsfnAtk0bCjTLJKr6mrD9g8iq/S/B81hguOMlQTnVyG40wAcjnmgsCNESDrjme7wfftP4P7SP4N3CJZdvzoNyGq2c/HWOXJGsvVg+RA/k2MC/wN6I2YA2Pt8GkAAAAASUVORK5CYII=) !important;
+}

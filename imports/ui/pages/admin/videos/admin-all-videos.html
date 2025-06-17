@@ -1,0 +1,124 @@
+<!-- Admin All Videos template -->
+<template name="AdminAllVideos">
+  <div class="row row-admin-all-videos">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-admin-all-videos">
+
+      <div class="admin-all-videos-top-container">
+        <div class="admin-all-videos-top-nav">
+          <button class="btn btn-xs btn-default btn-view-video-table" data-on="true" title="List view">
+          <i class="fa fa-list"></i> </button>
+          <button class="btn btn-xs btn-default btn-view-video-table" data-on="false" title="Grid view">
+          <i class="fa fa-th"></i> </button>
+        </div>
+      </div>
+
+      <div class="admin-all-videos-container">
+
+        {{#if viewTable}}
+
+          {{> tabular table=TabularTables.TrainingModuleVideos  selector=videoTableSelector   
+          class="table table-striped table-condensed" id="tblTrainingModuleVideos"}}
+
+        {{else}}
+
+          <div class="admin-all-videos-thumbs-top-nav">
+            <form class="form-inline form-thumbs-per-page">
+              <div class="form-group">
+                <label for="sel_thumbs_per_page">Showing </label>
+                <select name="sel_thumbs_per_page" id="sel_thumbs_per_page">
+                  <option value="10">10</option>
+                  <option value="20">20</option>
+                  <option value="30">30</option>
+                  <option value="50">50</option>
+                </select>
+                <label for="sel_thumbs_per_page"> videos per page</label>
+                <span class="total-videos"> (total: {{totalNumVideos}})</span>
+              </div>
+            </form>
+
+            <form class="form-inline form-thumbs-search">
+              <div class="form-group">
+                <label for="sel_thumbs_per_page">Search: </label>
+                <input type="text" id="search_thumbs">
+                <button class="btn btn-xs btn-default btn-search-thumbs-videos"><i class="fa fa-search"></i> </button>
+              </div>
+            </form>
+          </div>
+
+          <ul class="ul-admin-all-videos list-unstyled">
+                    
+          {{#each Videos}}
+            <li class="d-inline-block li-admin-all-videos">
+              <div class="admin-video-container {{#if eq status 1}}active{{/if}}">
+                <div class="admin-video-src">
+                  {{{video.src}}}
+                </div>
+                <div class="admin-video-title">
+                  {{title}}
+                </div>
+                <div class="admin-video-buttons" data-vid="{{_id}}">
+                  <button class="btn btn-xs btn-default btn-view-video">
+                    <i class="fa fa-eye"></i>
+                  </button>              
+                  <button class="btn btn-xs btn-default btn-edit-video">
+                    <i class="fa fa-pencil"></i>
+                  </button>
+                  {{#if eq status 1}}
+                  <button class="btn btn-xs btn-warning btn-deactivate-video" title="Deactivate">
+                    <i class="fa fa-lock"></i>
+                  </button> 
+                  {{else}}
+                  <button class="btn btn-xs btn-success btn-activate-video" title="Activate">
+                    <i class="fa fa-unlock"></i>
+                  </button>                 
+                  {{/if}}
+                  <button class="btn btn-xs btn-danger btn-delete-video">
+                    <i class="fa fa-trash"></i>
+                  </button>                
+                </div>
+              </div>            
+            </li>
+          {{/each}}
+
+          </ul>
+
+        {{/if}}
+
+      </div>
+    </div>
+  </div>
+
+  {{#if eq viewTable false}}
+  <div class="row-admin-all-videos-bottom">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-admin-all-videos-bottom">
+
+      <div class="admin-all-videos-thumbs-bottom-nav">
+        <div class="admin-all-videos-thumbs-page-container">
+          <ul class="ul-admin-all-videos-thumbs-page list-unstyled">
+<!--             {{#each total}}
+              {{#if eq @index 0}}
+                <li>Prev</li>
+              {{else}}
+                {{#if eq (ded (length total) @index) 1}}
+                  <li>Next</li>
+                {{else}}
+                  <li>{{sum @index 1}}</li>      
+                {{/if}}
+              {{/if}}
+
+            {{/each}} -->
+
+            {{#each total}}
+              {{{this}}}
+            {{/each}}
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  {{/if}}
+
+  {{> AdminVideoEdit data=videoToEdit }}
+  {{> AdminVideoModal data=videoToView }}
+</template>

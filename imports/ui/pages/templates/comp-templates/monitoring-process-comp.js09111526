@@ -1,0 +1,63 @@
+/**
+ * Monitoring Process Comp version template logic
+ */
+import { Meteor } from 'meteor/meteor'
+import { Template } from 'meteor/templating'
+
+import { MonitoringProcessComp } from '/imports/ui/pages/templates/comp-templates/monitoring-process-comp.html'
+import '/imports/ui/stylesheets/templates/monitoring-process-comp.scss'
+
+let _selfMonitoringProcessComp
+
+Template.MonitoringProcessComp.onCreated(function monitoringProcessCompOnCreated() {
+  _selfMonitoringProcessComp = this
+})
+
+Template.MonitoringProcessComp.onRendered(function monitoringProcessCompOnRendered() {
+  let iframe = $('.sproutvideo-player')
+  let iframeSrc = $(iframe).attr('src')
+
+  if(iframeSrc) { //-- in case this template is an embedded one as a Comp template for a video
+      let videoId = iframeSrc.split('embed/')[1].split('/')[0]
+
+      if(videoId !== '') {
+        let player = new SV.Player({videoId: videoId})
+
+        player.bind('completed', function() {
+          // console.log(videoId)
+          $(".col-video-container").hide()
+          $(".col-monitoring-process-comp-container").show()
+          // $(".row-module-main-container").prepend( $(".col-monitoring-process-comp-container"))
+        })  
+
+        // player.bind('progress', function(e) {
+          
+        // })
+      }
+  }
+})
+
+Template.MonitoringProcessComp.events({
+  'click img.monitoring-process-comp-image'(e, tpl) {
+    e.preventDefault()
+
+    if(_selfMonitoringProcessComp.audio) {
+      _selfMonitoringProcessComp.audio.pause()
+    }
+
+    let iid = $(e.currentTarget).data('iid')
+    
+    $('#monitoring_process_comp_'+iid).css('visibility', 'visible')
+
+    _selfMonitoringProcessComp.audio = new Audio('/audio/monitoring_process_'+iid+'.mp3');
+    _selfMonitoringProcessComp.audio.play()
+
+  }
+})
+
+Template.MonitoringProcessComp.onDestroyed(() => {
+   if(_selfMonitoringProcessComp.audio) {
+      _selfMonitoringProcessComp.audio.pause()
+    }  
+})
+

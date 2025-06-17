@@ -1,0 +1,223 @@
+// @media(min-width:768px) {
+  .admin-header-navbar {
+
+    // background-color: #18191d;
+    min-height: 30px;
+    margin-bottom: 0; //- Overriding Bootstrap's style on 'navbar'
+    // box-shadow: 0px 2px 10px #888888, 0px 2px 10px #888888;
+    // box-shadow: inset 0px 0px 1px 0px rgba(0,0,0,0.75);  
+    box-shadow: 0px 1px 10px #bbb3b3;
+    // border: 1px solid rgba(0, 0, 0, 0.6);
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+
+    background: linear-gradient(135deg, #377485 0%, #5b97a8 25%, #0a304d 100%);
+
+    .nav.navbar-nav {
+      a, a:visited {
+        // color: #626567;
+        color: #d2d2d2;
+        // font-family: 'Poppins', Arial, Helvetica, 'Nimbus Sans L', sans-serif;
+        // font-size: 0.9em;
+        line-height: 1em;
+        // font-weight: 600;
+        font-style: normal;
+        text-transform: uppercase;
+      }
+
+      a:hover {
+        color: #e3efb8;
+      }
+
+      li.dropdown {
+
+        ul.dropdown-menu {
+          border-radius: 5px;
+
+          li {
+            a {
+                color: #666;
+                // line-height: 1em;      
+                font-style: normal;
+                text-transform: none;
+                text-shadow: none;
+            }
+          }
+        }
+      }
+
+      li.dropdown.open {
+
+        a.dropdown-toggle {
+          // color: #585757;
+          color: #d2d2d2;
+          text-shadow: none;
+          background-color: transparent;
+        }
+
+      }
+    }
+  }
+
+  .img-craa-logo {
+    display: inline-block !important;
+    width: 25px;
+    margin-right: 3px;
+  }
+
+  .craa-training-logo-text {
+    display: inline-block;
+    // color: #89969c;
+    // color: #dcd7d7;
+    color: #f3f3f3;
+    font-weight: 600;
+    font-size: 1.7em;
+    vertical-align: middle;
+    padding-top: 2px;
+    text-transform: none;
+  }
+
+  .navbar-default .navbar-brand { //-- Override BS's style.
+    color: #a6b53e;
+  }
+  .navbar-default .navbar-brand:hover, 
+  .navbar-default .navbar-brand:focus {
+    color: #a6b53e;
+  }
+
+// }
+
+/* iPads (landscape) ----------- */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : landscape) {
+  // .img-craa-logo {
+  //   width: 40px;
+  // }
+
+  // .admin-header-navbar {
+  //   height: 4em;
+  // }
+
+  // .navbar-default .navbar-brand {
+  //   font-size: 1em;
+  //   // margin-top: 20px;    
+  // }
+
+  // .admin-header-navbar .nav.navbar-nav a {
+  //   font-size: 1em;
+  //   // margin-top: 20px;    
+  // }
+}
+
+/* iPads (portrait) ----------- */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : portrait) {
+  /* Styles */
+}
+
+/*==========  Mobile First Method  ==========*/
+
+/* Custom, iPhone Retina */ 
+@media only screen and (min-width : 320px) {
+
+}
+
+/* Extra Small Devices, Phones */ 
+@media only screen and (min-width : 480px) {
+  // .img-craa-logo {
+  //   width: 40px;
+  // }
+
+  // .admin-header-navbar {
+  //   height: 7em;
+  // }
+
+  // .navbar-default .navbar-brand {
+  //   font-size: 2em;
+  //   margin-top: 20px;    
+  // }
+
+  // .admin-header-navbar .nav.navbar-nav a {
+  //   font-size: 2em;
+  //   margin-top: 20px;    
+  // }
+}
+
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px) {
+
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px) {
+
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width : 1200px) {
+
+}
+
+/*==========  Non-Mobile First Method  ==========*/
+
+/* Large Devices, Wide Screens */
+@media only screen and (max-width : 1200px) {
+
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (max-width : 992px) {
+
+}
+
+/* Small Devices, Tablets */
+@media only screen and (max-width : 768px) {
+
+}
+
+/* Extra Small Devices, Phones */ 
+@media only screen and (max-width : 480px) {
+  // .img-craa-logo {
+  //   width: 40px;
+  // }
+
+  // .admin-header-navbar {
+  //   height: 7em;
+  // }
+
+  // .navbar-default .navbar-brand {
+  //   font-size: 2em;
+  //   margin-top: 20px;    
+  // }
+
+  // .admin-header-navbar .nav.navbar-nav a {
+  //   font-size: 2em;
+  //   margin-top: 20px;    
+  // }
+}
+
+/* Custom, iPhone Retina */ 
+@media only screen and (max-width : 320px) {
+  // .img-craa-logo {
+  //   width: 40px;
+  // }
+
+  // .admin-header-navbar {
+  //   height: 7em;
+  // }
+
+  // .navbar-default .navbar-brand {
+  //   font-size: 2em;
+  //   margin-top: 20px;    
+  // }
+
+  // .admin-header-navbar .nav.navbar-nav a {
+  //   font-size: 2em;
+  //   margin-top: 20px;    
+  // }
+}
+
+

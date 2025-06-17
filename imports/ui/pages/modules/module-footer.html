@@ -1,0 +1,74 @@
+<template name="ModuleFooter">
+  
+  <div class="modal fade" id="module_complete_modal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">
+            Congratulations! You have completed this training module!
+          </h4>
+        </div>
+        <div class="modal-footer">
+          <!-- <button type="button" class="btn btn-default btn-secondary" data-dismiss="modal">
+            Close
+          </button>   -->
+          <button type="button" class="btn btn-default btn-take-me-to-app" data-dismiss="modal">
+            Take Followup Simulation
+          </button>         
+          <button type="button" class="btn btn-default btn-take-me-to-modules" data-dismiss="modal">
+            Go to Home            
+          </button>          
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+  
+  <div class="modal fade" id="short_time_modal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">
+            You have not spent enough time reviewing the pages of the training module. 
+            The duration of this module is {{myDuration}}, but you spent less than this amount 
+            of time reviewing the training pages.<br><br>Please re-review the training content 
+            when you have allocated enough time to review without rushing.
+          </h4>
+        </div>
+        <div class="modal-footer">
+          <!-- <button type="button" class="btn btn-default btn-secondary" data-dismiss="modal">
+            Close
+          </button>   -->
+          <button type="button" class="btn btn-default btn-re-review" data-dismiss="modal">
+            Re-review Training
+          </button>         
+          <button type="button" class="btn btn-default btn-take-me-to-modules" data-dismiss="modal">
+            Go to Home            
+          </button>          
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <div class="modal fade" id="1st_page_modal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">
+            To make it easier for you to view the videos, we have unlocked the playback bar for 
+            the video player allowing you to pause/rewind/fast forward videos.<br><br><u>Please do not try 
+            to abuse this feature by skipping through the videos.</u><br><br>The system will check your 
+            calculated time to complete each training module and if it doesn't match or exceed 
+            the estimated duration, your module will be marked as incomplete and you will not be 
+            assigned the Followup Simulation.
+          </h4>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default btn-secondary" data-dismiss="modal">
+            Close
+          </button>         
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+<!-- {{getAroundGMute}} -->
+</template>

@@ -1,0 +1,62 @@
+<template name="AdminAudioActions">
+  <form class="form-inline audio-action-buttons" data-aid="{{data._id}}">
+    <div class="form-group">
+      <button class="btn btn-xs btn-default btn-save-table-audio"><i class="fa fa-save"></i> </button>
+    </div>
+    <div class="form-group">
+      {{#if eq data.status 1}}
+        <button class="btn btn-xs btn-warning btn-update-table-audio-status" data-status="2"><i class="fa fa-lock"></i> </button>
+      {{else}}
+        <button class="btn btn-xs btn-success btn-update-table-audio-status" data-status="1"><i class="fa fa-unlock"></i> </button>
+      {{/if}}
+    </div>    
+    <div class="form-group">
+      <button class="btn btn-xs btn-danger btn-delete-table-audio"  data-status="4"><i class="fa fa-trash"></i></button>
+    </div>
+  </form>
+</template>
+
+<template name="AdminAudioThumbnail">
+  <button class="btn btn-xs btn-default btn-view-table-audio" 
+    data-aid="{{data._id}}" data-title="{{data.title}}"  data-name="{{data.original.name}}"
+    data-toggle="modal" data-target="#audioModal">
+    <!-- <i class="fa fa-2x fa-music"></i>  -->
+
+    <span class="fa-stack fa-lg">
+      <i class="fa fa-music fa-stack-2x audio-music-icon"></i>
+      <i class="fa fa-play fa-stack"></i>
+    </span>    
+  </button>
+</template>
+
+<template name="AdminAudioModal">
+  <!-- Modal -->
+  <div class="modal fade" id="audioModal" tabindex="-1" role="dialog" aria-labelledby="audioModalTitle">  
+    <div class="modal-dialog" id="audioModalDialog" role="document">
+      {{#with Audio}}{{/with}}
+      <div class="modal-content">
+        <div class="modal-body" id="audioModalBody">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <div class="admin-audio-container">
+            <div class="admin-audio-src" id="audioModalSrc"></div>
+          </div>         
+        </div>
+        <div class="modal-footer" id="audioModalFooter">
+          <div class="admin-audio-title" id="audioModalTitle">                
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> 
+</template>
+
+<template name="AdminModulePageEditAllAudiosActions">
+  <form class="form-inline audio-action-buttons" data-aid="{{data._id}}">
+    <div class="form-group">
+      <button class="btn btn-xs btn-default btn-save-table-audio"><i class="fa fa-save"></i> </button>
+    </div>  
+    <div class="form-group">
+      <button class="btn btn-xs btn-default btn-select-this-audio"><i class="fa fa-check"></i> select</button>
+    </div>
+  </form>
+</template>

@@ -1,0 +1,39 @@
+<!-- Admin All Users template -->
+<template name="AdminAllUsers">
+
+  <div class="row row-admin-all-users">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-admin-all-users">      
+      <div class="admin-all-users-container">
+
+        {{> tabular table=TabularTables.AdminAllUsers selector=adminAllUsersSelector 
+        class="table table-striped table-condensed" id="tblAdminAllUsers"}}
+      </div>
+    </div>
+  </div>
+
+  <button class="btn btn-xs btn-default btn-view-search-options"><i class="fa fa-search"></i> view search options</button>
+  {{#if eq currentUser.profile.role '1'}}
+  <button class="btn btn-xs _btn-primary btn-manage-all-users"><i class="fa fa-gear"></i> manage data</button>
+  {{/if}}
+  
+  <div class="admin-manage-all-users-container modal">
+    <div class="admin-manage-all-users-top text-left">
+      <button class="btn btn-xs btn-default btn-close-manage-all-users"><i class="fa fa-2x fa-times"></i></button>
+    </div>
+    <div class="manage-all-users-main-container">
+      {{>AdminManageAllUsers data=allUsersToManage }}
+    </div>
+  </div>
+
+  <div class="admin-manage-user-tr-modules-container modal">
+    <div class="admin-manage-user-tr-modules-top text-left">
+      <button class="btn btn-xs btn-default btn-close-manage-user-tr-modules"><i class="fa fa-2x fa-times"></i></button>
+    </div>
+    <div class="admin-manage-user-tr-modules-main-container">
+      {{> Template.dynamic template=tplManageUserTRModules data=userData}}
+    </div>
+  </div>
+
+  {{> Template.dynamic template=tplAdminAllUserSearch data=userData}}
+
+</template>

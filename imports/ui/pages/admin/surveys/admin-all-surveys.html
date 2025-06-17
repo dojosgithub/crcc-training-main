@@ -1,0 +1,22 @@
+<template name="AdminAllSurveys">
+   <div class="row row-admin-all-surveys">
+    <div class="col-xs-12 col-admin-all-surveys">
+    
+        {{> tabular table=TabularTables.TrainingModuleSurveys selector=surveysTableSelector 
+        class="table table-striped table-condensed" id="tblTrainingModuleSurveys"}}
+
+    </div>
+  </div>
+
+  
+  {{>AdminSurveyQuestions data=surveyQuestionsData }}
+
+  <div class="admin-survey-settings-form-container modal">
+    <div class="admin-survey-settings-top text-left">
+      <button class="btn btn-xs btn-default btn-close-survey-settings"><i class="fa fa-2x fa-times"></i></button>
+    </div>
+    <div class="survey-settings-main-container">
+      <!-- {{>AdminSurveySettings data=surveyToSetup }} -->
+    </div>
+  </div>
+</template>

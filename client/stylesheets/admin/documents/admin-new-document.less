@@ -1,0 +1,129 @@
+// .row-admin-new-document {
+  
+//   margin: 70px 0 30px 200px;
+//   min-height: 70%;
+
+//   .col-admin-new-document {
+//     .admin-new-document-top {
+//       margin: 0 50px 10px;
+//     }
+
+//     .admin-new-document-container {
+//             width: 70%;
+//       min-height: 200px;
+//       max-height: 500px;
+//     }
+//   }
+// }
+
+
+@media(min-width:768px) {
+
+  .row-admin-new-doc-uploaded {
+    
+    margin: 100px 0 4em 200px;
+    // min-height: 70%;
+
+    .col-admin-new-doc-uploaded {
+      .admin-new-doc-uploaded-container {
+        
+        // margin: 10% 10%;
+
+        .ul-admin-new-doc-uploaded {
+
+          li.li-admin-new-doc {
+            
+            float: left;
+            display: inline-block;
+            // margin-right: 15px;
+            margin: 10px 10px 0 0;
+
+
+            border: 1px solid #ddd;
+            border-radius: 5px;
+
+            .admin-new-doc-container {
+              
+              width: 287px;
+              height: 118px;
+              padding: 5px;
+              border: 1px solid #ddd;
+              border-radius: 5px;
+
+              .admin-new-doc-src {
+                
+                width: 275px;
+                border: 1px solid #eee;
+
+                doc {
+                  width: 270px;
+                }
+              }
+
+              .admin-new-doc-title {
+                font-size: 0.9em;
+                width: 280px;
+                height: 35px;
+                margin: 5px 0;
+              }
+
+              .admin-new-doc-buttons {
+                width: 100%;
+                text-align: right;        
+              }
+            }
+
+            .admin-new-doc-container.active {
+              background-color: rgba(220, 239, 225, 0.8);
+            }
+
+            .admin-new-doc-container.inactive {
+              background-color: transparent;
+            }      
+          }  
+        }
+
+      }
+    }    
+  }
+
+  .row-admin-new-doc-dropzone {
+    
+    margin: 20px 0 20em 200px;
+
+    .col-admin-new-doc {
+      .admin-new-doc-container {
+        
+        margin: 0 10%;
+
+        .admin-new-doc-dropzone {
+          display: inline-block;
+          padding: 20px;
+          width: 300px;
+          height: 200px;
+          border: 1px solid #777;          
+        }
+
+        .admin-new-doc-progress {
+          display: inline-block;
+          margin-left: 1em;
+          vertical-align: top;
+
+          ul {
+            list-style: none;
+          }
+        }
+      }
+    }    
+  }
+}
+
+.admin-new-doc-dragover {
+  border-radius: 10px;
+  background-color: #eee;
+}
+
+.admin-new-doc-dragleave {
+  border-radius: 0px;
+  background-color: #fff;
+}

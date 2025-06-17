@@ -1,0 +1,87 @@
+.crf-review-process-quiz-container {
+
+  .crf-rqp-main-container {
+
+    // border: 1px solid #bbb;
+    // border-radius: 3px;
+    
+    margin-bottom: 10em;
+
+    .row-crf-rpq-main {
+      width: 100%;
+      background-color: #fcfdfd;
+      margin-left: 0px; //-- overriding BS's row (margin-left: -15px) 
+
+      .col-crf-rpq-left {
+
+        padding: 10px 0 0 10px;
+
+        .crf-rpq-left-image-container {
+          // padding: 10px;
+          // border: 1px solid #c1b9b9;
+          // border-radius: 5px;
+
+          img {
+            width: 100%;
+            -webkit-box-shadow: 3px 0px 3px -1px rgba(148,143,148,1);
+            -moz-box-shadow: 3px 0px 3px -1px rgba(148,143,148,1);
+            box-shadow: 3px 0px 3px -1px rgba(148,143,148,1);            
+          }  
+        }
+      }
+
+      .col-crf-rpq-right {
+        padding: 20px 10px 10px 30px;
+
+        
+        ol {
+          font-size: 1.2em;
+
+          li {
+            margin-bottom: 0.5em;
+            
+            div.crf-rpq-answer-container {
+              display: inline-block;
+              max-width: 300px;
+
+              span.crf-rpq-answer {
+                display: inline-block;
+                padding: 3px 5px;
+                border-bottom: 1px solid #aaa;
+                border-radius: 3px;
+                min-width: 100px;
+                font-weight: 600;
+              } 
+
+              // span#crf_rpq_5 {
+              //   min-width: 200px;
+              // }        
+
+              span.crf-rpq-answer.correct {
+                color: #0e650e;                
+              } 
+
+              span.crf-rpq-answer.wrong {
+                color: #d81515;     
+                border-width: 2px;      
+                border-color: #d81515;      
+              } 
+
+              span.crf-rpq-answer.almost {
+                color: #99a044;
+                border-color: #d81515;
+                border-width: 2px;
+              }                                             
+            }
+
+            // div.crf-rpq-answer-05 {
+            //   max-width: 500px;
+            // }           
+          }
+
+        }
+      }
+    }
+  }
+}
+

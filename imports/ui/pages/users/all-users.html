@@ -1,0 +1,36 @@
+<!-- Admin All Users template -->
+<template name="AllUsers">
+  <div class="row row-all-users">
+    <div class="col-xs-12 col-sm-12 col-md-12">
+      <div class="admin-all-users-container">
+        
+        <!-- Button to open a new user form -->
+        <div class="col-xs-offset-10 col-sm-offset-10 col-md-offset-10 admin-new-user-button-container">
+          <a href="#newUserFormContainer" class="btn btn-xs btn-info" data-toggle="modal">Add User</a>          
+        </div>
+
+        <div class="col-md-offset-1 col-md-10">
+          
+          <div class="admin-all-users-table-container">
+            {{> tabular table=TabularTables.AdminAllUsers  
+            class="table table-striped table-condensed" id="adminAllUsersTable"}}            
+          </div>
+
+        </div>
+
+        {{> NewUser}}
+
+      </div>
+    </div>
+  </div>
+</template>
+
+<!-- Admin All Users action column -->
+<template name="AdminAllUsersAction">
+  <div class="form-group admin-all-usrs-action-container">
+      <button class="btn btn-xs btn-info btn-user-edit" data-uid="{{this._id}}" title="Edit User"><i class="fa fa-pencil" data-uid="{{this._id}}"></i></button>
+      <button class="btn btn-xs btn-warning btn-user-deactivate" data-uid="{{this._id}}" title="Deactivate User"><i class="fa fa-lock" data-uid="{{this._id}}"></i></button>
+<!--       <button class="btn btn-xs btn-success btn-user-activate" data-uid="{{this._id}}" title="Activate User"><i class="fa fa-unlock" data-uid="{{this._id}}"></i></button>  -->     
+      <button class="btn btn-xs btn-danger btn-user-delete" data-uid="{{this._id}}" title="Delete User"><i class="fa fa-trash" data-uid="{{this._id}}"></i></button>
+  </div>
+</template>

@@ -1,0 +1,88 @@
+<!-- MonitoringProcess Comp version template -->
+<template name="MonitoringProcessComp">
+
+  <div class="col-xs-12 col-sm-12 col-md-9 col-page-template-container col-monitoring-process-comp-container">      
+    <div class="module-page-template-container">
+      <div class="monitoring-process-comp-container">
+        <div class="row row-monitoring-process-comp">
+          
+          <div class="col-xs-12 col-sm-12 col-md-12 col-monitoring-process-comp text-center">
+          
+            <ul class="ul-monitoring-process-comp">
+              <li class="li-monitoring-process-comp">
+                
+                    <div class="monitoring-process-comp-image-container source-image-container">
+                      <img src="/templates/monitoring-process/monitoring_process_1_2.png" 
+                        class="monitoring-process-comp-image" 
+                        data-iid="source"
+                        alt="CRF Review Process Recap - Source">
+                    </div>
+                    <div class="monitoring-process-comp-desc" id="monitoring_process_comp_source">
+                      Begin with a comprehensive review of the source documents related to 
+                      the specific visit or topic (such as medical history, concomitant medications, 
+                      adverse events, etc.).  Review the information with the goal of ensuring that 
+                      it meets all of the ALCOA and European Medicines Agency requirements or any other 
+                      requirements designated by your study team, company, country, region, etc.               
+                    </div>
+
+              </li>
+              <li class="li-monitoring-process-comp">
+                
+                    <div class="monitoring-process-comp-image-container crf-image-container">
+                      <img src="/templates/monitoring-process/monitoring_process_2_2.png"  
+                        class="monitoring-process-comp-image monitoring-process-comp-image"
+                        data-iid="crf"
+                        alt="CRF Review Process Recap - CRF">
+                    </div> 
+                    <div class="monitoring-process-comp-desc" id="monitoring_process_comp_crf">
+                      Once you have identified that source documentation is either comprehensive 
+                      or has deficiencies, have discussed this with site personnel, and have resolved 
+                      issues, you can progress to verifying entries within the CRF.  For situations 
+                      in which the source documents do not meet the requirements, you will need to 
+                      work with the site to determine the necessary remediation or follow-up as applicable.                                
+                    </div>
+
+              </li>
+              <li class="li-monitoring-process-comp">
+                
+                    <div class="monitoring-process-comp-image-container srccrf-image-container">
+                      <img src="/templates/monitoring-process/monitoring_process_3_2.png"  
+                        class="monitoring-process-comp-image monitoring-process-comp-image"
+                        data-iid="srccrf"
+                        alt="CRF Review Process Recap - Source CRF">
+                    </div>
+                    <div class="monitoring-process-comp-desc" id="monitoring_process_comp_srccrf">
+                      Finally, you will review entries in the CRF/EDC to ensure they are consistent 
+                      with source documentation and the CRF completion guidelines, requesting clarification 
+                      from site personnel where necessary.
+                    </div> 
+
+              </li>
+            </ul>
+
+          </div> <!-- col-monitoring-process-comp -->
+          
+        </div> <!-- row-monitoring-process-comp -->
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="monitoring_process_comp_intro_modal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+<!--           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button> -->
+          <h4 class="modal-title">
+            Click on each picture to review the 3 key concepts in our recommended monitoring process.
+          </h4>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default btn-secondary" data-dismiss="modal">Close</button>        
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+</template>

@@ -1,0 +1,32 @@
+<!-- Image Cropper template -->
+<template name="ImageCropper">
+  <div class="row row-image-cropper modal">
+    <div class="col-xs-12 col-sm-12 col-md-1"></div>
+    <div class="col-xs-12 col-sm-12 col-md-6 col-image-cropper">
+      <div class="image-cropper-container">
+        <div class="image-cropper-main text-center">          
+          <img id="imageCropperSrc" src="images/default.jpg" alt="Image to crop">          
+        </div>
+      </div>      
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-4">
+      <!-- Image preview -->
+      <div class="image-cropper-preview-container">
+        <div class="image-cropper-preview"></div>
+        <div class="image-cropper-preview-button-container">
+          <button class="btn btn-xs btn-default btn-save-cropped-image" data-opt="add">
+            Save as a new image
+          </button>
+          <button class="btn btn-xs btn-default btn-save-cropped-image" data-opt="update">
+            Save & Replace the original image with this one
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-1">
+        <div class="image-cropper-top">
+          <button class="btn-lg btn-default btn-close-image-cropper"><i class="fa fa-lg fa-times" aria-hidden="true"></i></button>
+        </div>      
+    </div>
+  </div>
+</template>

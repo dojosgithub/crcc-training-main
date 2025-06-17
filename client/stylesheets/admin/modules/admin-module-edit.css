@@ -1,0 +1,40 @@
+@media (min-width: 768px) {
+  .row-admin-module-edit {
+    background-color: #ffffff;
+    margin-left: 0px;
+    overflow: auto;
+  }
+  .row-admin-module-edit .admin-module-edit-top button {
+    background-color: transparent;
+    border: none;
+    margin-right: 20px;
+  }
+  .row-admin-module-edit .col-admin-module-edit form {
+    text-align: left;
+    background-color: #ffffff;
+  }
+  .row-admin-module-edit .col-admin-module-edit form .module-progress-option-container {
+    margin-top: 8px;
+  }
+  .row-admin-module-edit .col-admin-module-edit form .module-order {
+    width: 70px;
+  }
+  .row-admin-module-edit .module-cover-images-container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 3em;
+    max-height: calc(100vh - 210px);
+    overflow-y: auto;
+  }
+  .row-admin-module-edit .module-cover-images-container li {
+    display: inline-block;
+    margin-bottom: 10px;
+  }
+  .row-admin-module-edit .module-cover-images-container li .thumbnail {
+    margin-bottom: 0;
+  }
+}
+.row-admin-module-builder.modal {
+  width: 100%;
+  height: 100%;
+}

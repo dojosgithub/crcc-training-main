@@ -1,0 +1,116 @@
+<!-- Admin All Audio template -->
+<template name="AdminAllAudios">
+  <div class="row row-admin-all-audios">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-admin-all-audios">
+
+      <div class="admin-all-audios-top-container">
+        <div class="admin-all-audios-top-nav">
+          <button class="btn btn-xs btn-default btn-view-audio-table" data-on="true" title="List view">
+          <i class="fa fa-list"></i> </button>
+          <button class="btn btn-xs btn-default btn-view-audio-table" data-on="false" title="Grid view">
+          <i class="fa fa-th"></i> </button>
+        </div>
+      </div>
+
+      <div class="admin-all-audios-container">
+
+      {{#if viewTable}}
+
+        {{> tabular table=TabularTables.TrainingModuleAudiosCFS selector=audioTableSelector 
+        class="table table-striped table-condensed" id="tblTrainingModuleAudiosCFS"}} 
+
+      {{else}}
+
+        <div class="admin-all-audios-thumbs-top-nav">
+          <form class="form-inline form-thumbs-per-page">
+            <div class="form-group">
+              <label for="sel_thumbs_per_page">Showing </label>
+              <select name="sel_thumbs_per_page" id="sel_thumbs_per_page">
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="30">30</option>
+                <option value="50">50</option>
+              </select>
+              <label for="sel_thumbs_per_page"> audios per page</label>
+              <span class="total-audios"> (total: {{totalNumAudios}})</span>
+            </div>
+          </form>
+
+          <form class="form-inline form-thumbs-search">
+            <div class="form-group">
+              <label for="sel_thumbs_per_page">Search: </label>
+              <input type="text" id="search_thumbs">
+              <button class="btn btn-xs btn-default btn-search-thumbs-audios"><i class="fa fa-search"></i> </button>
+            </div>
+          </form>
+
+        </div>
+
+        <ul class="ul-admin-all-audios list-unstyled">
+                  
+        {{#each Audios}}
+          <li class="li-admin-audio">
+            <div class="admin-audio-container {{#if eq status 1}}active{{else}}inactive{{/if}}">
+              <div class="admin-audio-src">
+                <audio controls>
+                  <source src="/cfs/files/training_module_audios_cfs/{{_id}}/{{name}}" type="audio/mpeg">                  
+                </audio>
+              </div>
+              <div class="admin-audio-title">
+              {{#if title}}
+                {{title}}
+              {{else}}
+                {{original.name}}
+              {{/if}}
+              </div>
+              <div class="admin-audio-buttons" data-aid="{{_id}}">
+                {{#if eq status 1}}
+                <button class="btn btn-xs btn-warning btn-deactivate-audio" title="Deactivate">
+                  <i class="fa fa-lock"></i>
+                </button>
+                {{else}}
+                <button class="btn btn-xs btn-success btn-activate-audio" title="Activate">
+                  <i class="fa fa-unlock"></i>
+                </button>                 
+                {{/if}}             
+                <button class="btn btn-xs btn-default btn-edit-audio" title="Edit">
+                  <i class="fa fa-pencil"></i>
+                </button>
+                <button class="btn btn-xs btn-danger btn-delete-audio" title="Delete">
+                  <i class="fa fa-trash"></i>
+                </button>                
+              </div>
+            </div>            
+          </li>
+        {{/each}}
+
+        </ul>
+
+        {{/if}}
+        
+      </div>
+    </div>
+  </div>
+
+  {{#if eq viewTable false}}
+  <div class="row-admin-all-audios-bottom">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-admin-all-audios-bottom">
+
+      <div class="admin-all-audios-thumbs-bottom-nav">
+        <div class="admin-all-audios-thumbs-page-container">
+          <ul class="ul-admin-all-audios-thumbs-page list-unstyled">
+            {{#each total}}
+              {{{this}}}
+            {{/each}}
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  {{/if}}
+
+  {{>AdminAudioEdit data=audioToEdit }}
+  {{>AdminAudioModal data=audioToView }}
+  
+</template>

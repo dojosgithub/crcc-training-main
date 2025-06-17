@@ -1,0 +1,129 @@
+@media(min-width:768px) {
+
+  .row-signin {
+    margin-top: 4.5em;
+    min-height: 80%;
+
+    .signin-form-container {
+      margin: 10% auto;
+      padding: 3em 0;
+      max-width: 380px;
+
+      .form-username, .form-password {
+        i {
+          opacity: 0.8;
+        }
+      }
+
+      button.btn-submit-signin {      
+        width: 150px;
+        margin: 10px 0;
+        color: rgb(255, 255, 255);
+        background-color: rgb(91, 192, 222);
+        border-color: rgb(70, 184, 218);
+        // width: 100%;        
+      }
+
+      .forgot-password-username-container {
+        font-size: 0.9em;
+        text-align: right;
+        margin-top: 1.2em;
+        margin-bottom: 0.4em;        
+      }
+
+      .maintenance-message {
+        font-size: 0.91em;
+        padding: 0 1px 10px 13px;
+        display: inline-block;
+
+        u {
+          color: #bf2a17;
+          font-weight: bold;
+        }
+      }    
+    }
+
+  }
+
+}
+
+/*==========  Mobile First Method  ==========*/
+
+/* Custom, iPhone Retina */ 
+@media only screen and (min-width : 320px) {
+
+}
+
+/* Extra Small Devices, Phones */ 
+@media only screen and (min-width : 480px) {
+
+}
+
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px) {
+
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px) {
+
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width : 1200px) {
+
+}
+
+/*==========  Non-Mobile First Method  ==========*/
+
+/* Large Devices, Wide Screens */
+@media only screen and (max-width : 1200px) {
+
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (max-width : 992px) {
+
+}
+
+/* Small Devices, Tablets */
+@media only screen and (max-width : 768px) {
+
+}
+
+/* Extra Small Devices, Phones */ 
+@media only screen and (max-width : 480px) {
+
+}
+
+/* Custom, iPhone Retina */ 
+@media only screen and (max-width : 320px) {
+  .row-signin .signin-form-container {
+    max-width: 30em;  
+    margin: 4em auto;
+
+    .signin-form {
+      font-size: 1.5em;
+
+      h3 {
+        font-size: 1.5em;
+      }
+
+      .form-username, .form-password {
+        input {
+          font-size: 1em;
+          height: 2em;
+        }
+
+        i {
+          font-size: 2em;
+        }
+      }
+
+      .btn-submit-signin {
+        font-size: 1em;
+      }    
+    }
+  }
+}
+

@@ -1,0 +1,49 @@
+@media(min-width:768px) {
+  .admin-manage-user-tr-modules-container.modal {
+    width: 30%;
+    left: 70%;
+    // background-color: rgba(255, 255, 255, 1);
+    background-color: #f7f7f7;
+
+    box-shadow: -3px 0px 5px -1px rgba(77,71,71,0.75);
+    -webkit-box-shadow: -3px 0px 5px -1px rgba(77,71,71,0.75);
+    -moz-box-shadow: -3px 0px 5px -1px rgba(77,71,71,0.75);
+
+    .admin-manage-user-tr-modules-top {      
+      button {      
+        background-color: transparent;
+        border: none;      
+        margin-right: 20px;
+      }
+    }
+
+    .admin-manage-user-tr-modules-main-container {
+      margin: 20px;
+
+      .user-name {
+        font-weight: 600;
+        // margin-bottom: 10px;
+      }
+
+      .ul-admin-manage-user-tr-modules {
+        li {
+          margin-bottom: 15px;
+
+          span.module-name {
+            display: inline-block;
+            width: 60%;            
+          }
+
+          span.module-name.inactive {
+            color: #cac84f;
+            text-decoration: line-through;            
+          }
+  
+          input.chk-user-tr-module {
+            vertical-align: top;
+          }
+        }
+      }
+    }
+  } 
+}

@@ -1,0 +1,80 @@
+<template name="AdminQuizQuestions">
+  <div class="row row-admin-quiz-questions modal">    
+    <div class="admin-quiz-questions-top text-right">
+      <button class="btn btn-xs btn-default btn-close-quiz-questions"><i class="fa fa-2x fa-times"></i></button>
+    </div>    
+    <div class="col-xs-5 col-admin-quiz-questions"> 
+      <div class="quiz-questions-container">
+        
+        <div class="btn-add-new-question-container text-right">
+<!--           <button class="btn btn-xs btn-default btn-add-new-question" 
+            data-target="#new_question_form_container" data-toggle="modal">&plus; Add Question</button> -->
+          <button class="btn btn-xs btn-default btn-add-new-question">&plus; Add Question</button>            
+        </div>
+        <div class="leftbar-admin-quiz-questions-container">
+          <ul id="ul_admin_quiz_questions" class="ul-admin-quiz-questions list-unstyled">
+            {{#each Questions}}
+            <li class="li-admin-quiz-question 
+              {{#if eq status 1}}li-admin-module-builder-question-active{{/if}}" 
+              data-qzid="{{this.quizId}}" data-qid="{{this._id}}">
+              <div class="question-buttons-container">
+                <!-- {{#let entry=@index}} -->
+                <div class="col-xs-1 col-buttons text-left">
+                  <button class="btn btn-xs btn-default question-entry-number">
+                    {{sum order 1}}
+                  </button>                  
+                </div>
+                <!-- {{/let}} -->
+
+                <div class="col-xs-11 col-buttons text-right">
+                  <button class="btn btn-xs btn-default btn-manage-question" title="Manage"> <i class="fa fa-gear"></i> </button>
+                  {{#if eq status 1}}
+                  <button class="btn btn-xs btn-warning btn-update-question-status" data-status="2" title="Deactivate"> 
+                  <i class="fa fa-lock"></i> </button>
+                  {{else}}
+                  <button class="btn btn-xs btn-success btn-update-question-status"  data-status="1" 
+                    title="Activate"> <i class="fa fa-unlock"></i> </button>
+                  {{/if}}
+                  <button class="btn btn-xs btn-danger btn-delete-question" 
+                    title="Delete"> <i class="fa fa-trash"></i> </button>                  
+                </div>
+              </div>
+              <div class="question-title-container">              
+                {{curtail this.contentRaw 50}}
+              </div>
+            </li>
+            {{/each}}
+          </ul>  
+        </div>
+
+      </div>
+    </div>
+    <div class="col-xs-7 col-quiz-question-settings">
+      <div class="quiz-question-settings-container">
+      {{#each Question}}
+        <div class="quiz-question-settings-top text-right">
+          <button class="btn btn-xs btn-default btn-update-question"
+           data-qid="{{this._id}}">Save Question Text</button>
+        </div>
+        {{>AdminManageQuestion Question=this}}
+        <!-- {{>AdminQuizAnswers Question=this}} -->
+        <!-- {{>AdminQuizAnswers Question=this}} -->
+      {{/each}}
+      <!-- {{>AdminQuizAnswers}} -->
+      </div>
+    </div>
+  </div>
+
+  <div class="new-question-form-container modal" 
+    id="new_question_form_container">
+    <div class="new-question-top text-left">
+      <button class="btn btn-xs btn-default btn-close-new-question"><i class="fa fa-2x fa-times"></i></button>
+    </div>
+    <div class="new-question-main-container">
+      {{>AdminNewQuestion}}
+    </div>
+    <div class="save-new-question-container text-right">
+      <button class="btn btn-xs btn-default btn-save-new-question">Save</button>
+    </div>
+  </div>
+</template>

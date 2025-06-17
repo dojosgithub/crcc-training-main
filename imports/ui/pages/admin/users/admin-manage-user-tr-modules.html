@@ -1,0 +1,26 @@
+<template name="AdminManageUserTRModules"> 
+  <div class="user-name">
+    {{User.profile.fullname}}
+  </div>  
+  <hr>
+  <ul class="ul-admin-manage-user-tr-modules list-unstyled">
+    {{#each Modules}}
+      <li class="li-admin-manage-user-tr-module" data-mid="{{this._id}}" data-name="{{User.profile.fullname}}">
+        {{#if eq this.status 1}}
+          <input type="checkbox" class="chk-user-tr-module"
+          {{mChecked this._id User.profile.trainingModules}}> 
+          <span class="module-name">{{name}}</span>
+          <button class="btn btn-xs btn-success btn-send-notification" 
+            data-loading-text="<i class='fa fa-spinner fa-spin'></i> Sending...">Send a Notification</button>
+<!--         {{else}}
+          <input type="checkbox" class="chk-user-tr-module"
+          {{mChecked this._id User.profile.trainingModules}} disabled> 
+          <span class="module-name inactive">{{name}}</span>
+          <button class="btn btn-xs btn-success btn-send-notification" 
+            data-loading-text="<i class='fa fa-spinner fa-spin'></i> Sending..." disabled>
+            Send a Notification</button> -->
+        {{/if}}
+      </li>
+    {{/each}}
+  </ul>
+</template>

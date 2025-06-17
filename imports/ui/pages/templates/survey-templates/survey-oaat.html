@@ -1,0 +1,66 @@
+<!-- Survey One At A Time template -->
+<template name="SurveyOAAT">
+
+  <div class="col-xs-9 col-survey-oaat">      
+    <div class="module-survey-oaat-container">
+      <div class="row row-survey-oaat">
+        <div class="col-xs-12 col-question">
+
+          {{#each Survey}}          
+          <div class="question-container">
+            
+              {{#with Question}}
+                <div class="question-top-container">
+                  {{curQuestionEntryNum}}/{{totalNumOfQuestions}}
+                </div>
+                <form>
+                <ul class="ul-questions list-unstyled">
+                  <div class="li-question">
+                    <div class="question-content-container">
+                      {{{this.content}}}
+                    </div>                  
+                    {{#if eq type 'single_choice'}}
+                    <ul class="ul-answers list-unstyled">
+                      {{#each Answers}}
+                        <li class="li-answer">
+                          <input type="radio" class="radio-question-answer" name="radio_question_answer" 
+                            value="{{this._id}}" {{mChecked Answer.answer this._id}}> 
+                          <span>{{{this.content}}}</span>
+                        </li>
+                      {{/each}}
+                    </ul>
+                    {{else}}
+                      {{#if eq type 'open_ended'}}
+                      <div class="survey-question-open-ended-container">
+                        <textarea name="txta_survey_question_open_ended" 
+                          class="txta-survey-question-open-ended">{{{Answer.answer}}}</textarea>
+                      </div>
+                      {{/if}}
+                    {{/if}}
+
+                  </div>
+                </ul>
+                <div class="question-action-container">
+                  <div class="question-buttons">
+                   <button type="submit" 
+                    class="btn btn-xs _btn-primary btn-submit-question" {{disabled this.canSubmit false}}>
+                      Submit
+                    </button>                 
+                    <button class="btn btn-xs btn-default btn-prev-question" {{disabled hasPrevQuestion false}}>
+                      Prev
+                    </button>
+                    <button class="btn btn-xs btn-default btn-next-question" {{disabled hasNextQuestion false}}>
+                      Next
+                    </button>                 
+                  </div>
+                </div>
+                </form>
+              {{/with}}            
+          </div>
+          {{/each}}
+          
+        </div>      
+      </div>
+    </div>
+  </div>
+</template>

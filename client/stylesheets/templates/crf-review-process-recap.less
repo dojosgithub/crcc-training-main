@@ -1,0 +1,120 @@
+.crf-review-process-recap-container {
+
+  margin-top: 15px;
+  background-color: rgba(95, 147, 146, 1);
+  -webkit-box-shadow: 10px 0 5px -2px #888;
+  box-shadow: 10px 0 5px -2px #888;
+
+  .row-crf-review-process-recap {
+
+    .col-crf-review-process-recap {
+
+      // margin: 0 auto 10em auto;
+      margin-bottom: 3em;
+      
+      ul.ul-crf-review-process-recap {
+        list-style-type: none;
+        width: 100%;
+        display: table;
+        table-layout: fixed;  
+        margin-top: 20px; 
+        margin-left: -20px;     
+
+        // list-style-type: none;
+        // width: 100%;
+        // display: flex;
+        // flex-wrap: wrap;
+
+        li.li-crf-review-process-recap {
+          display: table-cell;
+          // width: 50%;
+          // flex: 0 0 50%;
+          // border: 1px solid grey;
+          // padding: 1em;
+          // display: flex;
+          // align-items: flex-end;
+          .crf-review-process-recap-item {
+            // display: inline-block;
+            // float: left;
+            // margin: 20px 10px 0 0;
+            // margin: 20px 10px 0 0;  
+            .image-container {
+              text-align: center;
+              // opacity: 0.5;
+
+              img {
+                width: 80%;
+                cursor: pointer;
+                border: 2px solid #eee;
+
+                pointer-events: none;
+              }
+            }
+
+            .crf-review-process-recap-desc {
+              visibility: hidden;
+              // font-size: 1.4em;
+              font-size: 1.2em;
+              margin: 20px auto;
+              width: 80%;                      
+              // margin-top: -50px;
+              text-align: left;
+              padding: 10px;
+              // background-color: rgba(220, 1230, 242, 1);
+              background-color: rgba(222, 235, 246, 1);
+              border: 1px solid;          
+            }
+          }
+
+          .crf-review-process-recap-title {
+            text-align: center;
+            padding: 10px;
+            font-weight: 600;
+            font-size: 2em;
+            color: #fff;
+            // opacity: 0.5;
+          }
+
+        }
+      }
+
+      // .crf-review-process-recap-source {
+      // }
+
+      // .crf-review-process-recap-crf {
+      //   margin-top: 70px;
+      // }
+
+      // .crf-review-process-recap-srccrf {
+      //   margin-top: 117px;
+      // }
+
+    }
+
+  }
+
+}
+
+.col-crf-review-process-recap-comp {
+  display: none;
+}
+
+@media only screen and (max-width : 480px) {
+  /* Smartphone view: 1 tile */
+  .crf-review-process-recap-container {
+    margin-top: -30px;
+  }
+}
+@media only screen and (max-width : 650px) and (min-width : 481px) {
+  /* Tablet view: 2 tiles */
+
+}
+@media only screen and (max-width : 1050px) and (min-width : 651px) {
+  /* Small desktop / ipad view: 3 tiles */
+
+}
+@media only screen and (max-width : 1290px) and (min-width : 1051px) {
+  /* Medium desktop: 4 tiles */
+
+}
+

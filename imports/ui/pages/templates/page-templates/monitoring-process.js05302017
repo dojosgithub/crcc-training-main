@@ -1,0 +1,38 @@
+/**
+ * Monitoring Process template logic
+ */
+import { Meteor } from 'meteor/meteor'
+import { Template } from 'meteor/templating'
+
+import '/imports/ui/stylesheets/templates/monitoring-process.scss'
+import { MonitoringProcess } from '/imports/ui/pages/templates/page-templates/monitoring-process.html'
+
+Template.MonitoringProcess.onCreated(function monitoringProcessOnCreated() {
+})
+
+Template.MonitoringProcess.events({
+  'click .monitoring-process-image'(e, tpl) {
+    e.preventDefault()
+
+    let iid = $(e.currentTarget).data('iid')
+
+    $('.monitoring-process-desc').hide();
+
+    // $('#monitoring_process_'+iid).css({
+    //   display: 'inline-block'
+    // }).fadeIn(500)  
+
+    let x = $(e.target).offset().left+100
+    let y = e.pageY
+
+    $('#monitoring_process_'+iid).css({
+      display: 'inline-block',
+      top: y,
+      left: x-100
+    }).fadeIn(500).draggable({
+      containment: $('.monitoring-process-container')
+    })
+
+
+  }
+})

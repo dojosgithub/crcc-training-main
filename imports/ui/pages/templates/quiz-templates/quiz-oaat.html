@@ -1,0 +1,182 @@
+<!-- Quiz One At A Time template -->
+<template name="QuizOAAT">
+  {{#each Quiz}}{{/each}}
+  {{#with Question}}{{/with}}
+  <div class="col-xs-9 col-quiz-oaat">      
+    <div class="module-quiz-oaat-container">
+      <div class="row row-quiz-oaat">
+        <div class="col-xs-12 col-question">
+
+          {{#each Quiz}}
+          <div class="question-container">
+            
+              {{#with Question}}
+              {{#each Score}}{{/each}}
+              <div class="question-top-container">
+                {{curQuestionEntryNum}}/{{totalNumOfQuestions}}
+              </div>
+              <form>
+              <ul class="ul-questions list-unstyled">
+                <div class="li-question">
+
+                  {{#if this.dropdown}}
+                    <div class="question-content-container dropdown" id="q_content_{{this._id}}">
+                    {{#if eq this.canSubmit false}}                     
+                      {{{this.contentH}}}
+                          {{#each Answers}}
+                            {{#if inAnswers this._id ../answer}}
+                            <span class="correct">{{{this.content}}}</span>
+                            {{/if}}
+                          {{/each}}
+                      {{{this.contentT}}}
+                    {{else}}
+                      
+                        {{{this.contentH}}}                          
+                          <select id="sel_question_{{this._id}}">
+                            <option value="-1">Select</option>
+                            {{#each Answers}}
+                            <option value="{{this._id}}">{{{this.content}}}</option>
+                            {{/each}}
+                          </select>
+                        {{{this.contentT}}}
+                                        
+                    {{/if}}
+                    </div>
+                    {{#each Answers}}
+                      {{#if inAnswers this._id wrongAnswers}}
+                        <div class="dropdown wrong-answer">
+                          Your answer: 
+                          <span class="wrong">{{{this.content}}}</span>
+                        </div>                        
+                      {{/if}}                      
+                    {{/each}}
+                  {{else}}
+
+
+                  <div class="question-content-container">
+                    {{{this.content}}}
+                  </div>                  
+
+                  <ul class="ul-answers list-unstyled" id="ul_answers_{{this._id}}">
+                    {{#if (eq this.answerType 2)}}
+                      {{#each Answers}}
+                      <li class="li-answer">
+                        <input type="checkbox" class="chkb-question-answer" 
+                          name="chkb_question_answer" value="{{this._id}}">                        
+                        <span class="{{#if (eq ../canSubmit false)}}
+                        {{#if inAnswers this._id ../answer}}correct{{/if}}
+                        {{#if inAnswers this._id wrongAnswers}}wrong{{/if}}
+                        {{/if}}">{{{this.content}}}</span>                        
+                      </li>
+                      {{/each}}
+                    {{else}}
+                    {{#each Answers}}
+                      <li class="li-answer">
+                        <input type="radio" class="radio-question-answer" 
+                          name="radio_question_answer" value="{{this._id}}"> 
+                        <span class="{{#if (eq ../canSubmit false)}}
+                        {{#if inAnswers this._id ../answer}}correct{{/if}}
+                        {{#if inAnswers this._id wrongAnswers}}wrong{{/if}}
+                        {{/if}}">{{{this.content}}}</span>                        
+                      </li>
+                      {{/each}}                    
+                    {{/if}}
+                  </ul>
+                {{/if}}
+
+                </div>
+              </ul>
+              <div class="question-action-container {{#if this.dropdown}}no-border{{/if}}">
+                <div class="question-buttons">
+<!--                 {{#if (eq this.canSubmit false)}}
+                 <button type="button" class="btn btn-xs btn-success btn-show-correct-answer" 
+                 data-qid="{{this._id}}"><i class="fa fa-eye"></i> Show correct answer</button>
+                 {{/if}} -->                 
+                 <button type="submit" class="btn btn-xs _btn-primary btn-submit-question" 
+                  data-qid="{{this._id}}" data-dropdown="{{this.dropdown}}" {{disabled this.canSubmit false}} >
+                    Submit
+                  </button>                 
+                  <button class="btn btn-xs btn-default btn-prev-question" {{disabled hasPrevQuestion false}}>
+                    Prev
+                  </button>
+                  <button class="btn btn-xs btn-default btn-next-question" {{disabled hasNextQuestion false}}>
+                    Next
+                  </button>                 
+                </div>
+              </div>
+              </form>
+              <div class="question-feedback-container">
+                <div class="question-feedback-attempts">
+                  Attempts: {{this.numAttempts}}/{{this.maxAttempts}}                  
+                </div>
+                {{#if showScoreFeedback}}
+                <div class="question-feedback-score">
+                  Score: {{this.curPoints}}/{{this.scorePoints}}
+                </div>
+                {{/if}}
+
+                {{#if this.numAttempts}}
+                <div class="question-feedback-scores">
+                  <table class="tbl-question-feedback-scores">
+                    <thead>
+                      <tr>
+                        <th>Attempt</th>
+                        <th>Feedback</th>
+                        {{#if showScoreFeedback}}
+                        <th>Score</th>
+                        {{/if}}
+                        <!-- <th>Time</th> -->
+                        {{#if this.dropdown}}{{else}}
+                        <th>Answer</th>
+                        {{/if}}
+                      </tr>
+                    </thead>
+                  {{#each Score}}
+                    <tbody>
+                      <tr>
+                        <td>{{attempts}}</td>
+                        <td class="{{#if (eq feedback 'correct')}}correct{{else}}wrong{{/if}}">{{feedback}}</td>
+                        {{#if ../showScoreFeedback}}
+                        <td>{{score}}</td>
+                        {{/if}}
+                        <!-- <td>{{dateHMS createdAt}}</td> -->
+                        {{#if ../dropdown}}{{else}}
+                        <td>
+                          <button class="btn btn-xs btn-default btn-view-my-answers" 
+                            data-fid="{{this._id}}"><i class="fa fa-eye"></i> view</button>
+                        </td>
+                        {{/if}}
+                      </tr>
+                    </tbody>
+                  {{/each}}                    
+                  </table>
+                </div>
+                {{/if}}
+                <!-- <div class="question-feedback" id="question_feedback_{{this._id}}"></div> -->
+              </div>
+              {{/with}}            
+          </div>
+          {{/each}}
+          
+        </div>      
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="quiz_oaat_intro_modal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+<!--           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button> -->
+          <h4 class="modal-title">
+            {{Instructions}}
+          </h4>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default btn-secondary" data-dismiss="modal">Close</button>        
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->  
+</template>

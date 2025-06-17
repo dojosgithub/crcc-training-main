@@ -1,0 +1,121 @@
+@media(min-width:768px) {
+  .row-admin-module-builder {
+    background-color: rgba(255, 255, 255, 1);
+    margin-left: 0px; //-- override BS' row (15px)
+
+    .admin-module-builder-top {
+      height: 20px;
+
+      button {      
+        background-color: transparent;
+        border: none;      
+        margin-right: 20px;
+      }
+    }
+
+    .admin-module-builder-leftbar {
+
+      display: inline-block;
+      // width: 200px;      
+      // width: 240px;
+      width: 250px;
+      margin-left: 40px;
+      height: 92%;
+
+      .btn-add-new-page-container {
+
+        .all-page-stats {
+          display: inline-block;
+          margin-right: 50px;
+          font-size: 0.9em;
+        }
+
+        button {
+          font-size: 1em;
+          padding: 0px 6px;
+          margin-bottom: 7px;
+        }
+      }
+
+      .leftbar-module-pages-container {
+
+        height: 92%;
+        // width: 240px;
+        width: 250px;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        overflow: auto;
+
+        #ul_admin_module_builder_pages {
+          li {
+            margin-bottom: 10px;
+            // width: 179px;
+            // width: 200px;
+            width: 210px;
+            height: 60px;
+            background-color: #f9f9f5;
+            border: 1px solid #bbb;
+            border-top-left-radius: 5px;
+            cursor: pointer;
+
+            .page-number {
+              // margin-right: 46px;
+              // margin-right: 70px;
+              margin-right: 10px;
+              // background-color: rgb(183, 205, 247);
+              background-color: #e4f9e8;
+              color: #4c5d5f; 
+            }
+
+            .page-duration {
+              width: 40px;
+              height: 19px;
+              margin-right: 20px;
+              background-color: #d0e29a;
+              color: #3c3939;
+              border-radius: 10px;
+              font-size: 0.8em !important;
+            }
+
+            .page-title-container {
+              height: 35px;
+              font-size: 11px;
+              padding: 2px;
+            }
+
+            .page-buttons-container {
+              float: right;
+              margin-right: 10px;
+              
+              button {
+                font-size: 10px;                
+              }
+
+              button.btn-delete-module-page {
+                margin-right: 3px;
+              }
+            }
+          }
+
+          li.li-admin-module-builder-page-active {
+            background-color: #c5e2ca;
+          }
+        }
+      }
+    }
+
+    .admin-module-builder-main {
+      
+      display: inline-block;
+      vertical-align: top;
+      margin: 50px;
+    }
+  }
+}
+
+.row-admin-module-builder.modal {
+  width: 100%;
+  height: 100%;
+}
+

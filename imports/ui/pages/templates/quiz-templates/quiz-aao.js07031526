@@ -1,0 +1,590 @@
+/**
+ * Quiz All-At-Once template logic
+ */
+import { Meteor } from 'meteor/meteor'
+import { Template } from 'meteor/templating'
+
+import { Session } from 'meteor/session'
+import { ReactiveVar } from 'meteor/reactive-var'
+
+import { TrainingModuleQuizzes } from '/imports/api/collections/training-module-quizzes.js'
+import { TrainingModuleAnswers } from '/imports/api/collections/training-module-answers.js'
+import { TrainingModuleScores } from '/imports/api/collections/training-module-scores.js'
+
+import { upsertUserStats } from '/imports/api/methods/training-module-user-stats.js'
+
+import '/imports/ui/stylesheets/question.scss'
+import '/imports/ui/stylesheets/templates/quiz-aao.scss'
+import { QuizAAO } from '/imports/ui/pages/templates/quiz-templates/quiz-aao.html'
+
+let _selfQuizAAO
+let _subsQuizAAO
+let _thisPageData
+
+Template.QuizAAO.onCreated(function quizAAOOnCreated() {
+  
+  Session.set('_selfQuizAAO.wrongAnswers', [])
+
+  _selfQuizAAO = this
+
+  _selfQuizAAO.qids = []
+  _selfQuizAAO.allQsByIds = []
+  // _selfQuizAAO.qHasAnswersShuffled = [] //-- array of Q(id)'s with shuffled answers
+
+  // _thisPageData = this.data.pageData
+  _thisPageData = this.data
+
+  _subsQuizAAO = new SubsManager()
+  _selfQuizAAO.ready4Quiz = new ReactiveVar()
+  _selfQuizAAO.ready4Answers = new ReactiveVar()
+  _selfQuizAAO.ready4Scores = new ReactiveVar()
+
+  _selfQuizAAO.curQIdx = new ReactiveVar(0)
+  _selfQuizAAO.totalNumOfQuestions = new ReactiveVar()
+  _selfQuizAAO.answerType = new ReactiveVar()
+  _selfQuizAAO.answerOrderType = new ReactiveVar(1)
+  _selfQuizAAO.moduleId = new ReactiveVar(_thisPageData.moduleId)
+  _selfQuizAAO.showScoreFeedback = new ReactiveVar(_thisPageData.quizShowScoreFeedback)
+
+  _selfQuizAAO.autorun(() => {
+    // if(_thisPageData.template) { //-- Quizzes are consided/registered as a template.
+    if(_thisPageData.quizId) { //-- Quizzes are consided/registered as a template.
+      // let handleQuiz = _subsQuizAAO.subscribe('training_module_quiz_n_questions_w_qzid', _thisPageData.template)
+      let handleQuiz = _subsQuizAAO.subscribe('training_module_quiz_n_questions_w_qzid', _thisPageData.quizId)
+      _selfQuizAAO.ready4Quiz.set(handleQuiz.ready())
+    }
+    if( Session.get('_selfQuizAAO.qids')) {
+      // console.log(_selfQuizAAO.qid.get())
+      // let handleAnswers = _subsQuizAAO.subscribe('active_training_module_answers_w_qid', Session.get('_selfQuizAAO.qid'))
+      let qObj = {
+        qids: Session.get('_selfQuizAAO.qids')
+      }
+      let handleAnswers = _subsQuizAAO.subscribe('active_training_module_answers_w_qids', qObj)
+      _selfQuizAAO.ready4Answers.set(handleAnswers.ready())
+    }    
+  })
+})
+
+Template.QuizAAO.onRendered(function quizAAOOnRendered() {
+
+  // _selfQuizAAO.qHasAnswersShuffled = []
+
+  Tracker.autorun(() => {
+    // if(_selfQuizAAO.ready4Quiz.get()) {
+
+    //   let quiz = TrainingModuleQuizzes.find({}, {
+    //     sort: {'order': 1}
+    //   })
+
+    //   if(quiz && quiz.fetch() && quiz.fetch().length > 0) {
+    //     let qz = quiz.fetch()[0]
+    //     let questions = qz.Questions
+
+    //     console.log(questions)
+    //   }
+
+    // }
+
+
+    // if(_selfQuizAAO.ready4Answers.get()) {      
+    //   let answers = TrainingModuleAnswers.find({
+    //     // questionId: qid
+    //   }, {
+    //     sort: {order: 1}
+    //   }, { reactive: false })
+
+    //   let ans = []
+    //   if(answers && answers.fetch() && answers.fetch().length > 0) {
+    //     answers.fetch().forEach(function(a) {
+    //       let aObj = {
+    //         _id: a._id,
+    //         content: a.content,
+    //         questionId: a.questionId,
+    //       }
+
+    //       ans.push(aObj)
+    //     })
+    //   }
+
+    //   let _answers = []
+  
+    //   if(answers && answers.fetch() && answers.fetch().length > 0) {  
+    //     if(_selfQuizAAO.answerOrderType.get() === 2) { //-- Random order
+    //       _answers = answers.fetch().sort(function() { return 0.5 - Math.random() })
+    //       console.log(_answers)
+          
+    //       _selfQuizAAO.qHasAnswersShuffled.push(qid)
+    //       _selfQuizAAO.allQsByIds[qid].answers = _answers
+          
+    //     } else {
+    //       _answers = answers.fetch()
+    //     }
+    //   }
+
+    let scores = TrainingModuleScores.find({
+      userId: Meteor.userId(),
+      moduleId: _thisPageData.moduleId,
+      quizId: _thisPageData.quizId          
+    })
+
+    let wrongAnswers = []
+
+    if(scores && scores.fetch() && scores.fetch().length > 0) {          
+      
+      scores.fetch().forEach((s) => {
+        if(s.feedback === 'wrong') {
+          wrongAnswers.push.apply(wrongAnswers, s.answerIds)
+        }
+      })
+
+      Session.set('_selfQuizAAO.wrongAnswers', wrongAnswers)
+    }
+
+  })
+
+})
+
+Template.QuizAAO.helpers({
+  Quiz() {
+    if(_selfQuizAAO.ready4Quiz.get()) {
+      let quiz = TrainingModuleQuizzes.find({}, {
+        sort: {'order': 1}
+      }, {reactive: false})
+      
+      if(quiz && quiz.fetch() && quiz.fetch().length > 0) {
+        let qz = quiz.fetch()[0]
+        let questions = qz.Questions
+
+        let qs = []
+        let qsIds = []
+        let curQ = []
+        let curQIdx = _selfQuizAAO.curQIdx.get()
+        let moduleId = _selfQuizAAO.moduleId.get()
+        let showScoreFeedback = _selfQuizAAO.showScoreFeedback.get()
+
+        let questionOrderType = qz.settings.questionOrderType
+        let answerType = qz.settings.answerType
+        let answerOrderType = qz.settings.answerOrderType
+        if(answerOrderType === 2) {
+          _selfQuizAAO.answerOrderType.set(2)
+        }
+        let maxAttempts = qz.settings.possibleAttempts
+        let scorePoints = qz.settings.scoreOptionPoints
+        let reducePercent = qz.settings.possibleAttemptsReducePercent
+        let reduceTarget = qz.settings.possibleAttemptsReduceTarget        
+
+        _selfQuizAAO.answerType.set(answerType)
+
+        // let scores = TrainingModuleScores.find({
+        //   userId: Meteor.userId(),
+        //   moduleId: moduleId,
+        //   quizId: qz._id          
+        // }, { reactive: false })
+
+        // let wrongAnswers = []
+
+        // if(scores && scores.fetch() && scores.fetch().length > 0) {          
+          
+        //   scores.fetch().forEach((s) => {
+        //     if(s.feedback === 'wrong') {
+        //       wrongAnswers.push.apply(wrongAnswers, s.answerIds)
+        //     }
+        //   })
+        // }
+
+        questions.forEach(function(q) {
+          if(q.status === 1) {
+            let qObj = {
+              _id: q._id,
+              content: q.content,
+              answerType: answerType,
+              answerOrderType: answerOrderType,
+              answer: q.answer,
+              maxAttempts: maxAttempts,
+              scorePoints: scorePoints,
+              curPoints: 0,
+              reducePercent: reducePercent,
+              reduceTarget: reduceTarget,
+              order: q.order,
+              moduleId: moduleId,
+              showScoreFeedback: showScoreFeedback,
+              // wrongAnswers: wrongAnswers              
+            }
+
+            qs.push(qObj)
+            _selfQuizAAO.allQsByIds[q._id] = qObj            
+          }
+        })
+
+        if(questionOrderType === 2) { //-- Random order
+          qs.sort(function() { return 0.5 - Math.random() })
+        } else {
+          //-- Since DB Collection level sorting not working, 
+          //-- this is critical and needed.
+          qs.sort(function(q,p) {return q.order - p.order})          
+        }
+
+        // //-- Since DB Collection level sorting not working, 
+        // //-- this is critical and needed.
+        // qs.sort(function(q,p) {return q.order - p.order})
+        
+
+        Session.set('curQuiz', qz)
+        Session.set('curQuestions', qs)        
+
+        _selfQuizAAO.totalNumOfQuestions.set(qs.length)
+
+        // Session.set('maxAttempts', qz.settings.possibleAttempts)
+        // Session.set('scorePoints', qz.settings.scoreOptionPoints)
+        // Session.set('reducePercent', qz.settings.possibleAttemptsReducePercents)
+        // Session.set('reduceTarget', qz.settings.possibleAttemptsReduceTarget)
+      }
+
+      return quiz
+    }
+  },
+  // answerType() {
+  //   return  Session.get('curQuestions').answerType
+  // },
+  Questions() {
+    return Session.get('curQuestions')
+  },
+  Question() {
+    return Session.get('curQuestion')
+  },
+  hasNextQuestion() {
+    return _selfQuizAAO.hasNextQuestion.get()
+  },
+  hasPrevQuestion() {
+    return _selfQuizAAO.hasPrevQuestion.get()
+  },
+  totalNumOfQuestions() {
+    return _selfQuizAAO.totalNumOfQuestions.get()
+  },
+  curQuestionEntryNum() {
+    return _selfQuizAAO.curQIdx.get() +1
+  },  
+  Answers() {
+
+    let qid = this._id //-- From inside of this template.
+    _selfQuizAAO.qids.push(qid)
+    let qids = $.unique(_selfQuizAAO.qids) //-- This is critical. Otherwise, an infinate loop will be created. 
+    
+    Session.set('_selfQuizAAO.qids', qids) //-- To get all the questions for this quiz once.
+
+    if(_selfQuizAAO.ready4Answers.get()) {
+      let answers = TrainingModuleAnswers.find({
+        questionId: qid
+      }, {
+        sort: {order: 1}
+      }, { reactive: false })
+
+      let ans = []
+      if(answers && answers.fetch() && answers.fetch().length > 0) {
+        answers.fetch().forEach(function(a) {
+          let aObj = {
+            _id: a._id,
+            content: a.content,
+            questionId: a.questionId,
+          }
+
+          ans.push(aObj)
+        })
+      }
+
+      if(answers && answers.fetch() && answers.fetch().length > 0) {
+        let _answers
+
+        if(!_selfQuizAAO.allQsByIds[qid].answers) {
+          if(this.answerOrderType === 2) { //-- Random order          
+            _answers = answers.fetch().sort(function() { return 0.5 - Math.random() })
+          } else {
+            _answers = answers.fetch()
+          }        
+          
+          // _selfQuizAAO.qHasAnswersShuffled.push(qid)
+          _selfQuizAAO.allQsByIds[qid].answers = _answers
+
+          return _answers
+        } else {
+          return _selfQuizAAO.allQsByIds[qid].answers
+        }
+      }
+
+      // return answers
+    }
+  },
+  Score() {
+    // if(Session.get('curQuestion')) {
+      let qid = this._id
+      let qzid = Session.get('curQuiz')._id
+      let uid = Meteor.userId()
+      let moduleId = this.moduleId
+
+      let obj = {
+        userId: uid,
+        moduleId: moduleId,
+        quizId: qzid,
+        questionId: qid
+      }
+
+      let handleScores = _subsQuizAAO.subscribe("training_module_scores", obj)
+      _selfQuizAAO.ready4Scores.set(handleScores.ready())
+
+      if(_selfQuizAAO.ready4Scores.get()) {
+
+        let scoresCursor = TrainingModuleScores.find({
+          userId: uid,
+          moduleId: moduleId,
+          quizId: qzid,
+          questionId: qid
+        }) 
+
+        let curQ = _selfQuizAAO.allQsByIds[qid]
+        let scores = scoresCursor.fetch()
+
+        let numAttempts = scores.length
+        let curPoints = scores.length > 0 ? scores[scores.length-1].score : 0
+        let gotCorrect = scores.length > 0 && scores[scores.length-1].feedback === 'correct' ? true : false        
+        let canSubmit = numAttempts < curQ.maxAttempts && !gotCorrect
+
+        curQ.numAttempts = numAttempts
+        curQ.canSubmit = canSubmit
+        curQ.curPoints = curPoints
+        curQ.gotCorrect = gotCorrect
+        _selfQuizAAO.allQsByIds[qid] = curQ
+
+        //-- This doesn't look good, but needed to make it 
+        //- reactive for now.
+        let allQs = Session.get('curQuestions')
+        let newAllQs = []
+        allQs.forEach(function(q) {
+          if(q._id === qid) {
+            q.numAttempts = numAttempts
+            q.canSubmit = canSubmit
+            q.curPoints = curPoints
+            q.gotCorrect = gotCorrect
+          }
+
+          newAllQs.push(q)
+        })
+
+        Session.set('curQuestions', newAllQs)
+
+        return scoresCursor
+      }
+    // }
+  },
+  wrongAnswers() {
+    return Session.get('_selfQuizAAO.wrongAnswers')
+  }
+})
+
+Template.QuizAAO.events({
+  'click .btn-submit-question'(e, tpl) {
+    e.preventDefault()
+
+    let qid = $(e.currentTarget).data('qid')
+
+    let aids = []
+
+    let answerType = _selfQuizAAO.answerType.get()
+
+    if(answerType === 2) {
+      $("#ul_answers_"+qid).find('.chkb-question-answer:checked').each(function() {
+        aids.push($(this).val())
+      })   
+    } else {
+      let myAnswer = $("#ul_answers_"+qid).find(".radio-question-answer:checked").val()
+      if(myAnswer) { //-- This is critical. Otherwise, 'undefined' 
+        //-- value wil be added to the aids array, and will pass 
+        //-- the condition below.
+        aids.push(myAnswer)
+      }
+    }
+
+    if(aids.length > 0) {
+
+      let curQz = Session.get('curQuiz')
+      let possibleAttempts = curQz.settings.possibleAttempts
+      let allQIds = Session.get('_selfQuizAAO.qids')
+
+      // if(confirm("Are you sure to submit your answer?")) {
+        
+        let _this = $(e.currentTarget)
+        // _this.button("loading")
+
+        let curQuestion = _selfQuizAAO.allQsByIds[qid]
+        let moduleId = curQuestion.moduleId
+      
+        let correctAnswer = curQuestion.answer
+        let correctAnswerLength = correctAnswer.length
+        let score = 0
+        let feedback = ''        
+
+        let count = 0
+        correctAnswer.forEach(function(a) {
+          if(aids.indexOf(a) !== -1) {
+            $("#ul_answers_"+qid).find(':checkbox[value="'+a+'"]').siblings('span').addClass('correct')
+            $("#ul_answers_"+qid).find(':radio[value="'+a+'"]').siblings('span').addClass('correct')
+            count++
+          } else {}
+          
+        })
+
+        let attempts = curQuestion.numAttempts +1
+        // console.log(attempts, curQuestion.numAttempts)
+        if(aids.length === correctAnswerLength && count === correctAnswerLength) {          
+          // $('#question_feedback_'+curQuestion._id).html("You got it correct!")
+          feedback = 'correct'
+          if(curQuestion.reduceTarget === 1) {
+            score = curQuestion.scorePoints * (curQuestion.reducePercent/100)            
+          } else {
+            score = curQuestion.scorePoints * Math.pow((curQuestion.reducePercent/100), curQuestion.numAttempts)
+          }
+        } else {
+          
+          // if(aids.length > correctAnswerLength) {
+          //   $('#question_feedback_'+curQuestion._id).html("You picked too many answers.")
+          // } else {
+          //   $('#question_feedback_'+curQuestion._id).html("Please try again.")
+          // }
+          feedback = 'wrong'   
+
+          let wrongAnswers = Session.get('_selfQuizAAO.wrongAnswers')
+          wrongAnswers.push(aids[0])
+          let _wrongAnswers = $.unique(wrongAnswers)
+
+          Session.set('_selfQuizAAO.wrongAnswers', _wrongAnswers)
+        }
+
+        let scoreObj = {
+          userId: Meteor.userId(),
+          moduleId: moduleId,
+          quizId: curQz._id,
+          questionId: qid,
+          answerIds: aids,
+          feedback: feedback,
+          score: score,
+          attempts: attempts,
+
+        }
+
+        TrainingModuleScores.insert(scoreObj, (err, res) => {
+          if(err) {}
+          else {
+            let allMyScores = TrainingModuleScores.find({
+              moduleId: moduleId,
+              quizId: curQz._id,              
+              $or: [
+                {attempts: possibleAttempts},
+                {feedback: 'correct'}
+              ]
+            })
+
+            // console.log(allMyScores.fetch())
+            if(allMyScores && allMyScores.fetch() && allMyScores.fetch().length > 0) {
+
+              let doneThisPage = true
+              let scoredQIds = []
+
+              allMyScores.fetch().forEach(function(s) {
+                scoredQIds.push(s.questionId)            
+              })
+
+              if(scoredQIds.length < allQIds.length) {
+                doneThisPage = false
+              } else {
+                allQIds.forEach(function(q) {
+                  if(scoredQIds.indexOf(q) === -1) {
+                    doneThisPage = false
+                  }
+                })
+              }
+
+              if(doneThisPage) {
+
+                let statsObj = {           
+                  userId: Meteor.userId(),
+                  moduleId: moduleId,
+                  _page: _thisPageData.index            
+                }
+
+                upsertUserStats.call(statsObj, (err, res) => {
+                  if(err) {}
+                  else {
+                    Session.set('myUserStats', res)
+                  }
+                }) 
+
+              }
+            }
+          }
+          // _this.button("reset")
+        })
+
+      // }
+    } else {
+      sAlert.error("You haven't picked any answer.")
+    }
+  },
+  'click .btn-view-my-answers'(e, tpl) {
+    e.preventDefault()
+
+    let fid = $(e.currentTarget).data('fid')
+    $(e.currentTarget).blur()
+
+    let scores = TrainingModuleScores.findOne(fid)
+    if(scores && scores.answerIds && scores.answerIds.length > 0) {      
+      $('.btn-view-my-answers i').removeClass('viewing')
+      $('.chkb-question-answer').prop('checked', false)
+      $('.radio-question-answer').prop('checked', false)
+
+      scores.answerIds.forEach(function(aid) {
+        $('input[type=checkbox][value='+aid+']').prop('checked', true)
+        $('input[type=radio][value='+aid+']').prop('checked', true)
+        // $('input[type=checkbox][value='+aid+']').closest('span').addClass(scores.feedback)
+      })
+
+      $(e.currentTarget).find('i').addClass('viewing')
+    }
+  },
+  'click .btn-show-correct-answer'(e, tpl) {
+    e.preventDefault()
+
+    let qid = $(e.currentTarget).data('qid')
+
+    // let q = TrainingModuleQuestions.findOne(qid)
+    let qs = Session.get('curQuestions')
+
+    if(qs && qs.length > 0) {
+      let q = qs.filter((q) => {
+        return q._id === qid
+      })
+      
+      let answerIds = q[0].answer
+
+      // console.log(q, answerIds)
+
+      $("#ul_answers_"+qid+" li.li-answer input").each(function(i) {
+        // console.log($(this).val())
+        if(answerIds.indexOf($(this).val()) !== -1) {
+          $(this).prop('checked', true)
+        }
+      })
+
+    }
+
+    // console.log(qs, q)
+  }
+})
+
+Template.QuizAAO.onDestroyed(() => {
+  _subsQuizAAO.clear()
+  _selfQuizAAO.data = null
+  _selfQuizAAO.ready4Quiz.set(null)
+  _selfQuizAAO.ready4Answers.set(null)
+  _selfQuizAAO.ready4Scores.set(null)
+  // _selfQuizAAO.qHasAnswersShuffled = []
+
+})

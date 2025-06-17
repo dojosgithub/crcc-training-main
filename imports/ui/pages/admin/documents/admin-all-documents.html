@@ -1,0 +1,15 @@
+<template name="AdminAllDocuments">
+  <div class="row row-admin-all-documents">
+    <div class="col-xs-12 col-admin-all-documents">
+
+      <div class="admin-all-documents-container">
+
+      {{#if viewTable}}
+        {{>tabular table=TabularTables.TrainingModuleDocumentsCFSTable selector=docTableSelector class="table table-striped table-condensed" id="tblTrainingModuleDoumentsCFS"}}
+      {{/if}}
+      
+      </div>
+
+    </div>
+  </div>
+</template>

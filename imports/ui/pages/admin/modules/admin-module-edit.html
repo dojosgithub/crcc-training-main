@@ -1,0 +1,94 @@
+<!-- Admin Module Edit template -->
+<template name="AdminModuleEdit">
+
+  <div class="row row-admin-module-edit modal">
+    <!-- Top nav bar -->
+    <div class="admin-module-edit-top text-right">
+      <button class="btn-lg btn-default btn-close-admin-module-edit">
+      <i class="fa fa-lg fa-times" aria-hidden="true"></i></button>
+    </div>   
+
+    <div class="col-xs-12 col-admin-module-edit">
+      {{#each Module}}
+        <form id="form_admin_module_edit" class="form-admin-module-edit form-horizontal ">
+
+          <div class="form-group">
+            <label for="input_module_edit_name" class="col-xs-2 control-label">Name: </label>
+            <div class="col-xs-3">
+              <input type="text" class="form-control" id="input_module_edit_name" value="{{name}}">  
+            </div>          
+          </div>
+
+          <div class="form-group">          
+            <label for="txta_module_edit_description" class="col-xs-2 control-label">Description: </label>
+            <div class="col-xs-4">
+              <textarea class="form-control" id="txta_module_edit_description" rows="3">{{{description}}}</textarea>  
+            </div>          
+          </div> 
+
+          <div class="form-group">
+            <label for="sel_module_edit_cover_image" class="col-xs-2 control-label">Cover Image: </label>
+            <div class="col-xs-2 btn-view-cover-images-container">
+                {{#if coverImage}}
+                  <img src="/cfs/files/training_module_images_cfs/{{coverImage.imageId}}/{{coverImage.imageName}}?store=thumbs"
+                    alt="Cover Image for {{this.name}}">
+
+<!--                 <object data="/images/default.jpg" width="230" height="150" type="image/png" alt="Cover Image for {{this.name}}">              
+                  <img src="/cfs/files/training_module_images_cfs/{{coverImage.imageId}}/{{coverImage.imageName}}?store=thumbs"
+                        alt="Cover Image for {{this.name}}">               
+                </object>  -->
+
+                {{else}}
+                  <img src="/images/default.jpg" width="230" height="150" alt="Cover Image for {{this.name}}">                                   
+                {{/if}}             
+              <button class="btn btn-md btn-default btn-view-cover-images">
+                <i class="fa fa-photo" aria-hidden="true"></i> View Images
+              </button>
+            </div>          
+          </div>
+          <div class="form-group">
+            <label for="module_progress_option" class="col-xs-2 control-label">Progress Option: </label>
+            <div class="col-xs-4 module-progress-option-container">
+              <input type="checkbox" id="module_progress_option" 
+              {{checked true this.progressOption}}> Complete the page to move on to the next one
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="module_order" class="col-xs-2 control-label">Order: </label>
+            <div class="col-xs-4 module-order-container">
+              <input type="number" class="form-control module-order" id="module_order" value={{order}}>              
+            </div>
+          </div>
+
+          <div class="form-group">          
+            <div class="col-xs-offset-2 col-xs-4">
+              <button class="btn btn-md btn-primary btn-save-module-edit">
+                Submit
+              </button>
+            </div>          
+          </div>
+
+        </form>
+      {{/each}}
+
+      <div class="module-cover-images-container">
+        <ul class="ul-module-cover-images list-unstyled">
+          {{#each Images}}
+            <li class="li-module-cover-images">
+              <img src="{{this.url store='thumbs' uploading='/images/uploading.gif' storing='/images/storing.gif'}}" 
+                alt="{{this.name}}" class="thumbnail pre-loading"  onload="AdminImageOnload(event)" />
+              <div class="cover-image-button-container text-right" data-iid="{{_id}}" data-name="{{name}}">
+                <button class="btn btn-xs btn-default btn-view-cover-image">
+                <i class="fa fa-eye" aria-hidden="true"></i></button>
+                <button class="btn btn-xs btn-default btn-select-for-cover-image">select</button>
+              </div>
+            </li>
+          {{/each}}
+        </ul>
+      </div>
+      
+    </div>   
+  </div>
+
+</template>

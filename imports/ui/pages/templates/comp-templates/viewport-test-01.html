@@ -1,0 +1,20 @@
+<template name="ViewportTest01">
+    {{#if isParentSlideCompleted}}
+    <div class="btn-view-viewport-container fixed-center">
+      <button class="btn btn-lg btn-warning btn-view-viewport">
+        <i class="fa fa-pencil-square-o" aria-hidden="true"></i> 
+        Click here to view the documents and add monitoring notes.
+      </button>
+    </div>
+    {{/if}}
+
+    <div class="row row-viewport modal">
+        <div class="col-xs-12 col-sm-2 col-md-6 col-viewport">
+            <div class="viewport-container">{{> React component=Viewport }}</div>
+        </div>
+        <div class="col-xs-12 col-sm-2 col-md-6 col-viewport">
+            <div class="viewport-container">{{> React component=Viewport }}</div>
+        </div>        
+    </div>
+    
+</template>

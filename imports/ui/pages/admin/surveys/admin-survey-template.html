@@ -1,0 +1,49 @@
+<template name="AdminSurveyActions">
+  <form class="form-inline survey-action-buttons" data-svid="{{data._id}}">
+    <div class="form-group">
+      <button class="btn btn-xs btn-default btn-save-survey" 
+        title="Save updated Title/Description"><i class="fa fa-save"></i> </button>
+      <button class="btn btn-xs btn-default btn-manage-survey-questions" 
+        title="Manage questions"><i class="fa fa-question-circle"></i> </button>
+<!--       <button class="btn btn-xs btn-default btn-survey-settings" data-status="2" 
+        title="Edit survey settings"><i class="fa fa-gear"></i> </button> -->
+      {{#if eq data.status 1}}
+        <button class="btn btn-xs btn-warning btn-update-survey-status" data-status="2" 
+        title="Deactivate this survey"><i class="fa fa-lock"></i> </button>
+      {{else}}
+        <button class="btn btn-xs btn-success btn-update-survey-status" data-status="1" 
+        title="Activate this survey"><i class="fa fa-unlock"></i> </button>
+      {{/if}}
+    </div>
+    <div class="form-group">
+      <button class="btn btn-xs btn-danger btn-delete-survey"  data-status="4" 
+        title="Delete this survey"><i class="fa fa-trash"></i></button>
+    </div>
+  </form>
+</template>
+
+<template name="AdminSurveyReportTableModules">
+  <ul class="ul-admin-survey-report-table-modules list-unstyled">
+  {{#each numOfModules}}
+    {{#each thisModule}}
+    <li class="li-admin-survey-report-table-module">
+        <span>{{this.name}}</span>
+    </li>
+    {{/each}}
+  {{/each}}
+  </ul>
+</template>
+
+<template name="AdminSurveyReportTableStats">
+  
+</template>
+
+<template name="AdminSurveyReportTableActions">
+  <form class="form-inline survey-report-table-action-buttons" data-svid="{{data._id}}">
+    <div class="form-group">
+      <button class="btn btn-xs btn-default btn-view-survey-data" 
+        title="View Survey data"><i class="fa fa-eye"></i> view</button>
+    </div>
+  </form>  
+</template>
+

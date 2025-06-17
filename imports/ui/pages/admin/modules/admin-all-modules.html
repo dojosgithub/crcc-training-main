@@ -1,0 +1,108 @@
+<template name="AdminAllModules">
+<!--   <div class="row row-admin-all-modules-top">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-admin-all-modules-top">
+      <div class="admin-all-modules-top-container">
+        Admin All Modules  Top 
+      </div>
+    </div>
+  </div> -->
+
+  <div class="row row-admin-all-modules row-admin-all-active-modules">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-admin-all-modules">
+      <div class="admin-all-modules-title-container">
+        <span>Active Modules</span>
+      </div>
+      <div class="admin-all-modules-container">
+        <ul class="list-unstyled ul-admin-all-active-modules">
+          {{#each Modules}}
+            {{#if eq this.status 1}}
+            <li class="d-inline-block li-admin-all-active-modules">
+              <div class="admin-active-module-container">
+                <div class="admin-active-module-cover-box">
+                {{#if coverImage}}
+                  <img src="/cfs/files/training_module_images_cfs/{{coverImage.imageId}}/{{coverImage.imageName}}?store=base"
+                    alt="Cover Image for {{this.name}}">
+                {{else}}
+                  <img src="/images/default.jpg" alt="Cover Image for {{this.name}}">
+                {{/if}}                
+                </div>
+                <div class="admin-active-module-title">
+                  {{this.name}}    
+                </div>
+                <div class="admin-active-module-buttons" data-mid="{{this._id}}">
+                  <button class="btn btn-xs btn-default btn-edit-module" 
+                    title="Edit this module">
+                    <i class="fa fa-pencil"></i></button>
+                  <button class="btn btn-xs btn-default btn-build-module" 
+                    title="Build this module">
+                    <i class="fa fa-gear"></i></button>
+                  <button class="btn btn-xs btn-default btn-assign-simulation" 
+                    title="Assign simulations to this module">
+                    <i class="fa fa-files-o"></i> sims</button>                     
+                  <button class="btn btn-xs btn-warning btn-deactivate-module" 
+                    title="Activate this module">
+                    <i class="fa fa-lock"></i> deactivate</button>
+                  <button class="btn btn-xs btn-danger btn-delete-module" 
+                    title="Delete this module">
+                    <i class="fa fa-trash"></i></button>
+                </div>
+              </div>              
+            </li>
+            {{/if}}
+          {{/each}}
+        </ul>  
+      </div>
+    </div>
+  </div>
+
+  <div class="row row-admin-all-modules row-admin-all-inactive-modules">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-admin-all-modules">
+      <div class="admin-all-modules-title-container">
+        <span>Inactive Modules</span>
+      </div>    
+      <div class="admin-all-modules-container">
+        <ul class="list-unstyled ul-admin-all-inactive-modules">
+          {{#each Modules}}
+            {{#if eq this.status 2}}
+            <li class="d-inline-block li-admin-all-inactive-modules">
+              <div class="admin-inactive-module-container">
+                <div class="admin-inactive-module-cover-box">
+                {{#if coverImage}}
+                  <img src="/cfs/files/training_module_images_cfs/{{coverImage.imageId}}/{{coverImage.imageName}}?store=base"
+                    alt="Cover Image for {{this.name}}">
+                {{else}}
+                  <img src="/images/default.jpg" alt="Cover Image for {{this.name}}">
+                {{/if}}                  
+                </div>
+                <div class="admin-inactive-module-title">
+                  {{this.name}}    
+                </div>
+                <div class="admin-inactive-module-buttons" data-mid="{{this._id}}">
+                  <button class="btn btn-xs btn-default btn-edit-module" 
+                    title="Edit this module">
+                    <i class="fa fa-pencil"></i></button>
+                  <button class="btn btn-xs btn-default btn-build-module" 
+                    title="Build this module">
+                    <i class="fa fa-gear"></i></button>                    
+                  <button class="btn btn-xs btn-default btn-activate-module" 
+                    title="Activate this module">
+                  <button class="btn btn-xs btn-default btn-assign-simulation" 
+                    title="Assign simulations to this module">
+                    <i class="fa fa-files-o"></i> sims</button>                     
+                    <i class="fa fa-unlock"></i> activate</button>
+                  <button class="btn btn-xs btn-danger btn-delete-module" 
+                    title="Delete this module">
+                    <i class="fa fa-trash"></i></button>
+                </div>
+              </div>              
+            </li>
+            {{/if}}
+          {{/each}}
+        </ul>  
+      </div>
+    </div>
+  </div>
+
+  {{> AdminModuleEdit}}
+</template>
+

@@ -1,0 +1,77 @@
+.admin-header-navbar {
+  min-height: 30px;
+  margin-bottom: 0;
+  box-shadow: 0px 1px 10px #bbb3b3;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(135deg, #377485 0%, #5b97a8 25%, #0a304d 100%);
+}
+.admin-header-navbar .nav.navbar-nav a,
+.admin-header-navbar .nav.navbar-nav a:visited {
+  color: #d2d2d2;
+  line-height: 1em;
+  font-style: normal;
+  text-transform: uppercase;
+}
+.admin-header-navbar .nav.navbar-nav a:hover {
+  color: #e3efb8;
+}
+.admin-header-navbar .nav.navbar-nav li.dropdown ul.dropdown-menu {
+  border-radius: 5px;
+}
+.admin-header-navbar .nav.navbar-nav li.dropdown ul.dropdown-menu li a {
+  color: #666;
+  font-style: normal;
+  text-transform: none;
+  text-shadow: none;
+}
+.admin-header-navbar .nav.navbar-nav li.dropdown.open a.dropdown-toggle {
+  color: #d2d2d2;
+  text-shadow: none;
+  background-color: transparent;
+}
+.img-craa-logo {
+  display: inline-block !important;
+  width: 25px;
+  margin-right: 3px;
+}
+.craa-training-logo-text {
+  display: inline-block;
+  color: #f3f3f3;
+  font-weight: 600;
+  font-size: 1.7em;
+  vertical-align: middle;
+  padding-top: 2px;
+  text-transform: none;
+}
+.navbar-default .navbar-brand {
+  color: #a6b53e;
+}
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+  color: #a6b53e;
+}
+/* iPads (landscape) ----------- */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
+}
+/* iPads (portrait) ----------- */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
+  /* Styles */
+}
+/*==========  Mobile First Method  ==========*/
+/* Custom, iPhone Retina */
+/* Extra Small Devices, Phones */
+@media only screen and (min-width: 480px) {
+}
+/* Small Devices, Tablets */
+/* Medium Devices, Desktops */
+/* Large Devices, Wide Screens */
+/*==========  Non-Mobile First Method  ==========*/
+/* Large Devices, Wide Screens */
+/* Medium Devices, Desktops */
+/* Small Devices, Tablets */
+/* Extra Small Devices, Phones */
+@media only screen and (max-width: 480px) {
+}
+/* Custom, iPhone Retina */
+@media only screen and (max-width: 320px) {
+}

@@ -1,0 +1,94 @@
+<!-- MonitoringProcess template -->
+<template name="MonitoringProcess">
+
+  <div class="col-xs-12 col-sm-12 col-md-10 col-page-template-container">      
+    <div class="module-page-template-container">
+      <div class="monitoring-process-container">
+        <div class="row row-monitoring-process">
+          
+          <div class="col-xs-12 col-sm-12 col-md-12 col-monitoring-process text-center">
+          <!-- <div class="col-xs-12 col-sm-12 col-md-12 col-monitoring-process text-center"> -->
+
+            <div class="monitoring-process-item monitoring-process-source">
+
+              <div class="monitoring-process-title">
+                1
+              </div>
+              <div class="source-image-container">
+                <img src="/templates/monitoring-process/monitoring_process_1.jpg" 
+                  class="monitoring-process-image" 
+                  data-iid="source"
+                  alt="CRF Review Process Recap - Source">
+              </div>
+  <div class="monitoring-process-desc" id="monitoring_process_source">
+    Begin with a comprehensive review of the source documents related to 
+    the specific visit or topic (such as medical history, concomitant medications, 
+    adverse events, etc.).  Review the information with the goal of ensuring that 
+    it meets all of the ALCOA and European Medicines Agency requirements or any other 
+    requirements designated by your study team, company, country, region, etc.               
+  </div>              
+            </div>
+          
+            <div class="monitoring-process-item monitoring-process-crf">
+              <div class="monitoring-process-buffer"></div>
+              <div class="monitoring-process-title">
+                2
+              </div>
+              <div class="crf-image-container">
+                <img src="/templates/monitoring-process/monitoring_process_2.jpg"  
+                  class="monitoring-process-image"
+                  data-iid="crf"
+                  alt="CRF Review Process Recap - CRF">
+              </div>
+    <div class="monitoring-process-desc" id="monitoring_process_crf">
+      Once you have identified that source documentation is either comprehensive 
+      or has deficiencies, have discussed this with site personnel, and have resolved 
+      issues, you can progress to verifying entries within the CRF.  For situations 
+      in which the source documents do not meet the requirements, you will need to 
+      work with the site to determine the necessary remediation or follow-up as applicable.                                
+    </div>              
+            </div>          
+          
+            <div class="monitoring-process-item monitoring-process-srccrf">
+              <div class="monitoring-process-title">
+                3
+              </div>          
+              <div class="srccrf-image-container">
+                <img src="/templates/monitoring-process/monitoring_process_3.jpg"  
+                  class="monitoring-process-image"
+                  data-iid="srccrf"
+                  alt="CRF Review Process Recap - Source CRF">
+              </div>
+  <div class="monitoring-process-desc" id="monitoring_process_srccrf">
+    Finally, you will review entries in the CRF/EDC to ensure they are consistent 
+    with source documentation and the CRF completion guidelines, requesting clarification 
+    from site personnel where necessary.
+  </div>              
+            </div>
+
+          </div> <!-- col-monitoring-process -->
+          
+        </div> <!-- row-monitoring-process -->
+      </div>
+    </div>
+  </div>
+<!--   <div class="monitoring-process-desc" id="monitoring_process_source">
+    Begin with a comprehensive review of the source documents related to 
+    the specific visit or topic (such as medical history, concomitant medications, 
+    adverse events, etc.).  Review the information with the goal of ensuring that 
+    it meets all of the ALCOA and European Medicines Agency requirements or any other 
+    requirements designated by your study team, company, country, region, etc.               
+  </div>
+    <div class="monitoring-process-desc" id="monitoring_process_crf">
+      Once you have identified that source documentation is either comprehensive 
+      or has deficiencies, have discussed this with site personnel, and have resolved 
+      issues, you can progress to verifying entries within the CRF.  For situations 
+      in which the source documents do not meet the requirements, you will need to 
+      work with the site to determine the necessary remediation or follow-up as applicable.                                
+    </div>
+  <div class="monitoring-process-desc" id="monitoring_process_srccrf">
+    Finally, you will review entries in the CRF/EDC to ensure they are consistent 
+    with source documentation and the CRF completion guidelines, requesting clarification 
+    from site personnel where necessary.
+  </div>  -->                         
+</template>

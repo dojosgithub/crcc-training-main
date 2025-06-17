@@ -1,0 +1,121 @@
+<!-- Modules template -->
+<template name="Modules">
+  {{Modules}}
+  <div class="row row-modules no-gutters">
+    <!-- <div class="col-md-1"></div> -->
+    <!-- <div class="col-xs-12 col-sm-12 col-md-12 col-modules"> -->
+    <div class="col-xs-12 col-sm-12 col-md-1">
+      
+    </div>    
+    <div class="col-xs-12 col-sm-12 col-md-10 col-modules">
+    <!-- <div class="col-xs-12 col-sm-12 col-md-10 offset-md-1 col-modules"> -->
+      <div class="modules-container">
+        <ul class="ul-modules list-unstyled">
+
+          <li class="d-inline-block li-modules-init">          
+            <div class="module-container-init">
+              <div class="module-cover-box">
+<!--                 {{#if coverImage}}
+                  <img src="/cfs/files/training_module_images_cfs/{{coverImage.imageId}}/{{coverImage.imageName}}?store=base"
+                    alt="Cover Image for {{this.name}}">
+                {{else}}
+                  <img src="/images/default.jpg" alt="Cover Image for {{this.name}}">
+                {{/if}}  -->
+ 
+<!-- <iframe id="iframe-video-tutorial" class='sproutvideo-player btn-start-tutorial-video' src='//videos.sproutvideo.com/embed/7c9adbb21c18e5c5f4/e5a187411f76be7b?playerTheme=dark&amp;playerColor=2f3437' style='width:230px;height:145px;left:0;top:0' frameborder='0' allowfullscreen></iframe>    -->                                
+
+                  <img src="/images/tutorial-video-03.png"
+                    alt="Tutorial Video">                    
+              </div>
+              <div class="module-title text-left">
+                Tutorial Video 
+                <span class="module-tutorial-video-message">* Note: Please watch this video before starting the training modules.</span>   
+              </div>
+              <div class="module-buttons">
+                {{#with Stats}}
+                  <div class="module-duration">Duration: 00:04:42</div>
+                  <div class="module-progress">&nbsp;</div>
+                              
+<!--                 <button class="btn btn-xs btn-default btn-start-tutorial">                   
+                  <i class="fa fa-angle-double-right"></i> 
+                  <span class="start-or-continue">Watch</span></button> -->
+                  <a href="#" class="btn btn-xs btn-default btn-start-tutorial" 
+                  data-toggle="modal" data-target="#moduleHowToVideoModal">
+                    <i class="fa fa-angle-double-right"></i> Watch
+                  </a>                  
+                {{/with}}
+              </div>
+            </div>              
+          </li>
+                  
+        {{#each MyModules}}
+          <li class="d-inline-block li-modules" id="li_module_{{this._id}}">                      
+            <div class="module-container {{#unless (and viewedTutorial this.canTake)}}off{{/unless}}">
+              <div class="module-cover-box">
+                {{#if coverImage}}
+                  <img src="/cfs/files/training_module_images_cfs/{{coverImage.imageId}}/{{coverImage.imageName}}?store=base"
+                    alt="Cover Image for {{this.name}}">
+
+<!--                 <object data="/images/default.jpg" type="image/png" alt="Cover Image for {{this.name}}">              
+                  <img src="/cfs/files/training_module_images_cfs/{{coverImage.imageId}}/{{coverImage.imageName}}?store=base"
+                        alt="Cover Image for {{this.name}}">               
+                </object> -->
+
+                {{else}}
+                  <img src="/images/default.jpg" alt="Cover Image for {{this.name}}">
+                {{/if}}
+
+<!--             <object data="/images/default.jpg" type="image/png" alt="Cover Image for {{this.name}}">              
+              <img src="/cfs/files/training_module_images_cfs/{{coverImage.imageId}}/{{coverImage.imageName}}?store=base"
+                    alt="Cover Image for {{this.name}}">               
+              </object>  -->                                              
+              </div>
+              <div class="module-title text-left">
+                {{this.name}}    
+              </div>
+              <div class="module-buttons">
+                {{#with Stats}}
+                  <div class="module-duration">Duration: {{this.duration}}</div>
+                  {{#if this.short}}
+                  <div class="module-progress">Progress: <span class="short">Short Time</span><i class="fa fa-question-circle fa-short-time"></i></div>
+                  {{else}}
+                  <div class="module-progress">Progress: {{this.progress}}</div>
+                  {{/if}}
+                              
+                <button class="btn btn-xs btn-default btn-start-module {{#if eq this.progressRaw 100}}completed{{/if}}"  
+                  title="Start this module" data-mid="{{../_id}}" data-mname="{{../name}}" data-status="{{#if (eq this.progressRaw 100)}}1{{else}}0{{/if}}">
+                  <i class="fa fa-angle-double-right"></i> 
+                  <!-- {{#if and (eq this.progressRaw 100) (eq this.short false)}} -->
+                  {{#if eq this.status 'Completed'}}
+                  <span class="start-or-continue">Completed</span>
+                  {{else}}
+                  <span class="start-or-continue">{{#if gt this.mine 0}}Continue{{else}}Start{{/if}}</span>
+                  {{/if}}
+                  </button>
+                {{/with}}
+              </div>
+            </div>              
+          </li>
+
+        {{/each}}
+        {{#unless hasModules}} 
+          <div class="no-module-exists">
+            You do not have any Training Modules assigned yet. <u>Training Modules will be assigned after you complete the simulation assigned to you.</u><br> 
+            You can view your simulation(s) at <a href="https://app.craassessments.com" target="_blank">
+            https://app.craassessments.com</a>
+            <br><br>
+            <b>In case you were in the middle of training and seeing this page, please go to '<a href="/home">Home</a>' to view the modules. Or, please sign-out and sign-in again.</b>
+            <br><br>
+            If no option above works for you and you keep seeing this message, please contact us at 
+            <a href='mailto:help@craassessments.com'>help@craassessments.com</a>            
+          </div>
+        {{/unless}}
+        </ul>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-1">
+      
+    </div> 
+  </div>
+  {{>ModuleHowTo}}
+</template>

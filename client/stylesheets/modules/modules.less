@@ -1,0 +1,399 @@
+// @media(min-width:768px) {
+  .row-modules {
+    min-height: 85%;
+    padding: 9em 20px 3em 20px;
+
+    .col-modules {
+      .modules-container {
+        margin: 0em;
+        
+        ul {
+          margin: 0 auto;
+          // max-width:960px;
+          // padding-left: 7%;
+
+          li {
+            display: inline-block;
+            margin-right: 20px;
+            margin-bottom: 20px;
+
+            .module-container-init, 
+            .module-container {    
+              // margin: 0 auto;    
+              width: 250px;
+              height: 290px;
+              // height: 275px;
+              padding: 10px;
+              border: 1px solid #ddd;
+              border-radius: 5px;
+              // box-shadow: 0.2px 0.2px 0px #b5b2b2;
+
+              .module-cover-box {
+                object {
+                  width: 100%;
+                  height: 145px;        
+                }                
+                img {
+                  width: 230px;
+                  height: 150px;
+                }
+              }
+
+              .module-title {
+                width: 100%;
+                // margin: 10px 0 50px 0;
+                // margin: 10px 0 30px 0;
+                margin: 10px 0 10px 0;
+                // font-weight: 600;
+                height: 60px;
+                font-weight: bold;
+              }
+
+              .module-buttons {
+                // width: 185px;
+                width: 225px;
+                // text-align: right;   
+                text-align: left;   
+                vertical-align: bottom;
+                border-top: 1px solid #d2cdcd;
+                // border-radius: 5px;
+                font-size: 0.9em;
+                padding: 7px 10px;
+
+                .module-user-stats {
+                  color: #18820d;
+                }
+
+                .module-duration {
+                  display: block;
+                  margin-left: 2px;
+                  color: #14343e;
+                }
+
+                .module-progress {
+                  display: block;
+                  color: #18820d;
+
+                  .short {
+                    color: #d01313;
+                  }
+
+                  i.fa {
+                    cursor: pointer;
+                    margin-left: 5px;
+                    font-size: 1.3em;
+                    color: orange;
+                  }
+                }
+
+                .btn-start-tutorial, 
+                .btn-start-module {
+                  // float: right;
+                  // margin-left: 80px;
+                  margin-left: 145px;
+                  margin-top: -23px;
+                  // margin-left: 110px;
+
+                  vertical-align: top;
+                  // margin-top: 20px;                  
+                }
+
+                .btn-start-module.completed {
+                  // background-color: green;
+                }   
+                .user-stats-progress-container {
+                  width: 90px;
+                  height: 18px;
+
+                  .progress-bar {
+                    background-color: #a6b53e;
+                    height: 17px;
+                    line-height: 17px;
+                  }
+                }
+              }
+
+              .module-tutorial-video-message {
+                display: block;
+                font-size: 0.94em;
+                font-weight: normal;
+                color: #de622f;
+                margin-top: 10px;                
+              }
+            }
+            
+            .module-container.off {
+              opacity: 0.3;
+            }
+
+            .module-container.completed {
+              border-color: green;
+              border-width: 1em;
+            }    
+
+          }
+        }
+
+        .no-module-exists {
+          font-size: 1.2em;
+        }
+        
+      }
+
+/* Progress bar: circular -----------------*/
+
+// .progress{
+//     width: 50px;
+//     height: 50px;
+//     line-height: 150px;
+//     background: none;
+//     margin: 0 auto;
+//     box-shadow: none;
+//     position: relative;
+// }
+// .progress:after{
+//     content: "";
+//     width: 100%;
+//     height: 100%;
+//     border-radius: 50%;
+//     border: 12px solid #fff;
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+//     // box-shadow: 10px 5px 5px black;    
+// }
+// .progress > span{
+//     width: 50%;
+//     height: 100%;
+//     overflow: hidden;
+//     position: absolute;
+//     top: 0;
+//     z-index: 1;
+// }
+// .progress .progress-left{
+//     left: 0;
+// }
+// .progress .progress-bar{
+//     width: 100%;
+//     height: 100%;
+//     background: none;
+//     border-width: 12px;
+//     border-style: solid;
+//     position: absolute;
+//     top: 0;
+// }
+// .progress .progress-left .progress-bar{
+//     left: 100%;
+//     border-top-right-radius: 80px;
+//     border-bottom-right-radius: 80px;
+//     border-left: 0;
+//     -webkit-transform-origin: center left;
+//     transform-origin: center left;
+// }
+// .progress .progress-right{
+//     right: 0;
+// }
+// .progress .progress-right .progress-bar{
+//     left: -100%;
+//     border-top-left-radius: 80px;
+//     border-bottom-left-radius: 80px;
+//     border-right: 0;
+//     -webkit-transform-origin: center right;
+//     transform-origin: center right;
+//     animation: loading-1 1.8s linear forwards;
+// }
+// .progress .progress-value{
+//     width: 90%;
+//     height: 90%;
+//     border-radius: 50%;
+//     background: #44484b;
+//     // font-size: 24px;
+//     font-size: 12px;
+//     color: #fff;
+//     // line-height: 135px;
+//     line-height: 45px;
+//     text-align: center;
+//     position: absolute;
+//     top: 5%;
+//     left: 5%;
+// }
+// .progress.blue .progress-bar{
+//     border-color: #049dff;
+// }
+// .progress.blue .progress-left .progress-bar{
+//     animation: loading-2 1.5s linear forwards 1.8s;
+// }
+// .progress.yellow .progress-bar{
+//     border-color: #fdba04;
+// }
+// .progress.yellow .progress-left .progress-bar{
+//     animation: loading-3 1s linear forwards 1.8s;
+// }
+// .progress.pink .progress-bar{
+//     border-color: #ed687c;
+// }
+// .progress.pink .progress-left .progress-bar{
+//     animation: loading-4 0.4s linear forwards 1.8s;
+// }
+// .progress.green .progress-bar{
+//     border-color: #1abc9c;
+// }
+// .progress.green .progress-left .progress-bar{
+//     animation: loading-5 1.2s linear forwards 1.8s;
+// }
+// @keyframes loading-1{
+//     0%{
+//         -webkit-transform: rotate(0deg);
+//         transform: rotate(0deg);
+//     }
+//     100%{
+//         -webkit-transform: rotate(180deg);
+//         transform: rotate(180deg);
+//     }
+// }
+// @keyframes loading-2{
+//     0%{
+//         -webkit-transform: rotate(0deg);
+//         transform: rotate(0deg);
+//     }
+//     100%{
+//         -webkit-transform: rotate(144deg);
+//         transform: rotate(144deg);
+//     }
+// }
+// @keyframes loading-3{
+//     0%{
+//         -webkit-transform: rotate(0deg);
+//         transform: rotate(0deg);
+//     }
+//     100%{
+//         -webkit-transform: rotate(90deg);
+//         transform: rotate(90deg);
+//     }
+// }
+// @keyframes loading-4{
+//     0%{
+//         -webkit-transform: rotate(0deg);
+//         transform: rotate(0deg);
+//     }
+//     100%{
+//         -webkit-transform: rotate(36deg);
+//         transform: rotate(36deg);
+//     }
+// }
+// @keyframes loading-5{
+//     0%{
+//         -webkit-transform: rotate(0deg);
+//         transform: rotate(0deg);
+//     }
+//     100%{
+//         -webkit-transform: rotate(126deg);
+//         transform: rotate(126deg);
+//     }
+// }
+@media only screen and (max-width: 990px){
+    .progress{ margin-bottom: 20px; }
+}
+
+
+    } //-- col-modules
+  }
+
+// }
+
+/* iPads (landscape) ----------- */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : landscape) {
+}
+
+/* iPads (portrait) ----------- */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : portrait) {
+}
+
+/*==========  Mobile First Method  ==========*/
+
+/* Custom, iPhone Retina */ 
+@media only screen and (min-width : 320px) {
+
+}
+
+/* Extra Small Devices, Phones */ 
+@media only screen and (min-width : 480px) {
+
+}
+
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px) {
+
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px) {
+
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width : 1200px) {
+
+}
+
+/*==========  Non-Mobile First Method  ==========*/
+
+/* Large Devices, Wide Screens */
+@media only screen and (max-width : 1200px) {
+
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (max-width : 992px) {
+
+}
+
+/* Small Devices, Tablets */
+@media only screen and (max-width : 768px) {
+
+}
+
+/* Extra Small Devices, Phones */ 
+@media only screen and (max-width : 480px) {
+
+}
+
+/* Custom, iPhone Retina */ 
+@media only screen and (max-width : 320px) {
+  .row-modules {
+    padding: 3em 20px 3em 20px;
+  }
+
+  .row-modules .col-modules .modules-container ul li {
+    margin: 0px 20px 20px 0px;
+  }
+}
+
+// .card {
+//     /* Add shadows to create the "card" effect */
+//     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+//     transition: 0.3s;
+// }
+
+// /* On mouse-over, add a deeper shadow */
+// .card:hover {
+//     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+// }
+
+// /* Add some padding inside the card container */
+// .container {
+//     padding: 2px 16px;
+// }
+
+.panel-module-content {
+  display: inline-block;
+  margin: 5px;
+  width: 20%;
+  height: 300px;
+}

@@ -1,0 +1,56 @@
+@media(min-width:768px) {
+
+  .row-admin-module-edit {
+    background-color: rgba(255, 255, 255, 1);
+    margin-left: 0px; //-- override BS' row (15px)
+    overflow: auto;
+
+    .admin-module-edit-top {
+      // height: 20px;
+
+      button {      
+        background-color: transparent;
+        border: none;      
+        margin-right: 20px;
+      }
+    }
+
+    .col-admin-module-edit {
+      form {
+        text-align: left;
+        background-color: rgba(255, 255, 255, 1);
+
+        .module-progress-option-container {
+          margin-top: 8px;
+        }
+
+        .module-order {
+          width: 70px;
+        }
+      }
+    }
+
+    .module-cover-images-container {
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 3em;
+
+      max-height: calc(100vh - 210px);
+      overflow-y: auto;
+
+      li {
+        display: inline-block;
+        margin-bottom: 10px;
+        
+        .thumbnail {
+          margin-bottom: 0; //-- override BS (20px)
+        }
+      }
+    }
+  }
+}
+
+.row-admin-module-builder.modal {
+  width: 100%;
+  height: 100%;
+}

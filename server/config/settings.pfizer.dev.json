@@ -1,0 +1,27 @@
+{
+    "public": {    
+        "staleSessionInactivityTimeout": 900000,
+        "staleSessionHeartbeatInterval": 180000,
+        "staleSessionPurgeInterval": 60000,
+        "staleSessionActivityEvents": "mousemove click keydown",
+        "loginState": {
+        "domain": "localhost",
+        "cookieName": "_rlarbdhksqkrrmsdo"
+        },
+        "pfizer": {
+            "production": {
+                "gateURL": "https://pfizer.craassessments.com/",
+                "adminURL": "https://pfpekqnsk0tq07ygh8b6mqrkxpybwylbad1dhksrm.craassessments.com/",
+                "portalURL": "https://portal.craassessments.com/",
+                "trainingURL": "https://pfrbdhkkqkqnsizrbdhksdkjwusqksrmstr1lqkqn.craassessments.com/"
+            },          
+            "development": {
+                "gateURL": "http://localhost:3600/",
+                "adminURL": "http://localhost:3601/",
+                "portalURL": "http://localhost:3603/",
+                "trainingURL": "http://localhost:3602/"
+            }
+        }       
+    }
+}
+  

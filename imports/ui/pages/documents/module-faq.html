@@ -1,0 +1,202 @@
+<template name="ModuleFAQ">
+  <!-- Modal -->
+  <div class="module-faq modal fade" id="moduleFAQModal" 
+  tabindex="-1" role="dialog" aria-labelledby="moduleFAQModalTitle">  
+    <div class="modal-dialog" id="moduleFAQModalDialog" role="document">    
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title text-center" id="moduleFAQModalTitle">FAQ (Frequently Asked Questions)</h4>
+        </div>
+        <div class="modal-body" id="moduleFAQModalSrc">
+
+<div class="faq-sub-title"><i class="fa fa-gear" aria-hidden="true"></i> 
+  Technical Questions <span class="click-msg">(*Click each question to view the answer.)</span></div>
+<div class="panel-group" id="faq_technical" role="tablist" aria-multiselectable="true">
+
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingOneTech">
+      <h4 class="panel-title">
+        <a role="button" data-toggle="collapse" data-parent="#faq_technical" href="#collapseOneTech" 
+          aria-expanded="true" aria-controls="collapseOneTech">
+          The video appears to be blurry, how do I increase the resolution?
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOneTech" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
+        <p>
+The video player's resolution adjusts to your internet speed. To improve your internet speed follow these tips: disconnect from your VPN, use a wired internet connection, close all other programs on your computer. If these tips don't help, try restarting your modem and pc. 
+</p>
+<p>
+You can also manually set the resolution by selecting 720p from the resolution settings under the gear icon located at the bottom right of the video player. This may increase the buffering time, but it will ensure that you have the highest resolution available.
+</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingTwoTech">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#faq_technical" href="#collapseTwoTech" 
+          aria-expanded="true" aria-controls="collapseTwoTech">
+          The video is cut off at the bottom or I can't see the whole page on my screen
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTwoTech" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+      <div class="panel-body">
+<p>        
+This occurs when either your browser is zoomed in above 100% or you made the size of text, apps and other items larger for everything on your computer.
+</p>
+<p>
+To return the zoom to 100% in Chrome, see this article: <a href="https://support.google.com/chrome/answer/96810" target="_blank">https://support.google.com/chrome/answer/96810</a>
+</p>
+<p>
+<!-- To return the size of text, apps and other items to 100%, see this article: <a href="https://www.pcworld.com/article/242942/how_to_change_font_size.html" target="_blank">https://www.pcworld.com/article/242942/how_to_change_font_size.html</a> -->
+To return the size of text, apps and other items to 100%, see this article: <a href="https://www.laptopmag.com/articles/increase-text-size-computer" target="_blank">https://www.laptopmag.com/articles/increase-text-size-computer</a>
+</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingThreeTech">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#faq_technical" href="#collapseThreeTech" 
+          aria-expanded="true" aria-controls="collapseThreeTech">
+          What if I need more time to review the content of a specific training page?
+        </a>
+      </h4>
+    </div>
+    <div id="collapseThreeTech" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+      <div class="panel-body">
+        <p>
+You may pause the video player as needed if you require additional time to review content by either clicking on the video or the pause icon located at the bottom left of the video playbar. 
+</p>
+<p>
+To listen to the narration at a slower pace, you can click on the gear icon at the bottom right of the video player and modify the speed accordingly.
+</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingFourTech">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#faq_technical" href="#collapseFourTech" 
+          aria-expanded="true" aria-controls="collapseFourTech">
+          Am I able to view training pages that were previously viewed?
+        </a>
+      </h4>
+    </div>
+    <div id="collapseFourTech" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+      <div class="panel-body">
+        <p>
+Yes, you may navigate to previously viewed pages, however, the system will not allow you to navigate ahead to pages you have not yet viewed. 
+</p>
+<p>
+In addition to the "Back" and "Next" buttons, you can use the "Page index" menu to navigate to previously viewed pages, as well as to return to the most recent page you completed.
+</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingFiveTech">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#faq_technical" href="#collapseFiveTech" 
+          aria-expanded="true" aria-controls="collapseFiveTech">
+          What happens if I lose connection or log off before completing my assigned training module?
+        </a>
+      </h4>
+    </div>
+    <div id="collapseFiveTech" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+      <div class="panel-body">
+        <p>
+Every time you advance to the next page, your progress is automatically saved in the training system. 
+</p>
+<p>
+If you lose internet connection or log off before completing the training module, you will resume where you left off the next time that you log in.
+</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="faq-sub-title general">
+  <i class="fa fa-question-circle" aria-hidden="true"></i>
+  General Questions</div>
+<div class="panel-group" id="faq_general" role="tablist" aria-multiselectable="true">
+
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingOneGen">
+      <h4 class="panel-title">
+        <a role="button" data-toggle="collapse" data-parent="#faq_general" href="#collapseOneGen" aria-expanded="true" aria-controls="collapseOneGen">
+          Why have I been assigned this training module?
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOneGen" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
+Based upon your score on the Baseline simulation, your management has determined that you may benefit from a refresher presentation on this topic.
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingTwoGen">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#faq_general" href="#collapseTwoGen" 
+          aria-expanded="true" aria-controls="collapseTwoGen">
+          Are the quizzes within the training module graded?
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTwoGen" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+      <div class="panel-body">
+The quizzes are not graded, rather they are meant to serve as a tool to help check your understanding of the training material presented.
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingThreeGen">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#faq_general" href="#collapseThreeGen" 
+          aria-expanded="true" aria-controls="collapseThreeGen">
+Will this training module be available to me after I complete my assigned training?     
+        </a>
+      </h4>
+    </div>
+    <div id="collapseThreeGen" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+      <div class="panel-body">
+The training modules will be available during your assigned training period. Please check with your manager to determine how long these training modules will be available to you.
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingFourGen">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#faq_general" href="#collapseFourGen" 
+          aria-expanded="true" aria-controls="collapseFourGen">
+Will I have to complete any other simulations on this topic?          
+        </a>
+      </h4>
+    </div>
+    <div id="collapseFourGen" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+      <div class="panel-body">
+Your management may assign to you a targeted follow-up simulation after completing this training module. Please check with your manager if you are unsure of the required next steps.
+      </div>
+    </div>
+  </div>
+
+</div>
+
+        </div>
+      </div>    
+    </div>
+  </div>  
+</template>

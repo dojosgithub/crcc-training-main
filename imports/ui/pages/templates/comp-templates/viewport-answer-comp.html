@@ -1,0 +1,53 @@
+<template name="ViewportAnswerComp">  
+    {{Page}}
+    {{getPageNotes}}
+
+    <!-- {{#with PageDocuments}} -->
+    <div class="row row-viewport modal">
+      <div class="viewport-top-container">
+        <div class="top-nav left"></div>
+        <div class="top-nav center">
+          <!-- <button class="btn btn-xs btn-info btn-submit-notes" disabled="{{isNoteSubmitted}}">Submit</button> -->
+          <!-- {{#if isNoteNotSubmitted}}
+          <button class="btn btn-xs btn-info btn-submit-notes">Submit</button>
+          {{/if}} -->
+          {{#if isNoteNotSubmitted}}
+          <button class="btn btn-xs btn-default btn-view-instructions">View Instructions</button>
+          {{/if}}
+        </div>
+        <div class="top-nav right">
+          <button class="btn btn-xs btn-warning btn-close-viewport">Close Viewport</button>
+        </div>
+      </div>
+        <div class="col-xs-12 col-sm-2 col-md-6 col-viewport">
+            <div class="viewport-container">{{> React component=Viewport pageData=PageData 
+              pageDocuments=PageDocuments pageNotes=PageNotes userData=UserData submitted=isNoteSubmitted}}</div>
+        </div>
+        <div class="col-xs-12 col-sm-2 col-md-6 col-viewport">
+            <div class="viewport-container">{{> React component=Viewport pageData=PageData 
+              pageDocuments=PageDocuments pageNotes=PageNotes userData=UserData submitted=isNoteSubmitted}}</div>
+        </div>        
+    </div>
+    <!-- {{/with}} -->
+
+    {{#if isNoteNotSubmitted}}
+    <div class="modal fade" id="viewport_intro_modal">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            Review the documents and enter your findings by clicking the "Add Note" button at the top of the viewports, 
+            entering text and clicking on the "Save" button. <br><br>
+            Please write the notes as you normally would communicate with site personnel. If there are no issues identified, 
+            type "No issues identified" in the monitoring note pop-up and save. <br><br>            
+            Once you are done entering all of your monitoring notes, click on the blue "Submit" button at the top of the page to complete the exercise.
+          </div>        
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default btn-secondary" data-dismiss="modal">Close</button>        
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    {{/if}}
+      
+  </template>
+  

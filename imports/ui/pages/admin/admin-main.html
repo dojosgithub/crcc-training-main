@@ -1,0 +1,59 @@
+<!-- Admin Main template  -->
+
+<template name="AdminMain">
+
+<div class="row-admin-main">
+  <div class="col-xs-12 col-admin-main">
+    <div class="admin-main-container">
+
+      <div class="users-online-container">
+          <div class="users-online-top">
+              <span class="users-online-title">Users Online</span>
+          </div>
+          <div class="users-online-list-container">            
+              <ul class="ul-users-online list-unstyled">
+                  {{#if eq UsersOnline 0}}
+                      <li class="li-no-users-online">n/a</li>
+                  {{else}}
+                      {{#each UsersOnline}}
+<!-- 
+                      {{#if and (eq currentUser.profile.role '1') (eq this.role 2)}}
+                                            
+                      <li class="li-user-online {{#if this.idle}}idle{{else}}active{{/if}}">
+                          <button class="btn btn-xs btn-default">
+                              <i class="fa fa-circle"></i>
+                              {{this.fullname}}                                
+                          </button>
+                      </li>
+                      {{else}} -->
+                          
+                          <li class="li-user-online {{#if this.idle}}idle{{else}}active{{/if}}">                               
+                              <button class="btn btn-xs btn-default fullname">
+                                  <i class="fa fa-circle"></i>
+                                  {{this.fullname}}
+                              </button>
+                              {{#if this.roleName }}
+                              <button class="btn btn-xs btn-default role">
+                                  {{this.roleName}}
+                              </button>
+                              {{/if}} 
+                              {{#if this.client }}
+                              <button class="btn btn-xs btn-default client">
+                                  {{this.client}}
+                              </button>
+                              {{/if}}
+                           </li>
+                          
+                      <!-- {{/if}} -->
+
+                      {{/each}}
+                  {{/if}}
+              </ul>                    
+          </div>               
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</template>

@@ -1,0 +1,79 @@
+<!-- Input Findings template -->
+<template name="InputFindings">
+  {{#if isInitialTextOn}}
+  <div class="col-xs-12 col-sm-12 col-md-9 col-input-findings-container">      
+    <div class="module-input-findings-container">
+      <p class="input-findings-test-text">(Input Findings will be injected here dynamically.)</p>       
+    </div>
+  </div>
+  {{/if}}
+  {{#if isFindingsInputButtonOn}}
+  <div class="findings-input-button-container fixed-center">
+    <button class="btn btn-lg btn-warning btn-view-all-documents">
+      <i class="fa fa-pencil-square-o" aria-hidden="true"></i> 
+      Click here to view the documents and input Findings
+    </button>
+  </div>
+  {{/if}}
+
+  <div class="row row-input-findings-all-documents-top modal">
+    <div class="col-xs-12 col-sm-12 col-md-2"></div>
+    <div class="col-xs-12 col-sm-12 col-md-2">
+      <div class="input-findings-document-toolbar inout-findings-document-toolbar-left text-center">
+        <button class="btn btn-sm btn-default btn-zoom-document btn-zoomout-document" data-vp="1">
+          <i class="fa fa-lg fa-search-minus" aria-hidden="true"></i>
+        </button>
+        <button class="btn btn-sm btn-default btn-zoom-document btn-zoomin-document" data-vp="1">
+          <i class="fa fa-lg fa-search-plus" aria-hidden="true"></i>
+        </button>
+      </div>      
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-4 text-center">
+      <div class="add-findings-input-container">
+        <button class="btn btn-xs btn-warning btn-view-findings-input-box">
+          <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Click here to input findings
+        </button>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-2">
+      <div class="input-findings-document-toolbar input-findings-document-toolbar-right text-center">
+        <button class="btn btn-sm btn-default btn-zoom-document btn-zoomout-document" data-vp="2">
+          <i class="fa fa-lg fa-search-minus" aria-hidden="true"></i>
+        </button>
+        <button class="btn btn-sm btn-default btn-zoom-document btn-zoomin-document" data-vp="2">
+          <i class="fa fa-lg fa-search-plus" aria-hidden="true"></i>
+        </button>        
+      </div>      
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-2 text-right">
+      <div class="all-documents-close-container">
+        <button class="btn btn-xs btn-default btn-close-all-documents">
+          <i class="fa fa-2x fa-times"></i>
+        </button>
+      </div>       
+    </div>
+  </div>
+  <div class="row row-input-findings-all-documents modal">
+    <div class="col-xs-12 col-sm-12 col-md-6 col-document-container col-document-left">
+      <div class="document-container document-left-container">
+        <img class="input-findings-document input-findings-document-1" src="/templates/input-findings/document-left.png" alt="">
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-6 col-document-container col-document-right">  
+      <div class="document-container document-right-container">
+        <img class="input-findings-document input-findings-document-2" src="/templates/input-findings/document-right.png" alt="">
+      </div>
+    </div> 
+    <div class="findings-input-box-container">
+      <div class="form-group">
+        <textarea name="findings-input-box" class="findings-input-box txa-findings-input">{{session 'userFindingsInput'}}</textarea>  
+      </div>
+      <div class="form-group text-center findings-input-submit-container text-right">
+        <button class="btn btn-xs btn-warning btn-close-findings-box">Close</button>  
+        <button class="btn btn-xs btn-info btn-save-findings">Save</button>
+        <!-- <button class="btn btn-xs btn-primary btn-submit-findings-n-move">Submit & Move to the next slide</button>   -->
+      </div>    
+    </div>        
+  </div>
+</template>
+

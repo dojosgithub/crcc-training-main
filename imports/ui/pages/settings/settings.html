@@ -1,0 +1,51 @@
+<template name="Settings">
+  <div class="row row-settings">
+    <div class="col-xs-12 col-sm-12 col-md-3"></div>
+    <div class="col-xs-12 col-sm-12 col-md-6 col-settings">
+      <div class="settings-container">
+        <label>
+          <input type="checkbox" class="chkb-video-autoplay" checked="{{mySettings.videoAutoplay}}" 
+          data-_id={{mySettings._id}}> Video autoplay
+        </label>
+      </div>
+      <div class="settings-container">
+        <div class="setting-title">Choose a Layout</div>
+        <div class="setting-subtitle">Video alignment:</div>
+        <ul class="ul-settings-themes list-inline">
+          <li class="li-settings-video-alignment">
+<!--             <button class="btn btn-xs btn-default btn-select-this-theme 
+              {{#if eq mySettings.moduleTheme 'theme_default_left'}}selected{{/if}}" 
+              data-theme="theme_default_left">Default - Left</button>
+            <button class="btn btn-xs btn-default btn-select-this-theme 
+              {{#if eq mySettings.moduleTheme 'theme_default_center'}}selected{{/if}}" 
+              data-theme="theme_default_center">Default - Center</button>
+            <button class="btn btn-xs btn-default btn-select-this-theme 
+              {{#if eq mySettings.moduleTheme 'theme_default_right'}}selected{{/if}}" 
+              data-theme="theme_default_right">Default - Right</button> -->
+            <div class="btn btn-xs btn-default btn-select-video-alignment left text-left 
+              {{#if eq mySettings.videoAlignment 'left'}}selected{{/if}}" 
+              data-alignment="left">
+              <div class="alignment-label">Left</div>
+              <div class="video-container"></div>
+              <div class="resource-panel"></div>
+              </div>
+            <div class="btn btn-xs btn-default btn-select-video-alignment center text-center 
+              {{#if eq mySettings.videoAlignment 'center'}}selected{{/if}}" 
+              data-alignment="center">
+              <div class="alignment-label">Center</div>
+              <div class="video-container"></div>
+              </div>
+            <div class="btn btn-xs btn-default btn-select-video-alignment right text-right 
+              {{#if eq mySettings.videoAlignment 'right'}}selected{{/if}}" 
+              data-alignment="right">
+              <div class="alignment-label">Right</div>
+              <div class="video-container"></div>
+              <div class="resource-panel"></div>
+              </div>              
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-3"></div>
+  </div>
+</template>

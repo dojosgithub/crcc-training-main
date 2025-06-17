@@ -1,0 +1,91 @@
+<template name="AdminSurveyQuestions">
+  <div class="row row-admin-survey-questions modal">    
+    <div class="admin-survey-questions-top text-right">
+      <button class="btn btn-xs btn-default btn-close-survey-questions"><i class="fa fa-2x fa-times"></i></button>
+    </div>    
+    <div class="col-xs-5 col-admin-survey-questions"> 
+      <div class="survey-questions-container">
+        
+        <div class="btn-add-new-question-container text-right">
+<!--           <button class="btn btn-xs btn-default btn-add-new-question" 
+            data-target="#new_question_form_container" data-toggle="modal">&plus; Add Question</button> -->
+          <button class="btn btn-xs btn-default btn-add-new-question">&plus; Add Survey Question</button>            
+        </div>
+        <div class="leftbar-admin-survey-questions-container">
+          <ul id="ul_admin_survey_questions" class="ul-admin-survey-questions list-unstyled">
+            {{#each Questions}}
+            <li class="li-admin-survey-question 
+              {{#if eq status 1}}li-admin-module-builder-question-active{{/if}}" 
+              data-qzid="{{this.surveyId}}" data-qid="{{this._id}}">
+              <div class="question-buttons-container">
+                <!-- {{#let entry=@index}} -->
+                <div class="col-xs-1 col-buttons text-left">
+                  <button class="btn btn-xs btn-default question-entry-number">
+                    {{sum order 1}}
+                  </button>                  
+                </div>
+                <!-- {{/let}} -->
+
+                <div class="col-xs-11 col-buttons text-right">
+                  <button class="btn btn-xs btn-default btn-manage-question" title="Manage"> <i class="fa fa-gear"></i> </button>
+                  {{#if eq status 1}}
+                  <button class="btn btn-xs btn-warning btn-update-question-status" data-status="2" title="Deactivate"> 
+                  <i class="fa fa-lock"></i> </button>
+                  {{else}}
+                  <button class="btn btn-xs btn-success btn-update-question-status"  data-status="1" 
+                    title="Activate"> <i class="fa fa-unlock"></i> </button>
+                  {{/if}}
+                  <button class="btn btn-xs btn-danger btn-delete-question" 
+                    title="Delete"> <i class="fa fa-trash"></i> </button>                  
+                </div>
+              </div>
+              <div class="question-title-container">              
+                {{curtail this.contentRaw 50}}
+              </div>
+            </li>
+            {{/each}}
+          </ul>  
+        </div>
+
+      </div>
+    </div>
+    <div class="col-xs-7 col-survey-question-settings">
+      <div class="survey-question-settings-container">
+      {{#each Question}}
+        <div class="survey-question-settings-top text-right">
+          <button class="btn btn-xs btn-default btn-update-question"
+           data-qid="{{this._id}}">Save Question Text</button>
+        </div>
+        {{>AdminManageSurveyQuestion Question=this}}
+        <!-- {{>AdminSurveyAnswers Question=this}} -->
+        <!-- {{>AdminSurveyAnswers Question=this}} -->
+      {{/each}}
+      <!-- {{>AdminSurveyAnswers}} -->
+      </div>
+    </div>
+  </div>
+
+  <div class="new-question-form-container modal" 
+    id="new_question_form_container">
+    <div class="new-question-top text-left">
+      <button class="btn btn-xs btn-default btn-close-new-question"><i class="fa fa-2x fa-times"></i></button>
+    </div>
+    <div class="new-question-main-container">
+      <div class="question-type-container">
+        <label for="sel_question_type">Question Type: </label>
+        <select name="sel_question_type" id="sel_question_type">
+          <option value="single_choice">Single Choice</option>
+          <option value="open_ended">Open-ended</option>
+          <option value="multiple_choice" disabled>Multiple Choice</option>          
+          <option value="numerical_rating" disabled>Numerical Rating</option>
+          <option value="star_rating" disabled>Star Rating</option>          
+        </select>        
+      </div>
+      <label>Question Content:</label>
+      {{>AdminNewSurveyQuestion}}
+    </div>
+    <div class="save-new-question-container text-right">
+      <button class="btn btn-xs btn-default btn-save-new-question">Save</button>
+    </div>
+  </div>
+</template>

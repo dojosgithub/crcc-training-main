@@ -1,0 +1,171 @@
+/**
+ * Admin All Users template logic
+ */
+import { Meteor } from 'meteor/meteor'
+import { Template } from 'meteor/templating'
+
+import { Session } from 'meteor/session'
+import { ReactiveVar } from 'meteor/reactive-var'
+
+import { Users } from '/imports/api/collections/users.js'
+import { TrainingModules } from '/imports/api/collections/training-modules.js'
+
+import '/imports/ui/stylesheets/admin/users/admin-all-users.scss'
+import { AdminAllUsers } from '/imports/ui/pages/admin/users/admin-all-users.html'
+import { AdminManageAllUsers } from '/imports/ui/pages/admin/users/admin-manage-all-users.js'
+
+import { AdminAllUsersTemplate } from '/imports/ui/pages/admin/users/admin-all-users-template.js'
+
+let _selfAdminAllUsers
+
+Template.AdminAllUsers.onCreated(function adminAllUsersOnCreated() {
+
+  _selfAdminAllUsers = this
+
+  _selfAdminAllUsers.tplManageUserTRModules = new ReactiveVar()
+  _selfAdminAllUsers.tplManageUserTRModulesUID = new ReactiveVar()
+
+  _selfAdminAllUsers.autorun(() => {
+    let TRModulesCursor = TrainingModules.find()
+
+    if(TRModulesCursor && TRModulesCursor.fetch()) {
+      let modules = []
+      TRModulesCursor.fetch().forEach(function(m) {
+        // console.log(m)
+        modules[m._id] = {name: m.name, pages: m.numPages}
+      })
+      // console.log(modules)
+      // Session.set('moduleNamesById', modules)
+      // console.log(Session.get('moduleNamesById'))
+      // __moduleNamesById = modules
+      __moduleNameNPagesById = modules
+    }
+  })  
+})
+
+Template.AdminAllUsers.onRendered(function adminAllUsersOnRendered() {
+  $('#tblAdminAllUsers_filter').append($('.btn-manage-all-users'))
+})
+
+Template.AdminAllUsers.helpers({
+  adminAllUsersSelector() {
+    return {
+      'profile.role': {$ne: '1'},
+      'profile.status': {$ne: 4}
+    }
+  },
+  tplManageUserTRModules() {
+    return _selfAdminAllUsers.tplManageUserTRModules.get()
+  },
+  userData() {
+    return _selfAdminAllUsers.tplManageUserTRModulesUID.get()
+  }
+})
+
+Template.AdminAllUsers.events({
+  'click .btn-sync-user-data'(e, tpl) {
+    e.preventDefault()
+
+    if(Meteor.user()) {
+      let _this = $(e.currentTarget)
+      let uid = _this.parent().data('uid')
+
+      let targetUser = Meteor.users.findOne(uid)
+
+      console.log(targetUser)
+      
+      _this.button("loading")
+
+      let obj = {
+        _id: uid
+      }
+
+      // import("/imports/api/methods/admin-all-users.js").then(function(methods) { //-- working eg. 1
+      //   const { syncUserData } = methods
+      //   syncUserData.call(obj, (err, res) => {
+      //     if(err) {
+      //       sAlert.error("Something went wrong. Please try again. " + err)
+      //     } else {
+      //       console.log(res)
+      //     }
+      //   })
+      // })
+
+      // import("/imports/api/methods/admin-all-users.js").then(methods => { //-- working eg. 2
+      //   const { syncUserData } = methods
+      //   syncUserData.call(obj, (err, res) => {
+      //     if(err) {
+      //       sAlert.error("Something went wrong. Please try again. " + err)
+      //     } else {
+      //       console.log(res)
+      //     }
+      //   })
+      // })
+
+      // import("/imports/api/methods/admin-all-users.js").then(syncUserData => { //-- not working     
+      //   syncUserData.call(obj, (err, res) => {
+      //     if(err) {
+      //       sAlert.error("Something went wrong. Please try again. " + err)
+      //     } else {
+      //       console.log(res)
+      //     }
+      //   })
+      // })
+
+      import("/imports/api/methods/admin-all-users.js").then(userMethods => {
+        const { syncUserData } = userMethods
+        syncUserData.call(obj, (err, res) => {
+          if(err) {
+            sAlert.error("Something went wrong. Please try again. " + err)
+          } else {
+            if(res && res.success) {
+              // console.log(res)
+              sAlert.info("User " + res.user.profile.fullname + "'s data has been successfully synced.")
+              _this.button("reset")
+            }          
+          }
+                  
+        })
+      })
+
+    } else {
+      sAlert.error("Your session has expired. Please sign-in and try again.")
+      FlowRouter.go("/signout")
+    }
+
+  },
+  'click .btn-manage-all-users'(e, tpl) {
+    e.preventDefault()
+
+    $('.admin-manage-all-users-container').show()
+  },
+  'click .btn-close-manage-all-users'(e, tpl) {
+    e.preventDefault()
+
+    $('.admin-manage-all-users-container').hide()
+  },
+  'click .btn-manage-user-tr-modules'(e, tpl) {
+    e.preventDefault()
+
+    let uid = $(e.currentTarget).parent().data('uid')
+    // console.log('uid', uid)
+    // _selfAdminAllUsers.tplManageUserTRModulesUID.set(uid)
+
+    Session.set('manageTRModuleUid', uid)
+
+    const utrModule = import('/imports/ui/pages/admin/users/admin-manage-user-tr-modules.js')
+
+    utrModule.then(() => {
+      _selfAdminAllUsers.tplManageUserTRModules.set('AdminManageUserTRModules')
+      $(".admin-manage-user-tr-modules-container").show()
+    })
+  },
+  'click .btn-close-manage-user-tr-modules'(e, tpl) {
+    e.preventDefault()
+    
+    Session.set('myUserTRModules', null)
+
+    $(".admin-manage-user-tr-modules-container").hide()
+  }
+})
+

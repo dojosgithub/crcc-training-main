@@ -1,0 +1,21 @@
+.dk-editor-init-menu {
+  // width: 100px;
+  float: right;
+  text-align: center;
+  margin: 10px;
+
+  button.dk-editor-edit {
+    display: none;
+  }
+}
+
+.dk-editor-container {
+  clear: both;
+
+  .dk-paragraph {
+    border: 1px dotted #333;
+  }
+}
+
+
+

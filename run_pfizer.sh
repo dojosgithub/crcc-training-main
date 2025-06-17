@@ -1,0 +1,1 @@
+MONGO_URL=mongodb://localhost:27017/craa_v21_db_pfizer meteor --port 3602 --settings=server/config/settings.pfizer.dev.json

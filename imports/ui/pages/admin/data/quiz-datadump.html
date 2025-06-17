@@ -1,0 +1,85 @@
+<!-- Quiz Datadump template -->
+<template name="QuizDatadump">
+  <div class="row row-quiz-datadump">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-quiz-datadump">
+
+			<div class="quiz-datadump-top">
+	    	<select name="sel_clients" id="sel_clients" class="sel-clients">
+	    		<option value="-1">=== Select Client ===</option>
+					{{#each Clients}}
+						<option value="{{this._id}}">{{this.name}}</option>
+					{{/each}}
+	    	</select>
+
+	    	<select name="sel_bus" id="sel_bus" class="sel-bus">
+	    		<option value="-1">=== Select BU ===</option>
+	    		{{#if BUs}}
+	    		<option value="all">All BUs</option>
+	    		{{/if}}
+					{{#each BUs}}
+						<option value="{{this._id}}">{{this.name}}</option>
+					{{/each}}
+	    	</select>
+
+	    	<select name="sel_modules" id="sel_modules" class="sel-modules">
+	    		<option value="-1">=== Select Module ===</option>
+	    		<!--{{#if Modules}}
+	    		<option value="all">All Modules</option>
+	    		{{/if}}-->
+					{{#each Modules}}
+						<option value="{{this.moduleId}}">{{this.moduleName}}</option>
+					{{/each}}
+	    	</select>
+
+				{{#if Module}}			
+	      <button class="btn btn-xs btn-default btn-submit-quiz-datadump" 
+	       data-loading-text="<i class='fa fa-spinner fa-spin'></i> computing">Submit</button>
+				{{/if}}				
+			</div>
+
+			{{#if Data}}
+	    <div class="data-table-container">
+	    	<div class="data-table-top">
+	    		<button class="btn btn-default btn-xs btn-select-table">Select Table</button>
+	    		<button class="btn btn-default btn-xs btn-export-table">Export</button>
+	    	</div>
+	    	<table class="tbl-quiz-datadump-data" id="tbl_quiz_datadump_data">
+	    		<thead>
+	    			<tr>
+	    				<th class="th-quiz">Title</th>
+	    				<th class="th-question">Question</th>
+	    				{{#each DataUsers}}
+								<th class="th-user-fullname">
+									{{this.fullname}}
+								</th>
+	    				{{/each}}
+	    				<th class="th-count">Count</th>
+	    				<th class="th-count-identified">Count Identified</th>
+	    				<th class="th-percent-identified">% Identified</th>
+	    			</tr>    			
+	    		</thead>
+	    		<tbody>
+	    			{{#each Data}}
+	    			<tr>
+	    				<td class="td-quiz">{{this.quizName}}</td>
+	    				<td class="td-question">{{this.question}}</td>
+	    				{{#each this.scores}}
+	    					{{#if eq this.feedback 'Correct'}}
+	    					<td class="td-feedback correct">{{this.feedback}}</td>
+	    					{{else}}
+	    					<td class="td-feedback incorrect">{{this.feedback}}</td>
+	    					{{/if}}
+	    				{{/each}}
+	    				<td class="td-count">{{this.count}}</td>
+	    				<td class="td-count-identified">{{this.countIdentified}}</td>
+	    				<td class="td-percent-identified">{{percent this.countIdentified this.count}}</td>
+	    			</tr>
+	    			{{/each}}
+	    		</tbody>
+	    	</table>
+	    </div>
+	    {{/if}}
+
+    </div>
+  </div>
+</template>

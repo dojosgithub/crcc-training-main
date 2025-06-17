@@ -1,0 +1,303 @@
+<!-- Admin Module Page Edit emplate -->
+<template name="AdminModulePageEdit">
+  <div class="row row-admin-module-page-edit">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-admin-module-page-edit">
+      <div class="admin-module-page-edit-container">
+        
+        {{#each Page}}
+        <form class="form-horizontal">
+          
+          <div class="form-group">
+            <label for="input_page_title" class="col-sm-2 control-label">Title: </label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="edit_input_page_title" value="{{title}}">  
+            </div>          
+          </div>
+
+          <div class="form-group">
+            <label for="txta_page_inst" class="col-sm-2 control-label">Instructions: </label>
+            <div class="col-sm-9">
+              <textarea id="edit_txta_page_inst" class="form-control">{{instructions}}</textarea>  
+            </div>          
+          </div>
+
+          <div class="form-group">
+            <label for="txta_page_transcript" class="col-sm-2 control-label">Transcript: </label>
+            <div class="col-sm-9">
+              <textarea id="edit_txta_page_transcript" class="form-control">{{transcript}}</textarea>  
+            </div>          
+          </div>
+
+          <div class="form-group">
+            <label for="txta_page_desc" class="col-sm-2 control-label">Description: </label>
+            <div class="col-sm-9">
+              <textarea id="edit_txta_page_desc" class="form-control">{{description}}</textarea>  
+            </div>          
+          </div>
+
+          <div class="form-group">
+            <label for="sel_page_type" class="col-sm-2 control-label">Type: </label>
+            <div class="col-sm-3">
+              <select id="edit_sel_page_type" class="form-control">
+                <option value="-1">SELECT</option>
+                <option value="video" {{selected type 'video'}}>Video</option>
+                <option value="code" {{selected type 'code'}}>Code</option>
+                <option value="quiz" {{selected type 'quiz'}}>Quiz</option>
+                <option value="survey" {{selected type 'survey'}}>Survey</option>
+              </select>  
+            </div>          
+          </div>
+          
+          {{#if isTypeVideo}}
+          <div class="form-group">
+            <label for="txta_video_src" class="col-sm-2 control-label">Video: </label>
+            <div class="col-sm-3">
+              <div class="video-container">
+                {{{video.videoSrc}}}
+              </div>
+              <div class="video-title">
+                {{video.videoTitle}}
+              </div> 
+              <div class="view-videos-button-container">
+                <button class="btn btn-xs btn-default btn-view-videos">View videos to choose</button>
+              </div>   
+
+            </div>
+            <div class="col-sm-6 video-src-container">
+              <textarea id="edit_txta_video_src" rows="5" class="form-control">{{video.videoSrc}}</textarea>
+              <div class="row row-video-duration">
+                <div class="col-sm-6">
+                  Duration: <input type="text" class="input-video-duration" id="input_video_duration" 
+                    value="{{video.videoDuration}}" readonly>  
+                </div>
+                <div class="col-sm-6">
+                  <input type="text" class="input-video-duration-hms" id="input_video_duration_hms" 
+                    value="{{videoSecondsToHMS video.videoDuration}}" readonly>
+                </div>
+              </div>
+            </div>
+          </div>
+<!--           <div class="form-group">
+            <label for="input_component_template" class="col-sm-2 control-label">Comp. Template: </label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="edit_input_component_template" 
+                placeholder="CamelCaseWithNoSpace" value="{{compTemplate}}">  
+            </div>          
+          </div>  -->         
+          {{/if}}
+
+          <!-- {{#if or isTypeCode (eq type 'code')}} -->
+<!--           {{#if isTypeCode}}
+          <div class="form-group">
+            <label for="input_page_template" class="col-sm-2 control-label">Page Template: </label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="edit_input_page_template" 
+                placeholder="CamelCaseWithNoSpace" value="{{pageTemplate}}">  
+            </div>          
+          </div>
+          {{/if}} -->
+
+          {{#if or (eq type 'video') (eq type 'code')}}
+          <div class="form-group edit-sel-template-container">
+            <label for="edit_sel_template" class="col-xs-2 control-label">
+              {{#if eq type 'video'}}Comp{{else}}Page{{/if}} Template: 
+            </label>
+            <div class="col-xs-3">
+              <select id="edit_sel_template" class="form-control">
+                <option value="-1">SELECT</option>
+                                
+                {{#each Templates}}
+                <option value="{{_id}}" data-systemname={{systemName}} selected={{eq ../thisTemplate._id this._id}} >
+                {{#if label}}{{label}}{{else}}{{systemName}}{{/if}}
+                </option>                
+                {{/each}}}
+                
+              </select>
+              {{#if hasViewportComp}}
+              <div class="view-documents-button-container">
+                <button class="btn btn-xs btn-default btn-view-documents">View documents to choose</button>
+              </div>
+              {{/if}}   
+            </div>          
+          </div>
+          {{else}}
+            {{#if eq type 'quiz'}}
+            <div class="form-group">
+              <label for="edit_sel_quiz" class="col-xs-2 control-label">
+                Quiz: 
+              </label>
+              <div class="col-xs-6">
+                <select id="edit_sel_quiz" class="form-control">
+                  <option value="-1">SELECT</option>
+                                  
+                  {{#each Quizzes}}                
+                  <option value="{{_id}}" {{selected ../quizId this._id}}>{{title}}</option>                
+                  {{/each}}}
+                  
+                </select>  
+              </div>             
+            </div>
+            <div class="form-group">
+              <label for="sel_quiz_type" class="col-xs-2 control-label">
+                Quiz Type: 
+              </label>
+              <div class="col-xs-3">
+                <select id="sel_quiz_type" class="form-control">                        
+                  <option value="1" {{selected 1 this.quizType}}>One At A Time</option>                
+                  <option value="2" {{selected 2 this.quizType}}>All At Once</option>                
+                </select>  
+              </div>
+              <div class="col-xs-3">
+                <input type="checkbox" class="quiz-show-score-feedback" 
+                id="quiz_show_score_feedback" {{checked true this.quizShowScoreFeedback}}> Show score feedback
+              </div>              
+            </div>
+            {{else}}
+            <div class="form-group">
+              <label for="edit_sel_survey" class="col-xs-2 control-label">
+                Survey: 
+              </label>
+              <div class="col-xs-3">
+                <select id="edit_sel_survey" class="form-control">
+                  <option value="-1">SELECT</option>
+                                  
+                  {{#each Surveys}}                
+                  <option value="{{_id}}" {{selected ../surveyId this._id}}>{{title}}</option>                
+                  {{/each}}}
+                  
+                </select>  
+              </div>
+            </div>          
+            {{/if}}
+          {{/if}}
+
+          <div class="form-group">
+            <label for="file_source_docs" class="col-sm-2 control-label">Source Documents: </label>
+            <div class="col-sm-7">
+              <input type="file" id="edit_file_source_docs" class="form-control">
+            </div>          
+          </div>
+
+         <div class="form-group">
+            <label for="file_resources" class="col-sm-2 control-label">Resources: </label>
+            <div class="col-sm-7">
+              <input type="file" id="edit_file_resources" class="form-control">
+            </div>          
+          </div>
+        {{#if isTypeCode}}
+         <div class="form-group">
+            <label for="file_audio" class="col-sm-2 control-label">Audio: </label>
+            <div class="col-sm-5">
+              {{#if audio.audioId}}
+              <div class="page-edit-audio-container">
+                <div class="page-edit-audio-src">                  
+                  <audio controls>
+                    <source src="/cfs/files/training_module_audios_cfs/{{audio.audioId}}/{{audio.audioName}}" 
+                      type="audio/mpeg">                  
+                  </audio>                  
+                </div>
+                <div class="page-edit-audio-title">
+                {{#if audio.audioTitle}}
+                  {{audio.audioTitle}}
+                {{else}}
+                  {{audio.audioName}}                
+                {{/if}}
+                </div>                
+              </div>               
+              {{/if}}
+              <div class="view-audios-button-container">              
+                <button class="btn btn-xs btn-default btn-view-audios">View audio objects to choose</button>
+              </div>              
+            </div>
+            <div class="col-sm-2">
+              <div class="page-edit-audio-duration">
+                <span>Duration: </span>
+                <input type="text" class="input-edit-page-audio-duration" value="{{secondsToHMSRaw audio.audioDuration}}">
+              </div>              
+            </div> 
+          </div>
+          {{/if}}
+          
+           <div class="form-group">
+            <label for="page_duration" class="col-sm-2 control-label">Duration(seconds): </label>
+            <div class="col-sm-2">
+              <input type="text" id="edit_page_duration" class="form-control" value="{{duration}}" title="Seconds">              
+            </div>          
+            <div class="col-sm-2">
+              <input type="text" id="edit_page_duration_hms" class="form-control" value="{{videoSecondsToHMS duration}}" readonly>
+            </div>                      
+          </div>
+
+          <div class="form-group save-module-page-edit-container">          
+            <div class="col-sm-offset-4 col-sm-4">
+              <button class="btn btn-md btn-primary btn-save-module-page-edit" 
+                data-mid="{{this.moduleId}}" data-pid="{{this._id}}">
+                Save
+              </button>
+            </div>          
+          </div>
+
+        </form>
+        {{/each}}
+
+      </div>
+    </div>
+
+  </div>  
+
+    <div class="row row-module-page-edit-all-videos modal">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-module-page-edit-all-videos">
+        <div class="module-page-edit-all-videos-top text-left">
+          <button class="btn btn-xs btn-default btn-close-module-page-edit-all-videos"><i class="fa fa-2x fa-times"></i></button>
+        </div>
+         <div class="module-page-edit-all-videos-container">
+          {{#if videoSubsReady}}
+            {{> tabular table=TabularTables.TrainingModuleVideosMini selector=videosMiniTableSelector    
+            class="table table-striped table-condensed" id="tblTrainingModuleVideosMini"}}
+          {{/if}}
+        </div> 
+        
+      </div>
+    </div>
+
+    <div class="row row-module-page-edit-all-audios modal">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-module-page-edit-all-audios">
+        <div class="module-page-edit-all-audios-top text-left">
+          <button class="btn btn-xs btn-default btn-close-module-page-edit-all-audios"><i class="fa fa-2x fa-times"></i></button>
+        </div>
+         <div class="module-page-edit-all-audios-container">
+          {{#if audioSubsReady}}
+            {{> tabular table=TabularTables.TrainingModuleAudiosCFSMini selector=audiosMiniTableSelector   
+            class="table table-striped table-condensed" id="tblTrainingModuleAudiosCFSMini"}}
+          {{/if}}
+        </div> 
+        
+      </div>
+    </div>
+  
+    <div class="row row-module-page-edit-all-documents modal">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-module-page-edit-all-documents">
+        <div class="module-page-edit-all-documents-top text-left">
+          <button class="btn btn-xs btn-default btn-close-module-page-edit-all-documents"><i class="fa fa-2x fa-times"></i></button>
+        </div>
+         <div class="module-page-edit-all-documents-container">
+          {{#if documentsSubsReady}}
+            <!-- {{> tabular table=TabularTables.TrainingModuleDocumentsCFSMini selector=documentsMiniTableSelector   
+            class="table table-striped table-condensed" id="tblTrainingModuleDocumentsCFSMini"}} -->
+            <ul class="ul-documents">
+            {{#each AllDocuments}}
+              <li class="li-document">
+                <input type="checkbox" class="checkbox-document" checked="{{inArray PageDocuments this._id}}"> 
+                {{this.title}} [{{this.original.name}}]
+              </li>
+            {{/each}}
+            </ul>
+          {{/if}}
+        </div> 
+        
+      </div>
+    </div>
+
+  {{> AdminVideoModal data=videoToView }}
+  {{> AdminAudioModal data=audioToView }}
+</template>

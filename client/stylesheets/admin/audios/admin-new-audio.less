@@ -1,0 +1,110 @@
+@media(min-width:768px) {
+
+  .row-admin-new-audio-uploaded {
+    
+    margin: 100px 0 4em 200px;
+    // min-height: 70%;
+
+    .col-admin-new-audio-uploaded {
+      .admin-new-audio-uploaded-container {
+        
+        // margin: 10% 10%;
+
+        .ul-admin-new-audio-uploaded {
+
+          li.li-admin-new-audio {
+            
+            float: left;
+            display: inline-block;
+            // margin-right: 15px;
+            margin: 10px 10px 0 0;
+
+
+            border: 1px solid #ddd;
+            border-radius: 5px;
+
+            .admin-new-audio-container {
+              
+              width: 287px;
+              height: 118px;
+              padding: 5px;
+              border: 1px solid #ddd;
+              border-radius: 5px;
+
+              .admin-new-audio-src {
+                
+                width: 275px;
+                border: 1px solid #eee;
+
+                audio {
+                  width: 270px;
+                }
+              }
+
+              .admin-new-audio-title {
+                font-size: 0.9em;
+                width: 280px;
+                height: 35px;
+                margin: 5px 0;
+              }
+
+              .admin-new-audio-buttons {
+                width: 100%;
+                text-align: right;        
+              }
+            }
+
+            .admin-new-audio-container.active {
+              background-color: rgba(220, 239, 225, 0.8);
+            }
+
+            .admin-new-audio-container.inactive {
+              background-color: transparent;
+            }      
+          }  
+        }
+
+      }
+    }    
+  }
+
+  .row-admin-new-audio-dropzone {
+    
+    margin: 20px 0 20em 200px;
+
+    .col-admin-new-audio {
+      .admin-new-audio-container {
+        
+        margin: 0 10%;
+
+        .admin-new-audio-dropzone {
+          display: inline-block;
+          padding: 20px;
+          width: 300px;
+          height: 200px;
+          border: 1px solid #777;          
+        }
+
+        .admin-new-audio-progress {
+          display: inline-block;
+          margin-left: 1em;
+          vertical-align: top;
+
+          ul {
+            list-style: none;
+          }
+        }
+      }
+    }    
+  }
+}
+
+.admin-new-audio-dragover {
+  border-radius: 10px;
+  background-color: #eee;
+}
+
+.admin-new-audio-dragleave {
+  border-radius: 0px;
+  background-color: #fff;
+}

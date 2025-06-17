@@ -1,0 +1,16 @@
+<!-- Admin layout template  -->
+
+<template name="Admin">
+
+  {{#if or (eq currentUser.profile.role '1') (eq currentUser.profile.role '2')}}
+    {{>Template.dynamic template=AdminHeader}}    
+    {{>Template.dynamic template=AdminLeftbar}} 
+    {{>Template.dynamic template=AdminMain}}
+    {{>Template.dynamic template=AdminRightbar}} 
+    {{>Template.dynamic template=AdminFooter}}  
+  {{else}}
+  <div class="admin_f_main">
+    Access Denied!
+  </div>
+  {{/if}}
+</template>

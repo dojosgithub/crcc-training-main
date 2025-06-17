@@ -1,0 +1,83 @@
+# Meteor packages used by this project, one per line.
+# Check this file (and the other files in this directory) into your repository.
+#
+# 'meteor add' and 'meteor remove' will edit this file for you,
+# but you can also edit it by hand.
+
+meteor-base@1.4.0           # Packages every Meteor app needs to have
+mobile-experience@1.1.0       # Packages for a great mobile UX
+mongo@1.10.0                   # The database Meteor supports right now
+blaze-html-templates # Compile .html files into Meteor Blaze views
+reactive-var@1.0.11            # Reactive variable for tracker
+jquery@1.11.10                  # Helpful client-side library
+tracker@1.2.0                 # Meteor's client-side reactive programming library
+
+standard-minifier-js@2.6.0    # JS minifier run for production mode
+es5-shim@4.8.0                # ECMAScript 5 compatibility for older browsers.
+ecmascript@0.14.3              # Enable ECMAScript2015+ syntax in app code
+typescript@3.7.6              # Enable TypeScript syntax in .ts and .tsx modules
+shell-server@0.5.0            # Server-side component of the `meteor shell` command
+
+#abernix:minifier-js
+#standard-minifiers
+standard-minifiers@1.1.0
+
+kadira:flow-router
+practicalmeteor:mocha
+kadira:blaze-layout
+#meteorhacks:unblock
+check@1.3.1
+accounts-base@1.7.0
+twbs:bootstrap
+#seba:minifiers-autoprefixer
+mdg:validated-method
+ddp-rate-limiter@1.0.9
+accounts-password@1.6.2
+aldeed:tabular
+fortawesome:fontawesome
+less@2.8.0
+#fourseven:scss
+mizzao:jquery-ui
+force-ssl@1.1.0
+juliancwirko:s-alert
+juliancwirko:s-alert-slide
+raix:ui-dropped-event
+http@1.4.2
+cfs:standard-packages
+#cfs:gridfs
+msavin:mongol
+meteorhacks:subs-manager
+cfs:graphicsmagick
+cfs:filesystem
+cfs:ui
+cfs:s3
+reactive-dict@1.3.0
+zuuk:stale-session
+
+cfs:upload-http
+juzt3:upload-http-fixed # this installs aldeed:http as well
+aldeed:http
+jcbernack:reactive-aggregate
+aldeed:collection2-core
+aldeed:schema-index
+#tarang:email-ses
+fongandrew:find-and-modify
+promise@0.11.2
+dynamic-import@0.5.2
+email@2.0.0
+ostrio:user-status
+meteorhacks:inject-initial
+mizzao:bootboxjs
+ongoworks:ddp-login
+percolate:synced-cron
+#browser-policy
+nitrolabs:cdn
+browser-policy@1.1.0
+underscore@1.0.10
+sakulstra:aggregate
+
+matb33:collection-hooks
+flawless:meteor-toastr
+react-template-helper
+
+kadira:login-state

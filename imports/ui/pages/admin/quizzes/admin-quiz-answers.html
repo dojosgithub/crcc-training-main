@@ -1,0 +1,56 @@
+<template name="AdminQuizAnswers">
+  <!-- {{#with Question}} -->
+  <div class="row row-admin-quiz-answers">
+    <div class="col-xs-12 col-admin-quiz-answers">
+      <div class="admin-quiz-answers-top text-right">   
+        <button class="btn btn-xs btn-default btn-add-new-answer">
+          <i class="fa fa-plus"></i> Add Answer</button>
+      </div>
+      <div class="admin-quiz-answers-container">
+        <!-- {{#with Answers}} -->
+        <!-- <div class="admin-quiz-answer-note"><i>* Select a correct answer.</i></div> -->
+        <!-- {{/with}} -->
+        <!-- {{#with Quiz}} -->
+        <form>
+        <!-- {{#with answerType}}{{this}}{{/with}} -->
+        <ul class="ul-amdin-quiz-answers list-unstyled" id="ul_admin_quiz_answers">        
+          {{#if (eq answerType 2)}}
+            {{#each Answers}}            
+            <li class="li-admin-quiz-answer" data-qid="{{this.questionId}}" data-aid="{{this._id}}">
+              <input type="checkbox" name="correct-answer" class="chkb-this-quiz-answer" 
+                value="{{this._id}}" {{mChecked this._id correctAnswers}}>
+              <textarea class="txta-quiz-answer-content" cols="70" rows="3" placeholder="Type answer content">{{{this.content}}}</textarea>
+              <button class="btn btn-xs btn-default btn-save-this-answer blink-me"><i class="fa fa-save"></i> </button>
+              {{#if eq status 1}}
+              <button class="btn btn-xs btn-warning btn-update-answer-status" data-status="2"><i class="fa fa-lock"></i> </button>
+              {{else}}
+              <button class="btn btn-xs btn-info btn-update-answer-status" data-status="1"><i class="fa fa-unlock"></i> </button>
+              {{/if}}
+              <button class="btn btn-xs btn-danger btn-remove-this-answer"><i class="fa fa-trash"></i> </button>
+            </li>
+            {{/each}}
+          {{else}}   
+            {{#each Answers}}            
+            <li class="li-admin-quiz-answer" data-qid="{{this.questionId}}" data-aid="{{this._id}}">
+              <input type="radio" name="correct-answer" class="radio-this-quiz-answer" 
+                value="{{this._id}}" {{mChecked this._id correctAnswers}}>                
+              <textarea class="txta-quiz-answer-content" cols="70" rows="3" placeholder="Type answer content">{{{this.content}}}</textarea>
+              <button class="btn btn-xs btn-default btn-save-this-answer blink-me"><i class="fa fa-save"></i> </button>
+              {{#if eq status 1}}
+              <button class="btn btn-xs btn-warning btn-update-answer-status" data-status="2"><i class="fa fa-lock"></i> </button>
+              {{else}}
+              <button class="btn btn-xs btn-info btn-update-answer-status" data-status="1"><i class="fa fa-unlock"></i> </button>
+              {{/if}}
+              <button class="btn btn-xs btn-danger btn-remove-this-answer"><i class="fa fa-trash"></i> </button>
+            </li>
+            {{/each}}
+          {{/if}}
+        </ul>
+        </form>
+        <!-- {{/with}} -->
+      </div>
+    </div>
+  </div>
+
+</template>
+

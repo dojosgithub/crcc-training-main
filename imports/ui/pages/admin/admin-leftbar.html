@@ -1,0 +1,168 @@
+<!-- Admin Leftbar template  -->
+
+<template name="AdminLeftbar">
+  <div class="admin-leftbar-container">
+    
+    <!-- Admin Leftbar Menu Items -->
+    <div class="collapse navbar-collapse navbar-ex1-collapse">
+        <ul class="nav navbar-nav admin-leftbar-nav">
+            <li>
+                <a data-toggle="collapse" data-target="#admin_leftbar_nav_modules">
+                  <i class="fa fa-podcast leftbar-menu-icon" aria-hidden="true"></i> Modules 
+                  <i class="fa fa-chevron-down leftbar-arrow-down" aria-hidden="true"></i>
+                </a>
+                <ul id="admin_leftbar_nav_modules" class="collapse">
+                    <li>
+                        <a href="/admin/modules">All Modules</a>
+                    </li>
+                    <li>
+                        <a href="/admin/modules/add">Add Module</a>
+                    </li>
+                </ul>
+            </li>            
+            <li>
+                <a data-toggle="collapse" data-target="#admin_leftbar_nav_images">
+                  <i class="fa fa-photo leftbar-menu-icon" aria-hidden="true"></i> Images 
+                  <i class="fa fa-chevron-down leftbar-arrow-down" aria-hidden="true"></i>
+                </a>
+                <ul id="admin_leftbar_nav_images" class="collapse">
+                    <li>
+                        <a href="/admin/images">All Images</a>
+                    </li>
+                    <li>
+                        <a href="/admin/images/add">Add Image</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a data-toggle="collapse" data-target="#admin_leftbar_nav_videos">
+                  <i class="fa fa-film leftbar-menu-icon" aria-hidden="true"></i> Videos 
+                  <i class="fa fa-chevron-down leftbar-arrow-down" aria-hidden="true"></i>
+                </a>
+                <ul id="admin_leftbar_nav_videos" class="collapse">
+                    <li>
+                        <a href="/admin/videos">All Videos</a>
+                    </li>
+                    <li>
+                        <a href="/admin/videos/add">Add Video</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a data-toggle="collapse" data-target="#admin_leftbar_nav_audio">
+                  <i class="fa fa-file-audio-o leftbar-menu-icon" aria-hidden="true"></i> Audio 
+                  <i class="fa fa-chevron-down leftbar-arrow-down" aria-hidden="true"></i>
+                </a>
+                <ul id="admin_leftbar_nav_audio" class="collapse">
+                    <li>
+                        <a href="/admin/audio">All Audio</a>
+                    </li>
+                    <li>
+                        <a href="/admin/audio/add">Add Audio</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a data-toggle="collapse" data-target="#admin_leftbar_nav_quizzes">
+                  <i class="fa fa-question-circle leftbar-menu-icon" aria-hidden="true"></i> Quizzes 
+                  <i class="fa fa-chevron-down leftbar-arrow-down" aria-hidden="true"></i>
+                </a>
+                <ul id="admin_leftbar_nav_quizzes" class="collapse">
+                    <li>
+                        <a href="/admin/quizzes">All Quizzes</a>
+                    </li>
+                    <li>
+                        <a href="/admin/quizzes/add">Add Quiz</a>
+                    </li>                    
+                </ul>
+            </li>
+            <li>
+                <a data-toggle="collapse" data-target="#admin_leftbar_nav_survey">
+                  <i class="fa fa-paperclip leftbar-menu-icon" aria-hidden="true"></i> Survey 
+                  <i class="fa fa-chevron-down leftbar-arrow-down" aria-hidden="true"></i>
+                </a>
+                <ul id="admin_leftbar_nav_survey" class="collapse">
+                    <li>
+                        <a href="/admin/surveys">All Surveys</a>
+                    </li>
+                    <li>
+                        <a href="/admin/surveys/add">Add Survey</a>
+                    </li> 
+                    <li>
+                        <a href="/admin/surveys/report">Report</a>
+                    </li>
+                </ul>
+            </li>                  
+            <li>
+                <a data-toggle="collapse" data-target="#admin_leftbar_nav_templates">
+                  <i class="fa fa-window-restore leftbar-menu-icon" aria-hidden="true"></i> Templates 
+                  <i class="fa fa-chevron-down leftbar-arrow-down" aria-hidden="true"></i>
+                </a>
+                <ul id="admin_leftbar_nav_templates" class="collapse">
+                    <li>
+                        <a href="/admin/templates/page">Page Templates</a>
+                    </li>
+                    <li>
+                        <a href="/admin/templates/comp">Comp Templates</a>
+                    </li>                    
+                    <li>
+                        <a href="/admin/templates/add">Add Template</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a data-toggle="collapse" data-target="#admin_leftbar_nav_documents">
+                  <i class="fa fa-file-text-o leftbar-menu-icon" aria-hidden="true"></i> Documents 
+                  <i class="fa fa-chevron-down leftbar-arrow-down" aria-hidden="true"></i>
+                </a>
+                <ul id="admin_leftbar_nav_documents" class="collapse">
+                    <li>
+                        <a href="/admin/documents">All Documents</a>
+                    </li>                   
+                    <li>
+                        <a href="/admin/documents/add">Add Document</a>
+                    </li>
+                </ul>
+            </li>            
+            <li>
+                <a data-toggle="collapse" data-target="#admin_leftbar_nav_users">
+                  <i class="fa fa-users leftbar-menu-icon" aria-hidden="true"></i> Users 
+                  <i class="fa fa-chevron-down leftbar-arrow-down" aria-hidden="true"></i>
+                </a>
+                <ul id="admin_leftbar_nav_users" class="collapse">
+                    <li>
+                        <a href="/admin/users">All Users</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a data-toggle="collapse" data-target="#admin_leftbar_nav_system">
+                  <i class="fa fa-cog leftbar-menu-icon" aria-hidden="true"></i> System 
+                  <i class="fa fa-chevron-down leftbar-arrow-down" aria-hidden="true"></i>
+                </a>
+                <ul id="admin_leftbar_nav_system" class="collapse">
+                    <li>
+                        <a href="/admin/etl">ETL</a>
+                    </li>
+                    <li>
+                        <a href="/admin/logs">Logs</a>
+                    </li>
+                </ul>
+            </li>                                     
+            <li>
+                <a data-toggle="collapse" data-target="#admin_leftbar_nav_data">
+                  <i class="fa fa-database leftbar-menu-icon" aria-hidden="true"></i> Data 
+                  <i class="fa fa-chevron-down leftbar-arrow-down" aria-hidden="true"></i>
+                </a>
+                <ul id="admin_leftbar_nav_data" class="collapse">
+                    <li>
+                        <a href="/admin/quiz-datadump">Quiz Datadump</a>
+                    </li>
+                </ul>
+
+            </li>                    
+        </ul>
+    </div>
+
+  </div>
+</template>

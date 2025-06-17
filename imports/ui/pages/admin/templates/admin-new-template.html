@@ -1,0 +1,57 @@
+<!-- Admin New Template template -->
+<template name="AdminNewTemplate">
+
+  <div class="row row-admin-new-template">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-admin-new-template text-center">
+      <div class="admin-new-template-container">
+        
+        <form id="form_admin_new_template" class="form-admin-new-template form-horizontal ">
+
+<!--           <div class="form-group">
+            <label for="input_new_template_name" class="col-sm-2 control-label">Name: </label>
+            <div class="col-sm-3">
+              <input type="text" class="form-control" id="input_new_template_name">  
+            </div>          
+          </div> -->
+
+          <div class="form-group">
+            <label for="sel_template_type" class="col-sm-2 control-label">Type: </label>
+            <div class="col-sm-3">
+              <select id="sel_new_template_type" class="form-control">
+                <!-- <option value="-1">SELECT</option> -->
+                <option value="page">Page</option>
+                <option value="comp">Comp</option>
+                <option value="quiz">Quiz</option>
+              </select>  
+            </div>          
+          </div>
+
+          <div class="form-group">
+            <label for="input_new_template_system_name" class="col-sm-2 control-label">System name: </label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" id="input_new_template_system_name" placeholder="CamelCaseWithNoSpace">  
+            </div>          
+          </div>
+
+          <div class="form-group">
+            <label for="txta_new_template_description" class="col-sm-2 control-label">Description: </label>
+            <div class="col-sm-4">
+              <textarea class="form-control" id="txta_new_template_description" rows="3"></textarea>  
+            </div>          
+          </div>
+          
+          <div class="form-group">          
+            <div class="col-sm-offset-2 col-sm-4">
+              <button class="btn btn-md btn-primary btn-submit-new-template">
+                Submit
+              </button>
+            </div>          
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+</template>

@@ -1,0 +1,131 @@
+@media(min-width:768px) {
+  .row-admin-all-videos {
+    
+    margin: 70px 0 30px 230px;
+    min-height: 70%;  
+
+    .col-admin-all-videos {
+
+      .admin-all-videos-top-container {
+        .admin-all-videos-top-nav {
+          text-align: right;
+          margin-right: 3em;
+          margin-bottom: 1em;
+        }
+      }
+
+      .admin-all-videos-container {
+
+        .form-thumbs-per-page {
+          display: inline-block;
+          margin: 0 0 10px 50px;
+
+          select {
+            font-size: 0.9em;
+          }
+        }
+
+        .form-thumbs-search {
+          display: inline-block;
+          float: right;
+          margin-right: 100px;
+
+          input#search_thumbs {
+            border: 1px solid #b5afaf;
+            border-radius: 3px;
+          }
+        }
+
+        //-- Thumbnail UI
+        .ul-admin-all-videos {
+
+          li.li-admin-all-videos {
+              
+            float: left;
+            display: inline-block;
+            margin: 15px 15px 0 0;
+
+            border: 1px solid #ddd;
+            border-radius: 5px;
+
+            .admin-video-container {
+              width: 170px;
+              height: 165px;
+              padding: 5px;
+              border: 1px solid #ddd;
+
+              .admin-video-src {        
+                border: 1px solid #eee;
+                width: 159px;
+                height: 90px;
+
+                iframe {
+                  width: 100%;
+                  height: 100%;
+                }            
+              }
+
+              .admin-video-title {
+                font-size: 0.9em;
+                padding: 10px 3px 0 0;
+                height: 44px;
+              }
+          
+              .admin-video-buttons {
+                text-align: right;
+
+                button {
+                  font-size: 0.8em;
+                }
+              }
+            }
+
+            .admin-video-container.active {
+              background-color: rgba(220, 239, 225, 0.8);
+            }
+
+            .admin-video-container.inactive {
+              background-color: transparent;
+            }
+
+          }
+        } //-- Thumbnail UI
+
+        //-- Table UI
+        #tblTraniningModuleVideos {
+          th {
+            text-align: center;
+          }         
+        }
+
+        .txta-video-desc, .txta-video-src {
+          width: 300px;
+        }
+
+      }
+    }
+  }
+
+  .row-admin-all-videos-bottom {
+    margin: 10px 0 70px 200px;    
+
+    ul.ul-admin-all-videos-thumbs-page {
+      text-align: center;
+      margin-bottom: 20px;
+
+      li {        
+        display: inline-block;
+        padding: 3px 10px;
+        border: 1px solid #98af22;
+        border-radius: 20px;
+        cursor: pointer;
+      }
+
+      li.active {
+        color: #fff;
+        background-color: #d4da82;
+      }
+    }
+  }
+
+}

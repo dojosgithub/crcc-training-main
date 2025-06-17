@@ -1,0 +1,118 @@
+<!-- All Images template -->
+<template name="AdminAllImages">
+  <div class="row row-admin-all-images">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-admin-all-images">
+      <div class="admin-all-images-top-container">
+        <div class="admin-all-images-top-nav">
+          <button class="btn btn-xs btn-default btn-view-image-table" data-on="true" title="List view">
+          <i class="fa fa-list"></i> </button>
+          <button class="btn btn-xs btn-default btn-view-image-table" data-on="false" title="Grid view">
+          <i class="fa fa-th"></i> </button>
+        </div>
+      </div>
+      
+      <div class="admin-all-images-container">
+  
+      {{#if viewTable}}
+
+        {{> tabular table=TabularTables.TrainingModuleImagesCFS selector=imageTableSelector 
+        class="table table-striped table-condensed" id="tblTrainingModuleImagesCFS"}} 
+
+      {{else}}
+        <div class="admin-all-images-thumbs-top-nav">
+          <form class="form-inline form-thumbs-per-page">
+            <div class="form-group">
+              <label for="sel_thumbs_per_page">Showing </label>
+              <select name="sel_thumbs_per_page" id="sel_thumbs_per_page">
+                <option value="20">20</option>
+                <option value="30">30</option>
+                <option value="50">50</option>
+              </select>
+              <label for="sel_thumbs_per_page"> images per page</label>
+              <span class="total-images"> (total: {{totalNumImages}})</span>
+            </div>
+          </form>
+
+          <form class="form-inline form-thumbs-search">
+            <div class="form-group">
+              <label for="sel_thumbs_per_page">Search: </label>
+              <input type="text" id="search_thumbs">
+              <button class="btn btn-xs btn-default btn-search-thumbs-images"><i class="fa fa-search"></i> </button>
+            </div>
+          </form>
+
+        </div>
+
+        <ul class="ul-admin-all-images">
+                  
+        {{#each Images}}
+          <li class="li-admin-all-images form-inline">
+            <div class="admin-all-images-img-container form-group">
+
+              <img src="{{this.url store='thumbs' uploading='/images/uploading.gif' storing='/images/storing.gif'}}" 
+              alt="{{this.name}}" class="thumbnail pre-loading view-image" 
+              data-iid="{{this._id}}" data-url="{{this.url}}" data-toggle="modal" data-target="#imageModal" 
+              onload="AdminImageOnload(event)" />
+                         
+              <div class="admin-all-images-img-title">
+                {{#if label}}
+                <span>{{curtail this.label 15}}</span>
+                {{else}}
+                <span>{{curtail this.name 15}}</span>
+                {{/if}}
+              </div>
+             </div>
+            <div class="admin-all-images-edit-icons" data-iid="{{this._id}}">                
+                <span class="admin-all-images-edit-icons-top">                
+                  <i class="fa fa-pencil-square-o btn-edit-image" aria-hidden="true"></i><br />                              
+                  <i class="fa fa-trash-o btn-delete-image" aria-hidden="true"></i><br />
+                </span>
+                <span class="admin-all-images-edit-icons-bottom">
+                  <i class="fa fa-crop btn-crop-image" aria-hidden="true"></i>  
+                </span>           
+             </div>       
+             
+          </li>
+        {{/each}}
+
+        </ul>      
+
+      {{/if}}
+
+      </div>
+    </div>
+  </div>
+  {{#if eq viewTable false}}
+  <div class="row-admin-all-images-bottom">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-admin-all-images-bottom">
+
+      <div class="admin-all-images-thumbs-bottom-nav">
+        <div class="admin-all-images-thumbs-page-container">
+          <ul class="ul-admin-all-images-thumbs-page list-unstyled">
+<!--             {{#each total}}
+              {{#if eq @index 0}}
+                <li>Prev</li>
+              {{else}}
+                {{#if eq (ded (length total) @index) 1}}
+                  <li>Next</li>
+                {{else}}
+                  <li>{{sum @index 1}}</li>      
+                {{/if}}
+              {{/if}}
+
+            {{/each}} -->
+
+            {{#each total}}
+              {{{this}}}
+            {{/each}}
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  {{/if}}
+
+  {{>AdminImageEdit data=imageToEdit }}
+  {{>AdminImageModal data=imageToView }}
+</template>

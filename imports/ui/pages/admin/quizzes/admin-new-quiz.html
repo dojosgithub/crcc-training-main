@@ -1,0 +1,38 @@
+<template name="AdminNewQuiz">
+    <div class="row row-admin-new-quiz">    
+      <div class="col-xs-12 col-sm-12 col-md-12 col-admin-new-quiz text-center">
+        <div class="admin-new-quiz-container">
+          
+          <form id="form_admin_new_quiz" class="form-admin-new-quiz form-horizontal ">
+
+            <div class="form-group admin-new-quiz-form-title">
+              <label for="" class="col-sm-4 control-label">Add a New Quiz</label>        
+            </div>
+            <div class="form-group">
+              <label for="input_new_quiz_name" class="col-sm-2 control-label">Name: </label>
+              <div class="col-sm-3">
+                <input type="text" class="form-control" id="input_new_quiz_name" name="quizName">  
+              </div>          
+            </div>
+
+            <div class="form-group">
+              <label for="txta_new_quiz_description" class="col-sm-2 control-label">Description: </label>
+              <div class="col-sm-4">
+                <textarea class="form-control" id="txta_new_quiz_description" name="quizDescription" rows="3"></textarea>  
+              </div>          
+            </div>
+            
+            <div class="form-group">          
+              <div class="col-sm-offset-2 col-sm-4">
+                <button type="submit" class="btn btn-md btn-primary btn-submit-new-quiz">
+                  Submit
+                </button>
+              </div>          
+            </div>
+
+          </form>
+
+        </div>
+      </div>
+  </div>
+</template>

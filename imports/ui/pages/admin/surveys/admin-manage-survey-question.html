@@ -1,0 +1,61 @@
+<template name="AdminManageSurveyQuestion">
+  <div class="question-editor-container">
+    <div class="question-tooltip">
+<!--           <button class="btn btn-xs btn-default btn-question-font-bold"> <i class="fa fa-bold"></i> </button>
+      <button class="btn btn-xs btn-default btn-question-font-italic"> <i class="fa fa-italic"></i> </button> 
+      <button class="btn btn-xs btn-default btn-question-font-underline"> <i class="fa fa-underline"></i> </button>
+      <button class="btn btn-xs btn-default btn-question-font-link"> <i class="fa fa-link"></i> </button> | 
+      <button class="btn btn-xs btn-default btn-question-font-header1"> <i class="fa fa-header"></i>1</button>
+      <button class="btn btn-xs btn-default btn-question-font-header2"> <i class="fa fa-header"></i>2</button>
+      <button class="btn btn-xs btn-default btn-question-font-header3"> <i class="fa fa-header"></i>3</button> |                     
+      <button class="btn btn-xs btn-default btn-question-font-superscript"> <i class="fa fa-superscript"></i> </button>
+      <button class="btn btn-xs btn-default btn-question-font-subscript"> <i class="fa fa-subscript"></i> </button> | 
+      <button class="btn btn-xs btn-default btn-question-font-quote"> <i class="fa fa-quote-left"></i> </button> -->
+      <button class="btn btn-xs btn-default btn-question-text-style" data-style="bold"><i class="fa fa-bold"></i> </button>
+      <button class="btn btn-xs btn-default btn-question-text-style" data-style="italic"> <i class="fa fa-italic"></i> </button> 
+      <button class="btn btn-xs btn-default btn-question-text-style" data-style="underline"> <i class="fa fa-underline"></i> </button> | 
+      <!-- <button class="btn btn-xs btn-default btn-question-text-style" data-style="link"> <i class="fa fa-link"></i> </button> |  -->
+      <button class="btn btn-xs btn-default btn-question-text-style header1" data-style="header1"> <i class="fa fa-header"></i>1</button>
+      <button class="btn btn-xs btn-default btn-question-text-style header2" data-style="header2"> <i class="fa fa-header"></i>2</button>
+      <button class="btn btn-xs btn-default btn-question-text-style header3" data-style="header3"> <i class="fa fa-header"></i>3</button> | 
+      <button class="btn btn-xs btn-default btn-question-text-style superscript" data-style="superscript"> <i class="fa fa-superscript"></i> </button>
+      <button class="btn btn-xs btn-default btn-question-text-style subscript" data-style="subscript"> <i class="fa fa-subscript"></i> </button> | 
+      <button class="btn btn-xs btn-default btn-question-text-style" data-style="quote"> <i class="fa fa-quote-left"></i> </button>
+    </div>
+    <div class="media-circle-container">
+      <button class="btn btn-xs btn-default btn-view-media-icons off" id="btn_view_media_icons">+</button>
+      <ul class="ul-media-circle-container list-unstyled">
+        <li class="li-add-media li-add-image off">
+          <button class="btn btn-xs btn-default btn-add-media add-image">
+          <i class="fa fa-camera fa-icon-small"></i> </button>
+        </li>
+        <li class="li-add-media li-add-video off">
+          <button class="btn btn-xs btn-default btn-add-media add-video"> <i class="fa fa-video-camera fa-icon-small"></i> </button>
+        </li>
+        <li class="li-add-media li-add-audio off">
+          <button class="btn btn-xs btn-default btn-add-media add-audio"> <i class="fa fa-music fa-icon-small"></i> </button>
+        </li>                    
+      </ul>        
+    </div>                
+    {{#with Question}}
+    <div class="question-type-container">
+      <label for="sel_question_type">Question Type: </label>
+      <select name="sel_question_type" id="sel_question_type" disabled>
+        <option value="single_choice" {{selected this.type 'single_choice'}}>Single Choice</option>
+        <option value="open_ended" {{selected this.type 'open_ended'}}>Open-ended</option>
+        <option value="multiple_choice" {{selected this.type 'multiple_choice'}} disabled="">Multiple Choice</option>        
+        <option value="numerical_rating" {{selected this.type 'numerical_rating'}}>Numerical Rating</option>
+        <option value="star_rating" {{selected this.type 'star_rating'}}>Star Rating</option>          
+      </select>        
+    </div>
+    <div class="question-body editable" contenteditable="true" role="textbox" 
+      aria-multiline="true" tabindex="0">
+        {{{this.content}}}
+    </div>       
+      
+    <!-- {{>AdminSurveyAnswers Question=this}} -->
+    {{>Template.dynamic template=AdminSurveyChoice}}  
+
+    {{/with}}
+  </div>
+</template>

@@ -1,0 +1,49 @@
+.row-all-users {
+  // margin-bottom: $section_margin_bottom;
+  margin-bottom: 5%;
+}
+
+.admin-all-users-table-container {
+  margin-top: 3%;
+  font-size: 1em;
+}
+
+// table.dataTable thead .sorting {
+//     background-image: url(/packages/aldeed_tabular/images/sort_both.png) norepeat !important;
+// }
+
+//- To change the sort icon to the fontawesome-based
+table.dataTable thead th {
+    position: relative;
+    background-image: none !important;
+}
+ 
+table.dataTable thead th.sorting:after,
+table.dataTable thead th.sorting_asc:after,
+table.dataTable thead th.sorting_desc:after {
+    position: absolute;
+    display: block;
+    font-family: FontAwesome;
+}
+
+table.dataTable thead th.sorting:after {
+    content: "\f0dc";
+    color: #000;
+    font-size: 0.8em;
+    padding-top: 0.12em;
+}
+table.dataTable thead th.sorting_asc:after {
+    content: "\f0de";
+}
+table.dataTable thead th.sorting_desc:after {
+    content: "\f0dd";
+}
+
+table.dataTable thead th {
+  border-top: 0;
+}
+
+table.dataTable thead th, table.dataTable thead td {    
+    border-bottom: 0.1em solid #999;
+}
+

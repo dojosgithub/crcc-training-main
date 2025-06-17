@@ -1,0 +1,118 @@
+<template name="AdminQuizSettings">
+  <div class="row row-admin-quiz-settings">
+    <div class="col-xs-12 col-admin-quiz-settings">
+      {{#each Settings}}
+      <form class="form-admin-quiz-settings">
+
+        <div class="form-group-quiz-settings">
+          <div class="form-group">
+            <label for="quiz_type">Quiz type:</label>
+            <select name="quiz_type" id="quiz_type">
+              <option value="1" {{selected 1 this.settings.quizType}}>One at a time</option>
+              <option value="2" {{selected 2 this.settings.quizType}}>All at once</option>
+            </select>
+            <span class="short-note-xs"> *This should be set up in the Module Page editor.</span>
+          </div>          
+        </div>
+
+        <div class="form-group-quiz-settings">
+          <div class="form-group">
+            <label for="question_order_type">Question order type:</label>
+            <select name="question_order_type" id="question_order_type">
+              <option value="1" {{selected 1 this.settings.questionOrderType}}>Fixed</option>
+              <option value="2" {{selected 2 this.settings.questionOrderType}}>Random</option>
+            </select>          
+          </div>
+        </div>
+
+        <div class="form-group-quiz-settings">
+          <div class="form-group">
+            <label for="answer_order_type">Answer order type:</label>
+            <select name="answer_order_type" id="answer_order_type">
+              <option value="1" {{selected 1 this.settings.answerOrderType}}>Fixed</option>
+              <option value="2" {{selected 2 this.settings.answerOrderType}}>Random</option>
+            </select>          
+          </div>
+        </div>
+
+        <div class="form-group-quiz-settings">
+          <div class="form-group">
+            <label for="answer_type">Correct answer(s):</label>
+            <select name="answer_type" id="answer_type">
+              <option value="1" {{selected 1 this.settings.answerType}}>Single</option>
+              <option value="2" {{selected 2 this.settings.answerType}}>Multiple</option>
+            </select>          
+          </div>
+        </div>
+
+        <div class="form-group-quiz-settings">
+          <label>Score option:</label>
+          <div class="radio">
+            <label>
+            <input type="radio" name="score_option" value="1" {{checked 1 this.settings.scoreOption}}>   
+            <input type="text" name="score_option_points" id="score_option_points" value="{{this.settings.scoreOptionPoints}}">
+            <span>point(s) for each question</span>                 
+            </label>         
+          </div>
+          <div class="radio">
+            <label>
+              <input type="radio" name="score_option" value="2" {{checked 2 this.settings.scoreOption}}>
+              <span>each question has its own point</span>            
+            </label>           
+          </div>
+        </div>
+
+        <div class="form-group-quiz-settings">
+          <label for="possible_attempts">Possible attempts:</label>                
+          <div class="form-group">
+            <!-- <label for="possible_attempts">Possible attempts:</label> -->
+            <select name="possible_attempts" id="possible_attempts">
+              <option value="1" {{selected 1 this.settings.possibleAttempts}}>1</option>
+              <option value="2" {{selected 2 this.settings.possibleAttempts}}>2</option>
+              <option value="3" {{selected 3 this.settings.possibleAttempts}}>3</option>
+              <option value="4" {{selected 4 this.settings.possibleAttempts}}>4</option>
+              <option value="5" {{selected 5 this.settings.possibleAttempts}}>5</option>
+            </select>
+            <span>time(s) | New points: Reduce </span>
+            <input type="text" name="possible_attempts_reduce_percent" id="possible_attempts_reduce_percent" 
+              value="{{this.settings.possibleAttemptsReducePercent}}">% of 
+            <select name="possible_attempts_reduce_target" id="possible_attempts_reduce_target">
+              <option value="1" {{selected 1 this.settings.possibleAttemptsReduceTarget}}>Original</option>
+              <option value="2" {{selected 2 this.settings.possibleAttemptsReduceTarget}}>New</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group-quiz-settings">
+          <div class="form-group">
+            <label for="quiz_duration">Quiz duration:</label>
+            <input type="text" name="quiz_duration_hours" id="quiz_duration_hours" value="{{this.settings.quizDurationHours}}"> hour(s)
+            <input type="text" name="quiz_duration_mins" id="quiz_duration_mins" value="{{this.settings.quizDurationMinutes}}"> minute(s)
+          </div>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" name="show_timer" {{checked true this.settings.showTimer}}> show timer
+            </label>
+          </div>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" name="show_warning_message" 
+                {{checked true this.settings.showWarningMessage}}> show warning message when 
+              <input type="text" name="timer_warning_message_mins" 
+                value="{{this.settings.timerWarningMessageMinutes}}"> minute(s) is/are left
+            </label>
+          </div>
+          <textarea name="timer_warning_message" id="timer_warning_message" cols="50" rows="3" 
+            placeholder="Type a warning message to show">{{this.settings.timerWarningMessage}}</textarea>
+        </div>    
+
+        <div class="form-group-quiz-settings submit">
+          <div class="form-group">
+            <button type="submit" class="btn btn-sm _btn-primary btn-save-quiz-settings">Save</button>
+          </div>
+        </div>
+      </form>
+      {{/each}}
+    </div>
+  </div>  
+</template>

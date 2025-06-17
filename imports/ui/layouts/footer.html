@@ -1,0 +1,24 @@
+<!-- Global Footer Template -->
+<template name="Footer">
+  <div class="row row-footer">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-footer">
+      <div class="admin-footer-container text-center">
+        &copy; Copyright {{getThisYear}} <a href="https://craassessments.com" target="_blank">CRAAssessments.com</a> - All Rights Reserved
+      </div>
+    </div>
+  </div>
+  {{#if eq (session 'isProduction') true}}
+  <!-- <script src='ga.js'></script>  -->
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-68125201-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-68125201-2');
+  </script> -->
+
+  {{/if}}
+  
+</template>

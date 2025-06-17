@@ -1,0 +1,148 @@
+.row-modules {
+  min-height: 85%;
+  padding: 9em 20px 3em 20px;
+}
+.row-modules .col-modules {
+  /* Progress bar: circular -----------------*/
+}
+.row-modules .col-modules .modules-container {
+  margin: 0em;
+}
+.row-modules .col-modules .modules-container ul {
+  margin: 0 auto;
+}
+.row-modules .col-modules .modules-container ul li {
+  display: inline-block;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+.row-modules .col-modules .modules-container ul li .module-container-init,
+.row-modules .col-modules .modules-container ul li .module-container {
+  width: 250px;
+  height: 290px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+.row-modules .col-modules .modules-container ul li .module-container-init .module-cover-box object,
+.row-modules .col-modules .modules-container ul li .module-container .module-cover-box object {
+  width: 100%;
+  height: 145px;
+}
+.row-modules .col-modules .modules-container ul li .module-container-init .module-cover-box img,
+.row-modules .col-modules .modules-container ul li .module-container .module-cover-box img {
+  width: 230px;
+  height: 150px;
+}
+.row-modules .col-modules .modules-container ul li .module-container-init .module-title,
+.row-modules .col-modules .modules-container ul li .module-container .module-title {
+  width: 100%;
+  margin: 10px 0 10px 0;
+  height: 60px;
+  font-weight: bold;
+}
+.row-modules .col-modules .modules-container ul li .module-container-init .module-buttons,
+.row-modules .col-modules .modules-container ul li .module-container .module-buttons {
+  width: 225px;
+  text-align: left;
+  vertical-align: bottom;
+  border-top: 1px solid #d2cdcd;
+  font-size: 0.9em;
+  padding: 7px 10px;
+}
+.row-modules .col-modules .modules-container ul li .module-container-init .module-buttons .module-user-stats,
+.row-modules .col-modules .modules-container ul li .module-container .module-buttons .module-user-stats {
+  color: #18820d;
+}
+.row-modules .col-modules .modules-container ul li .module-container-init .module-buttons .module-duration,
+.row-modules .col-modules .modules-container ul li .module-container .module-buttons .module-duration {
+  display: block;
+  margin-left: 2px;
+  color: #14343e;
+}
+.row-modules .col-modules .modules-container ul li .module-container-init .module-buttons .module-progress,
+.row-modules .col-modules .modules-container ul li .module-container .module-buttons .module-progress {
+  display: block;
+  color: #18820d;
+}
+.row-modules .col-modules .modules-container ul li .module-container-init .module-buttons .module-progress .short,
+.row-modules .col-modules .modules-container ul li .module-container .module-buttons .module-progress .short {
+  color: #d01313;
+}
+.row-modules .col-modules .modules-container ul li .module-container-init .module-buttons .module-progress i.fa,
+.row-modules .col-modules .modules-container ul li .module-container .module-buttons .module-progress i.fa {
+  cursor: pointer;
+  margin-left: 5px;
+  font-size: 1.3em;
+  color: orange;
+}
+.row-modules .col-modules .modules-container ul li .module-container-init .module-buttons .btn-start-tutorial,
+.row-modules .col-modules .modules-container ul li .module-container .module-buttons .btn-start-tutorial,
+.row-modules .col-modules .modules-container ul li .module-container-init .module-buttons .btn-start-module,
+.row-modules .col-modules .modules-container ul li .module-container .module-buttons .btn-start-module {
+  margin-left: 145px;
+  margin-top: -23px;
+  vertical-align: top;
+}
+.row-modules .col-modules .modules-container ul li .module-container-init .module-buttons .user-stats-progress-container,
+.row-modules .col-modules .modules-container ul li .module-container .module-buttons .user-stats-progress-container {
+  width: 90px;
+  height: 18px;
+}
+.row-modules .col-modules .modules-container ul li .module-container-init .module-buttons .user-stats-progress-container .progress-bar,
+.row-modules .col-modules .modules-container ul li .module-container .module-buttons .user-stats-progress-container .progress-bar {
+  background-color: #a6b53e;
+  height: 17px;
+  line-height: 17px;
+}
+.row-modules .col-modules .modules-container ul li .module-container-init .module-tutorial-video-message,
+.row-modules .col-modules .modules-container ul li .module-container .module-tutorial-video-message {
+  display: block;
+  font-size: 0.94em;
+  font-weight: normal;
+  color: #de622f;
+  margin-top: 10px;
+}
+.row-modules .col-modules .modules-container ul li .module-container.off {
+  opacity: 0.3;
+}
+.row-modules .col-modules .modules-container ul li .module-container.completed {
+  border-color: green;
+  border-width: 1em;
+}
+.row-modules .col-modules .modules-container .no-module-exists {
+  font-size: 1.2em;
+}
+@media only screen and (max-width: 990px) {
+  .row-modules .col-modules .progress {
+    margin-bottom: 20px;
+  }
+}
+/* iPads (landscape) ----------- */
+/* iPads (portrait) ----------- */
+/*==========  Mobile First Method  ==========*/
+/* Custom, iPhone Retina */
+/* Extra Small Devices, Phones */
+/* Small Devices, Tablets */
+/* Medium Devices, Desktops */
+/* Large Devices, Wide Screens */
+/*==========  Non-Mobile First Method  ==========*/
+/* Large Devices, Wide Screens */
+/* Medium Devices, Desktops */
+/* Small Devices, Tablets */
+/* Extra Small Devices, Phones */
+/* Custom, iPhone Retina */
+@media only screen and (max-width: 320px) {
+  .row-modules {
+    padding: 3em 20px 3em 20px;
+  }
+  .row-modules .col-modules .modules-container ul li {
+    margin: 0px 20px 20px 0px;
+  }
+}
+.panel-module-content {
+  display: inline-block;
+  margin: 5px;
+  width: 20%;
+  height: 300px;
+}

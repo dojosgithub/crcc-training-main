@@ -1,0 +1,84 @@
+<template name="AdminNewDocument">
+  <div class="row row-admin-new-doc-uploaded">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-admin-new-doc-uploaded">
+      <div class="tr-modules-container">
+        
+      </div>
+      <div class="admin-new-doc-uploaded-container">
+        <ul class="ul-admin-new-doc-uploaded">
+                  
+        {{#each uploadedDocuments}}
+          <!-- {{#unless this.isUploaded}} -->
+          <li class="li-admin-new-doc">
+                      
+            <div class="admin-new-doc-container {{#if eq status 1}}active{{else}}inactive{{/if}}">
+              <div class="admin-new-doc-src" id="{{_id}}">
+              </div>
+              <div class="admin-new-doc-title">
+              {{#if label}}
+                {{label}}
+              {{else}}
+                {{original.name}}
+              {{/if}}
+              </div>
+              <!-- <div class="admin-new-doc-buttons" data-aid="{{_id}}">
+                {{#if eq status 1}}
+                <button class="btn btn-xs btn-warning btn-deactivate-new-doc" title="Deactivate">
+                  <i class="fa fa-lock"></i>
+                </button> 
+                {{else}}
+                <button class="btn btn-xs btn-success btn-activate-new-doc" title="Activate">
+                  <i class="fa fa-unlock"></i>
+                </button>                 
+                {{/if}}             
+                <button class="btn btn-xs btn-default btn-edit-new-doc" title="Edit">
+                  <i class="fa fa-pencil"></i>
+                </button>
+                <button class="btn btn-xs btn-danger btn-delete-new-doc" title="Delete">
+                  <i class="fa fa-trash"></i>
+                </button>                
+              </div> -->
+            </div>
+
+          </li><!-- 
+          {{/unless}} -->
+        {{/each}}  
+        </ul>          
+      </div>
+    </div>  
+  </div>
+
+  <div class="row row-admin-new-doc-dropzone">
+
+    <div class="col-xs-12 col-sm-12 col-md-12 col-admin-new-doc col-admin-new-doc-dropzone">   
+      <div class="admin-new-doc-container">
+        <div class="col-md-4 admin-new-doc-dropzone">
+          <div class="form-group">
+            <!-- <div class="form-group">
+              <label for="">Drop document file(s) here.</label><br />
+              <span>(Max file size: 10M)</span>
+            </div> -->
+            <div class="form-group">
+              <label for="">Select a document file(s) to upload.</label>
+              <input type="file" id="admin_new_doc_multiple" class="admin-new-doc-multiple" 
+              accept=".pdf" multiple>            
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 admin-new-doc-progress">
+          <ul>
+          {{#each uploadedDocuments}}
+            {{#unless this.isUploaded}}
+              <li class="li-doc-being-uploaded-{{this._id}}">
+              {{this.name}}
+              <!-- {{> FS.UploadProgressBar bootstrap=true showPercent=true}} -->
+              </li>
+            {{/unless}}
+          {{/each}}
+          </ul>
+        </div>
+      </div>     
+    </div>
+  </div>
+
+</template>

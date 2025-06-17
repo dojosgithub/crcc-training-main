@@ -1,0 +1,222 @@
+<!-- Single Module template -->
+<template name="Module">
+  {{#each Page}}
+  <div class="row row-module-page-top-container">
+    <div class="col-xs-12 col-sm-12 col-md-2 col-module-page-top-left text-left">      
+      <div class="back-to-modules-container">
+        <a href="/modules" class="btn btn-xs btn-default">
+          <i class="fa fa-angle-double-left" aria-hidden="true"></i> Back to Modules</a>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-8 col-module-page-top-main text-center">
+        <div class="module-title-container">
+          <div class="module-title">
+            {{{this.title}}}
+          </div>        
+        </div>       
+    </div> 
+    <div class="col-xs-12 col-sm-12 col-md-2 col-module-page-top-right text-center">
+        <div class="module-progress-container">
+          <div class="module-progress">
+            {{sum index 1}} of {{totalPages}} ({{percent (sum index 1) totalPages}}%)
+          </div>        
+        </div>            
+    </div>
+
+  </div>
+  <div class="row row-module-top-navigation">
+    <div class="col-xs-12 col-sm-12 col-md-1 col-module-navigation-main">
+      <div class="module-navigation-left-container">
+        <div class="module-navigation-help">
+          
+          <span class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" 
+            aria-haspopup="true" aria-expanded="false">Help <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#"></a></li>
+              <li><a href="#">How to Use</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">FAQ</a></li>
+            </ul>
+          </span>
+
+        </div>        
+      </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-3 col-module-navigation-main">
+      <div class="module-navigation-page-list-container">
+        <div class="module-navigation-pages">
+          <i class="fa fa-bars" aria-hidden="true"></i> 
+          
+          <span class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" 
+            aria-haspopup="true" aria-expanded="false">Pages <span class="caret"></span></a>
+            <ul class="dropdown-menu module-page-dropdown">
+              <li><a href="#"></a></li>
+              {{#each Pages}}
+              <!-- <li><a class="jump-to-page" data-idx="{{@index}}"><span class="page-number">{{sum @index 1}}</span> {{title}}</a></li> -->
+              <li><a class="jump-to-page" data-idx="{{@index}}">{{{title}}}</a></li>
+              {{/each}}
+            </ul>
+          </span>
+
+        </div>
+
+      </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-5 col-module-navigation-main text-center">
+      {{#if and (eq type 'code') (audio.audioId)}}
+      <div class="module-navigation-audio-container">        
+        <div class="module-page-main-audio-container">        
+          <div class="module-page-main-audio-list-container">
+              <div class="module-page-main-audio-src">                  
+                <audio id="module_page_audio" controls>
+                  <source src="/cfs/files/training_module_audios_cfs/{{audio.audioId}}/{{audio.audioName}}" 
+                    type="audio/mpeg">                  
+                </audio>                  
+              </div>
+          </div>     
+        </div>        
+      </div>
+      {{/if}}
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-1"></div>
+    <div class="col-xs-12 col-sm-12 col-md-2 col-module-navigation">
+      <div class="module-navigation-right-container text-center">     
+        <div class="form-inline">      
+          {{#if gt index 0}}    
+          <button class="btn btn-xs btn-default btn-module-navigation btn-go-back"><i class="fa fa-angle-double-left" aria-hidden="true"></i> Back</button>
+          {{else}}
+          <button class="btn btn-xs btn-default btn-module-navigation btn-go-back btn-disabled" disabled=""><i class="fa fa-angle-double-left" aria-hidden="true"></i> Back</button>          
+          {{/if}}
+          
+          {{#if lt (sum index 1) totalPages}}
+          <button class="btn btn-xs btn-default btn-module-navigation btn-go-next">Next <i class="fa fa-angle-double-right" aria-hidden="true"></i></button>
+          {{else}}
+          <button class="btn btn-xs btn-default btn-module-navigation btn-go-next btn-disabled" disabled="">Next <i class="fa fa-angle-double-right" aria-hidden="true"></i></button>          
+          {{/if}}
+<!--           <a href="#" class="btn btn-xs btn-default btn-open-resource-panel">
+            <i class="fa fa-files-o" aria-hidden="true"></i> <span>Open resource panel</span>
+          </a>
+          <a href="#" class="btn btn-xs btn-default btn-close-resource-panel">
+            <i class="fa fa-files-o" aria-hidden="true"></i> <span>Close resource panel</span>
+          </a>    -->                
+        </div>
+      </div>       
+    </div>
+  </div>
+
+  <div class="row row-module-main-container">
+    {{#if eq type 'video'}} 
+    <div class="col-xs-12 col-sm-12 col-md-10 col-video-container">      
+      <div class="module-video-container">
+        {{{this.video.videoSrc}}}
+      </div>
+    </div>
+    {{else}}
+      {{> Template.dynamic template=this.thisTemplate.systemName data=pageData}}
+    {{/if}}
+    <div class="col-xs-12 col-sm-12 col-md-2">
+  <!--     {{> Template.dynamic template=this.compTemplate data=compData}}
+      {{else}}
+      {{> Template.dynamic template=this.pageTemplate data=pageData}} -->
+
+      <div class="col-module-resource-panel">
+        <div class="module-resource-container">
+          <div class="module-resource-doc-label">Instructions</div>
+          <div class="module-resource-doc-list">
+            {{this.instructions}}
+          </div>     
+        </div>
+        {{#if sourceDocuments}}
+        <div class="module-resource-container">
+          <div class="module-resource-doc-label">Source Documents 
+            <button class="btn btn-xs btn-default btn-view-document-all">view all</button>
+          </div>
+          <div class="module-resource-doc-list">
+            <ul>
+              <li>
+                <span>Progress Note Page</span>
+                <!-- <button class="btn btn-xs btn-default btn-view-document">view</button> -->
+              </li>
+              <li>
+                <span>Vital CRF Page</span>
+                <!-- <button class="btn btn-xs btn-default btn-view-document">view</button> -->
+              </li>
+            </ul>
+          </div>     
+        </div>
+        {{/if}}
+        <div class="module-resource-buffer"></div>
+        <div class="module-resource-container">
+          <div class="module-resources-label">Resources: </div>
+          <div class="module-resources-list-container">
+            <ul>
+              <li>
+                <span>Transcripts</span>
+                <div class="form-inline" data-pid="{{_id}}">
+                  <button href="#" class="btn btn-xs btn-default btn-view-transcript">
+                    <i class="fa fa-eye" aria-hidden="true"></i> view</button>
+                  <!-- <a href="#" class="btn btn-xs btn-default"><i class="fa fa-download" aria-hidden="true"></i> download</a>                 -->
+                </div>
+              </li>
+            </ul>
+          </div>     
+        </div>      
+        <div class="module-resource-buffer"></div>
+        <div class="module-resource-container">
+          <div class="module-resources-label">Preferences: </div>
+          <div class="module-resources-preferences-container">
+            <ul>
+              <li class="_list-unstyled">
+                <input type="checkbox" class="chkb-video-autoplay" checked="{{mySettings.videoAutoplay}}"> 
+                <span> Autoplay next videos</span>
+              </li>
+<!--               <li>
+                <div>Video alignment</div>
+                <div>
+                  <button class="btn btn-xs btn-default btn-video-alignment" data-pos="theme_default_left">Left</button>
+                  <button class="btn btn-xs btn-default btn-video-alignment" data-pos="theme_default_center">Center</button>
+                  <button class="btn btn-xs btn-default btn-video-alignment" data-pos="theme_default_right">Right</button>
+                </div>
+              </li> -->
+            </ul>
+          </div>     
+        </div> 
+
+  <!--       {{#if and (eq type 'code') (audio.audioId)}}
+        <div class="module-page-audio-container">
+          <div class="module-page-audio-label">Audio: </div>
+          <div class="module-page-audio-list-container">
+              <div class="module-page-audio-src">                  
+                <audio id="module_page_audio" controls>
+                  <source src="/cfs/files/training_module_audios_cfs/{{audio.audioId}}/{{audio.audioName}}" 
+                    type="audio/mpeg">                  
+                </audio>                  
+              </div>
+          </div>     
+        </div>
+        {{/if}}  -->
+
+      </div>
+    </div>
+    <div class="transcript-container" id="transcript_container_{{_id}}">
+      <div class="transcript-top">
+        <i class="fa fa-times btn-close-transcript-panel"></i>
+      </div>
+      <div class="transcript-main"><pre>{{{transcript}}}</pre>
+      </div>      
+    </div>   
+  </div>
+
+  {{#if eq type 'video'}}  
+    {{> Template.dynamic template=this.thisTemplate.systemName data=compData}}
+<!--   {{else}}
+    {{> Template.dynamic template=this.thisTemplate.systemName data=pageData}} -->
+  {{/if}} 
+
+  {{/each}} 
+
+</template>

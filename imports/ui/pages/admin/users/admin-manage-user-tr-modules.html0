@@ -1,0 +1,11 @@
+<template name="AdminManageUserTRModules">
+  {{#each _myModules}}{{/each}}
+  <ul class="ul-admin-manage-userr-tr-modules list-unstyled">
+    {{#each Modules}}
+      <li class="li-admin-manage-user-tr-module">
+        <input type="checkbox" class="chk-user-tr-module" data-mid="{{this._id}}" {{mChecked this._id myModules}}> {{name}}
+      </li>
+    {{/each}}
+  </ul>
+</template>
+

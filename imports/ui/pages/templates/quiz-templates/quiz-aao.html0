@@ -1,0 +1,117 @@
+<!-- Quiz All-At-Once template -->
+<template name="QuizAAO">
+
+  <div class="col-xs-10 col-quiz-aao">      
+    <div class="module-quiz-aao-container">
+      <div class="row row-quiz-aao">
+        <div class="col-xs-12 col-question">
+
+          {{#each Quiz}}          
+          <div class="question-container">
+                          
+              <div class="question-top-container">
+                Total Questions: {{totalNumOfQuestions}}
+              </div>
+              
+              <ul class="ul-questions list-unstyled">
+                {{#each Questions}}
+                  {{#if showScoreFeedback}}
+                    {{#with Score}}{{/with}}
+                  {{/if}}
+                <form>
+                <li class="li-question">
+                  <div class="question-content-container">
+                    {{{this.content}}}
+                  </div>                  
+
+                  <ul class="ul-answers list-unstyled" id="ul_answers_{{this._id}}">
+                    {{#if (eq this.answerType 2)}}
+                      {{#each Answers}}
+                      <li class="li-answer">
+                        <input type="checkbox" class="chkb-question-answer" name="chkb_question_answer" value="{{this._id}}"> 
+                        <span>{{{this.content}}}</span>
+                      </li>
+                      {{/each}}
+                    {{else}}
+                    {{#each Answers}}
+                      <li class="li-answer">
+                        <input type="radio" class="radio-question-answer" name="radio_question_answer" value="{{this._id}}"> 
+                        <span>{{{this.content}}}</span>
+                      </li>
+                      {{/each}}                    
+                    {{/if}}
+                  </ul>
+  
+                  <div class="question-action-container">
+                    <div class="question-buttons">
+                    {{#if (eq this.canSubmit false)}}
+                     <button type="button" class="btn btn-xs btn-success btn-show-correct-answer" 
+                     data-qid="{{this._id}}">Show correct answer</button>
+                     {{/if}}                   
+                     <button type="submit" class="btn btn-xs _btn-primary btn-submit-question" data-qid="{{this._id}}"
+                     {{disabled this.canSubmit false}}>
+                        Submit
+                      </button>               
+                    </div>
+                  </div>
+                  <div class="question-feedback-container">
+                    <div class="question-feedback-attempts">
+                      Attempts: {{this.numAttempts}}/{{this.maxAttempts}}                  
+                    </div>
+                    {{#if showScoreFeedback}}
+                    <div class="question-feedback-score">
+                      Score: {{this.curPoints}}/{{this.scorePoints}}
+                    </div>     
+                    {{/if}}           
+
+                    <!-- {{#if this.numAttempts}} -->
+                    <div class="question-feedback-scores">
+                      <table class="tbl-question-feedback-scores">
+                        <thead>
+                          <tr>
+                            <th>Attempt</th>
+                            <th>Feedback</th>
+                            {{#if showScoreFeedback}}
+                            <th>Score</th>
+                            {{/if}}
+                            <!-- <th>Time</th> -->
+                            <th>Your Answer</th>
+                          </tr>
+                        </thead>
+                      {{#each Score}}
+                        <tbody>
+                          <tr>
+                            <td>{{attempts}}</td>
+                            <td class="{{#if (eq feedback 'correct')}}correct{{else}}wrong{{/if}}">{{feedback}}</td>
+                            {{#if ../showScoreFeedback}}
+                            <td>{{score}}</td>
+                            {{/if}}
+                            <!-- <td>{{dateHMS createdAt}}</td> -->
+                            <td>
+                              <button class="btn btn-xs btn-default btn-view-my-answers" 
+                                data-fid="{{this._id}}"><i class="fa fa-eye"></i> view</button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      {{/each}}                    
+                      </table>
+                    </div>
+                    <!-- {{/if}} -->
+                    <!-- <div class="question-feedback" id="question_feedback_{{this._id}}"></div> -->
+                  </div>
+
+
+                </li>
+                </form>
+                {{/each}}
+              </ul>
+
+                        
+          </div>
+          {{/each}}
+          
+        </div>      
+      </div>
+    </div>
+  </div>
+</template>

@@ -1,0 +1,201 @@
+/**
+ * Training Module User Stats methods
+ */
+import { Meteor } from 'meteor/meteor';
+import { check } from 'meteor/check';
+
+import SimpleSchema from 'simpl-schema' //-- this is from Npm version of simpl-schema
+
+import { Method } from '/imports/api/lib/method.js'
+
+import { ValidatedMethod } from 'meteor/mdg:validated-method'
+
+import { TrainingModuleUserStats } from '/imports/api/collections/training-module-user-stats.js'
+
+// export const insertSetting = new Method('insertSetting', function(stats) {
+//   return TrainingModuleStats.insert(log, {validate: true})
+// })
+
+export const insertUserStats = new ValidatedMethod({
+  name: 'TrainingModuleUserStats.methods.insertUserStats',
+  validate: new SimpleSchema(TrainingModuleUserStats.schema).validator(),
+  run(stats) {
+    check(stats, Object)
+    
+    return TrainingModuleUserStats.insert(stats)
+  }
+})
+
+
+export const upsertUserStats = new ValidatedMethod({
+  name: 'TrainingModuleUserStats.methods.upsertUserStats',
+  validate: new SimpleSchema(TrainingModuleUserStats.schema).validator({clean: true}),
+  // validate: new SimpleSchema(TrainingModuleUserStats.schema).namedContext("myContexts").validateOne({}, '', {clean: true, upsert: true}), //-- not working
+  // validate: TrainingModuleUserStats.schema.namedContext("myContexts").validateOne({}, '', {clean: true, upsert: true}), //-- not working either
+  // validate: new SimpleSchema({
+  //   // module: {type: Object},
+  //   // 'module.moduleId': {type: String},
+  //   userId:{type: String},
+  //   moduleId: {type: String},
+  //   // '_set.pages': {type: Array}   
+  // }).validator({clean: true, upsert: true}), 
+  run(stats) {
+    check(stats, Object)
+
+    // return TrainingModuleUserStats.upsert({
+    //   module: {
+    //     moduleId: stats.module.moduleId
+    //   },
+    //   userId: stats.userId
+    // },{
+    //   $setOnInsert: {        
+    //     userId: stats.userId
+    //   },
+    //   $set: {
+    //     module: stats.module,
+    //     modifiedAt: new Date,
+    //     // venue: stats.venue,
+    //     // message: stats.message
+    //   }
+    // })
+// console.log(stats)
+// if(Meteor.isServer) {
+//     return TrainingModuleUserStats.findAndModify({
+//       query: {
+//         module: {
+//           moduleId: stats.module.moduleId
+//         },
+//         userId: stats.userId
+//       },
+//       update: {
+//         $setOnInsert: {
+//           module: {
+//             moduleId: stats.module.moduleId,
+//             pages: stats.module.pages
+//           },
+//           // module: stats.module,
+//           userId: stats.userId,
+//           createdAt: new Date
+//         },
+//         $set: {
+//           // module: {
+//           //   pages: stats.module.pages
+//           // },
+//           modifiedAt: new Date
+//         }
+//       },
+//       // update: true,
+//       new: true
+//     })
+// }
+// console.log(stats)
+    // if(Meteor.isServer) {
+    //     return TrainingModuleUserStats.rawCollection().findAndModify(
+    //       {
+    //         // module: {
+    //         //   moduleId: stats.module.moduleId
+    //         // },
+    //         // 'module.moduleId': stats.module.moduleId,
+    //         userId: stats.userId
+    //       },
+    //       [],//-- sort?
+    //       {
+    //         // $setOnInsert: {
+    //         //   module: {
+    //         //     moduleId: stats.module.moduleId,
+    //         //     pages: stats.module.pages
+    //         //   },
+    //         //   // module: stats.module,
+    //         //   // userId: stats.userId,
+    //         //   createdAt: new Date
+    //         // },
+    //         $set: {
+    //           module: {
+    //             pages: stats.module.pages
+    //           },
+    //           modifiedAt: new Date
+    //         }
+    //       },
+    //       {upsert: true, new: true},
+    //       function(err, obj) {
+    //         console.log(err, obj)
+    //       }
+    //     )
+    // }
+
+    // TrainingModuleUserStats.upsert({
+    //   // module: {
+    //     moduleId: stats.moduleId,
+    //   // },
+    //   userId: stats.userId
+    // },{
+    //   $setOnInsert: {    
+    //     moduleId: stats.moduleId,    
+    //     userId: stats.userId,
+    //     pages: []
+    //   },
+    //   $set: {
+    //     // pages: stats.pages,
+    //     modifiedAt: new Date,
+    //     // venue: stats.venue,
+    //     // message: stats.message
+    //   }
+    // })
+
+    // return TrainingModuleUserStats.findOne({
+    //   moduleId: stats.moduleId,
+    //   userId: stats.userId
+    // })    
+
+    return TrainingModuleUserStats.findAndModify({
+      query: {
+        moduleId: stats.moduleId,        
+        userId: stats.userId
+      },
+      update: {
+        $setOnInsert: {
+          moduleId: stats.moduleId,
+          userId: stats.userId,
+          createdAt: new Date
+        },
+        $set: {
+          pages: stats._page ,
+          modifiedAt: new Date
+        }
+      },
+      upsert: true,
+      new: true
+    })
+
+  }
+})
+
+export const updateUserStatsPages = new ValidatedMethod({
+  name: 'TrainingModuleUserStats.methods.updateUserStatsPages',
+  validate: new SimpleSchema(TrainingModuleUserStats.schema).validator({clean: true}),
+  run(stats) {
+    check(stats, Object)
+
+    return TrainingModuleUserStats.findAndModify({
+      query: {
+        moduleId: stats.moduleId,
+        userId: stats.userId
+      },
+      update: {
+        $setOnInsert: {
+          moduleId: stats.moduleId,
+          userId: stats.userId,
+          createdAt: new Date
+        },        
+        $set: {    
+          modifiedAt: new Date
+        },
+        $push: { pages: stats._page }
+      },
+      upsert: true,
+      new: true
+    })
+
+  }
+})
+

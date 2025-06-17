@@ -1,0 +1,126 @@
+@media(min-width:768px) {
+  .row-admin-all-audios {
+    
+    margin: 70px 0 30px 230px;
+    min-height: 70%;
+  
+
+    .col-admin-all-audios {
+
+      .admin-all-audios-top-container {
+        .admin-all-audios-top-nav {
+          text-align: right;
+          margin-right: 3em;
+          margin-bottom: 1em;
+        }
+      }
+
+      .admin-all-audios-container {
+
+
+        .form-thumbs-per-page {
+          display: inline-block;
+          margin: 0 0 10px 50px;
+
+          select {
+            font-size: 0.9em;
+          }
+        }
+
+        .form-thumbs-search {
+          display: inline-block;
+          float: right;
+          margin-right: 100px;
+
+          input#search_thumbs {
+            border: 1px solid #b5afaf;
+            border-radius: 3px;
+          }
+        }
+
+        .ul-admin-all-audios {
+
+          li.li-admin-audio {
+            
+            float: left;
+            display: inline-block;
+            // margin-right: 15px;
+            margin: 10px 10px 0 0;
+
+            border: 1px solid #ddd;
+            border-radius: 5px;
+
+            .admin-audio-container {
+              
+              width: 287px;
+              height: 118px;
+              padding: 5px;
+              border: 1px solid #ddd;
+              border-radius: 5px;
+
+              .admin-audio-src {
+                
+                width: 275px;
+                border: 1px solid #eee;
+
+                audio {
+                  width: 270px;
+                }
+              }
+
+              .admin-audio-title {
+                font-size: 0.9em;
+                width: 280px;
+                height: 35px;
+                margin: 5px 0;
+              }
+
+              .admin-audio-buttons {
+                width: 100%;
+                text-align: right;        
+              }
+            }
+
+            .admin-audio-container.active {
+              // background-color: rgba(220, 239, 225, 0.8);
+              background-color: rgba(220, 228, 239, 0.8);
+            }
+
+            .admin-audio-container.inactive {
+              background-color: transparent;
+            }      
+          }  
+        }
+      }
+    }
+  }
+
+  .row-admin-all-audios-bottom {
+    margin: 10px 0 50px 200px;    
+
+    ul.ul-admin-all-audios-thumbs-page {
+      text-align: center;
+      margin-bottom: 20px;
+
+      li {        
+        display: inline-block;
+        padding: 3px 10px;
+        border: 1px solid #98af22;
+        border-radius: 20px;
+        cursor: pointer;
+      }
+
+      li.active {
+        color: #fff;
+        background-color: #d4da82;
+      }
+    }
+  }
+
+}
+
+#tblTrainingModuleAudiosCFS_filter {
+  text-align: right;
+  margin-right: 2em;
+}
+

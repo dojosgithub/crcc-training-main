@@ -1,0 +1,47 @@
+<!-- Admin All Videos template -->
+<template name="AdminAllVideos">
+  <div class="row row-admin-all-videos">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-admin-all-videos">
+      <div class="admin-all-videos-container">
+        <ul class="ul-admin-all-videos list-unstyled">
+                  
+        {{#each Videos}}
+          <li class="d-inline-block li-admin-all-videos">
+            <div class="admin-video-container {{#if eq status 1}}active{{/if}}">
+              <div class="admin-video-src">
+                {{{videoSrc}}}
+              </div>
+              <div class="admin-video-title">
+                {{title}}
+              </div>
+              <div class="admin-video-buttons" data-vid="{{_id}}">
+                <button class="btn btn-xs btn-default btn-view-video">
+                  <i class="fa fa-eye"></i>
+                </button>              
+                <button class="btn btn-xs btn-default btn-edit-video">
+                  <i class="fa fa-pencil"></i>
+                </button>
+                {{#if eq status 1}}
+                <button class="btn btn-xs btn-warning btn-deactivate-video" title="Deactivate">
+                  <i class="fa fa-lock"></i>
+                </button> 
+                {{else}}
+                <button class="btn btn-xs btn-success btn-activate-video" title="Activate">
+                  <i class="fa fa-unlock"></i>
+                </button>                 
+                {{/if}}
+                <button class="btn btn-xs btn-danger btn-delete-video">
+                  <i class="fa fa-trash"></i>
+                </button>                
+              </div>
+            </div>            
+          </li>
+        {{/each}}
+
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  {{> AdminVideoEdit data=videoToEdit }}
+</template>

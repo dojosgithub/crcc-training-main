@@ -1,0 +1,86 @@
+<!-- Admin New Audio template -->
+<template name="AdminNewAudio">
+  <div class="row row-admin-new-audio-uploaded">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-admin-new-audio-uploaded">
+      <div class="admin-new-audio-uploaded-container">
+        <ul class="ul-admin-new-audio-uploaded">
+                  
+        {{#each uploadedAudios}}
+          <!-- {{#unless this.isUploaded}} -->
+          <li class="li-admin-new-audio">
+                      
+            <div class="admin-new-audio-container {{#if eq status 1}}active{{else}}inactive{{/if}}">
+              <div class="admin-new-audio-src" id="{{_id}}">
+              </div>
+              <div class="admin-new-audio-title">
+              {{#if label}}
+                {{label}}
+              {{else}}
+                {{original.name}}
+              {{/if}}
+              </div>
+              <div class="admin-new-audio-buttons" data-aid="{{_id}}">
+                {{#if eq status 1}}
+                <button class="btn btn-xs btn-warning btn-deactivate-new-audio" title="Deactivate">
+                  <i class="fa fa-lock"></i>
+                </button> 
+                {{else}}
+                <button class="btn btn-xs btn-success btn-activate-new-audio" title="Activate">
+                  <i class="fa fa-unlock"></i>
+                </button>                 
+                {{/if}}             
+                <button class="btn btn-xs btn-default btn-edit-new-audio" title="Edit">
+                  <i class="fa fa-pencil"></i>
+                </button>
+                <button class="btn btn-xs btn-danger btn-delete-new-audio" title="Delete">
+                  <i class="fa fa-trash"></i>
+                </button>                
+              </div>
+            </div>
+
+          </li><!-- 
+          {{/unless}} -->
+        {{/each}}  
+        </ul>          
+      </div>
+    </div>  
+  </div>
+
+  <div class="row row-admin-new-audio-dropzone">
+
+    <div class="col-xs-12 col-sm-12 col-md-12 col-admin-new-audio col-admin-new-audio-dropzone">   
+      <div class="admin-new-audio-container">
+        <div class="col-md-4 admin-new-audio-dropzone">
+          <div class="form-group">
+            <div class="form-group">
+              <label for="">Drop audio file(s) here.</label><br />
+              <span>(Max file size: 10M)</span>
+            </div>
+            <div class="form-group">
+              <label for="">Or, select (an) audio file(s) to upload.</label>
+              <input type="file" id="admin_new_audio_multiple" class="admin-new-audio-multiple" 
+              accept=".mp3" multiple>            
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 admin-new-audio-progress">
+          <ul>
+          {{#each uploadedAudios}}
+            {{#unless this.isUploaded}}
+              <li class="li-audio-being-uploaded-{{this._id}}">
+              {{this.name}}
+              {{> FS.UploadProgressBar bootstrap=true showPercent=true}}
+              </li>
+            {{/unless}}
+          {{/each}}
+          </ul>
+        </div>
+      </div>     
+    </div>
+  </div>
+
+  {{>AdminAudioEdit data=audioToEdit }}
+  
+  <div class="audio-temp-holder" style="display: none"></div>
+
+</template>

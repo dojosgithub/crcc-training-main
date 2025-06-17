@@ -1,0 +1,67 @@
+<!-- Admin Audio Edit template -->
+<template name="AdminAudioEdit">
+  <div class="row row-admin-audio-edit modal">
+
+    <div class="admin-audio-edit-top">
+      <button class="btn-lg btn-default btn-close-admin-audio-edit">
+      <i class="fa fa-lg fa-times" aria-hidden="true"></i></button>
+    </div> 
+
+      <div class="col-xs-12 col-sm-12 col-md-12 col admin-audio-edit">
+        
+        <div class="admin-audio-edit-container">
+          {{#each Audio}}
+          <form id="form_admin_audio_edit" class="form-admin-audio-edit form-horizontal ">
+            <div class="form-group admin-audio-edit-form-title">
+              <label for="" class="col-sm-4 control-label">Edit Audio</label>        
+            </div>
+
+            <div class="form-group">
+              <label for="input_audio_edit_title" class="col-sm-2 control-label">Label: </label>
+              <div class="col-sm-6">
+                <input type="text" class="form-control" id="input_audio_edit_title" value="{{title}}">  
+              </div>          
+            </div>
+
+            <div class="form-group">
+              <label for="input_audio_edit_name" class="col-sm-2 control-label">File: </label>
+              <div class="col-sm-6">
+                <input type="text" class="form-control" id="input_audio_edit_name" value="{{original.name}}" readonly>  
+              </div>          
+            </div>
+
+            <div class="form-group">
+              <label for="txta_audio_edit_src" class="col-sm-2 control-label">Source: </label>
+              <div class="col-sm-4">
+                
+                <div class="admin-audio-src">
+                  <audio controls>
+                    <source src="/cfs/files/training_module_audios_cfs/{{_id}}/{{name}}" type="audio/mpeg">                  
+                  </audio>
+                </div>
+
+              </div>          
+            </div> 
+
+            <div class="form-group">
+              <label for="txta_audio_edit_description" class="col-sm-2 control-label">Description: </label>
+              <div class="col-sm-6">
+                <textarea class="form-control" id="txta_audio_edit_description" rows="3">{{description}}</textarea>  
+              </div>          
+            </div>
+            
+            <div class="form-group">          
+              <div class="col-sm-offset-3 col-sm-4">
+                <button class="btn btn-md btn-primary btn-submit-audio-edit" data-aid="{{_id}}">
+                  Save
+                </button>
+              </div>          
+            </div>
+
+          </form>
+          {{/each}}
+        </div>
+
+      </div>
+  </div>
+  </template>

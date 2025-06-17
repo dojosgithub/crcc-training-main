@@ -1,0 +1,157 @@
+.col-survey-oaat {
+  .module-survey-oaat-container {
+    .row-survey-oaat {
+      font-size: 1.5em;
+      padding: 5% 1em 10% 1em;
+
+      .col-question {
+        .question-container {
+          max-width: 700px;
+          margin: 0 auto;
+          padding: 15px;
+          font-size: 0.8em;
+          border: 1px solid #eee;
+          border-radius: 5px;
+          background-color: #fff;
+          
+          .question-top-container {
+            font-size: 0.7em;
+            text-align: right;
+            margin: 0 10px 5px;
+          }
+          
+          .ul-questions {
+    
+            .li-question {
+              .question-content-container {
+                border: 1px solid #c3bfbf;
+                border-radius: 5px;
+                padding: 10px;
+                font-size: 0.9em;
+              }
+
+              .ul-answers {
+                margin-top: 20px;
+                font-size: 0.9em;
+
+                .li-answer {
+                  margin-bottom: 3px;
+
+                  .chkb-question-answer {
+                    margin-right: 3px;
+                  }
+
+                  .correct {
+                    color: #2aa51d;
+                  }
+                  .wrong {
+                    color: #ca0a0a;
+                  }                                   
+                }
+              }
+
+              .survey-question-open-ended-container {
+                font-size: 0.92em;
+
+                textarea {
+                  width: 100%;
+                  height: 100px;
+                  margin-top: 20px; 
+                  border-color: #c1bdbd;
+                  border-radius: 5px;
+                  padding: 5px;
+                }
+              }             
+
+            }
+          }
+
+          .question-action-container {
+            margin-top: 30px;
+            border-top: 1px solid #c3bfbf;
+            padding: 10px;
+            text-align: right;  
+
+            .btn-submit-question {
+              margin-right: 20px;
+            }          
+          }
+
+          .question-feedback-container {
+
+            .question-feedback-attempts {
+              display: inline-block;
+              font-size: 0.73em;
+              margin-left: 15%;
+              margin-bottom: 5px;
+            }
+
+            .question-feedback-score {
+              display: inline-block;
+              font-size: 0.73em;
+              margin-left: 20px;
+              margin-bottom: 5px;
+            }
+
+            .question-feedback-scores {
+              .tbl-question-feedback-scores {
+                border: 1px solid #e0dada;
+                font-size: 0.72em;
+                text-align: center;
+
+                thead {
+                  th {
+                    border: 1px solid #e0dada;                    
+                    padding: 5px 10px;
+                    text-align: center;
+                    color: #676464;
+                  }
+                }
+
+                tbody {
+                  td {
+                    border: 1px solid #e0dada;
+                    padding: 5px 10px;
+          
+                    button.btn-view-my-answers {
+                      font-size: 0.95em;
+
+                      // i.viewing {
+                      //   color: #00c0ff;
+                      // }
+
+                      i.viewing {
+                        color: #00c0ff;
+                        // background-color: #16d4cd;
+                        // animation: blinker 2s linear infinite;
+                      }
+
+                      @keyframes blinker {  
+                        50% { opacity: 0; }
+                      }
+
+                    }                                 
+                  }
+                }
+
+                .correct {
+                  color: #2aa51d;
+                }
+                .wrong {
+                  color: #ca0a0a;
+                }
+              }
+            }
+
+            .question-feedback {
+              color: #d87215;
+              font-size: 0.9em;
+            }
+          }
+        }
+      }
+
+    }
+  }
+}
+
