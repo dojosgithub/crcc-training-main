@@ -28,8 +28,13 @@
     "react-pdf": "^5.0.0",
     "simpl-schema": "^0.2.3",
     "sortablejs": "^1.10.2",
-    "styled-components": "^5.2.0",
+    "styled-components": "^5.2.0"
+    ,
     "xlsx": "^0.15.6"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "engines": {
+    "node": "14.x",
+    "npm": "6.x"
+  }
 }
